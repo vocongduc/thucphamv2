@@ -1,0 +1,93 @@
+#lich-hang {
+    margin-top: 20px;
+}
+#lich-hang .panel-heading{
+    background-color: #228822;
+    color: white;
+    text-transform: uppercase;
+}
+#lich-hang .left_content{
+    padding: 0px 10px 0px 10px;
+}
+.right_content{
+    padding: 0px 10px 0px 10px;
+}
+#lich-hang .group{
+    padding: 0px;
+    margin: 0px;
+}
+#lich-hang .img2{
+    float: left;
+    margin:0px 10px 0px 0px;
+}
+#lich-hang .body3{
+    padding: 0px;
+    margin: 0px 0px 20px 0px;
+    border: 1px solid #ddd;
+}
+.body {
+    padding: 0px;
+    margin: 0px 0px 20px 0px;
+
+}
+#lich-hang .right_clearfix{
+    overflow: auto;
+    padding: 10px 0px 0px 0px;
+}
+.right_clearfix .img1{
+    width: 130px;
+    height: 90px;
+}
+#lich-hang .right_clearfix .img3{
+    width: 170px;
+    height: 170px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+#lich-hang .img_lichhang{
+    width: 100%;
+    height: 800px;
+}
+#lich-hang .right_content .group .panel {
+    box-shadow: none;
+}
+#lich-hang .right_content .group .panel .body .list_group{
+    padding-bottom: 0px;
+}
+#lich-hang .body2{
+    border-bottom: 1px solid #ddd;
+}
+#lich-hang .body1{
+    border-bottom: 1px solid #ddd;
+    /* padding: 5px 0px 5px 0px; */
+}
+#lich-hang .body1{
+   border-left: 1px solid #ddd;
+   border-top: 0px;
+   border-bottom: 1px solid #ddd;
+   border-right: 1px solid #ddd;
+   padding: 10px;
+}
+#lich-hang .truycap{
+    padding: 0px;
+}
+#lich-hang .truycap a{
+    padding: 0px;;
+}
+#lich-hang .label{
+    padding: 0px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+#lich-hang span{
+    float: right;
+}
+#lich-hang .body5{
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0px 5px 0px;
+}
+#lich-hang .image_container{
+    background-image: url(https://www.automodulesource.com/images/logo/ford.png);
+}
+

@@ -1,0 +1,135 @@
+
+
+#detailfood * {
+    padding: 15px;
+    margin: 15px;
+    box-sizing: border-box;
+  }
+  #detailfood img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  #detailfood  .wrapper{
+    margin: 10px;
+  }
+  #detailfood .big_item{
+    margin: 0px 0px 10px 0px;
+  }
+  #detailfood .item img{
+    margin-right: 5px;
+  }
+  #detailfood .rating-stars{
+    padding-right: 10px;
+  }
+  #detailfood .totalRating.inline-block{
+    float: left;
+  }
+  #detailfood .rating-stars{
+    float: left;
+  }
+  #detailfood .product-status{
+    clear: both;
+  }
+  #detailfood .statustext-danger{
+    float: right;
+  }
+  #detailfood .tags-group .tag_item {
+    background: #f1f1f1;
+    padding: 0 10px;
+    height: 20px;
+    color: #656565;
+    float: left;
+    margin: 0 5px 5px 0;
+    font: 400 11px/20px arial;
+  }
+  #detailfood #list-product .product-title a{
+    color: black;
+   }
+  
+   #detailfood #list-product .product-title a:hover{
+    color: orange
+   }
+   #detailfood #list-product  .product-content{
+    margin-bottom: 25px;
+  }
+  #detailfood #fb-cmt a {
+    font-weight: 500;
+    font-size: 12px;
+    color: #385898;
+  }
+  #detailfood #fb-cmt i{
+    color: #385898;
+  }
+  #detailfood .detail-product{
+   border: 1px solid #eee;
+   border-top: 2px solid green;
+   font-size: 14px
+  } 
+  
+  #detailfood .product-price-box .buy-now span a {
+    padding-right: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #eb080e;
+  }
+  #detailfood .input-text.qty{
+    width: 70px;
+    background: #eee;
+  }
+  #detailfood .button.btn-cart{
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    background-color: #eb080e;
+    margin-top: 5px;
+    margin-left: 10px;
+    color: #fff;
+    text-align: center;
+    padding: 0 12px;
+  }
+  #detailfood .btn-qty .qty-button {
+    display: block;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    background: #eee;
+    margin-bottom: 8px;
+  }
+  #detailfood .special-price {
+    font-size: 23px;
+  }
+  #detailfood ul.share-social {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  #detailfood .share-social.hidden-print li{
+    float: left;
+    margin: 3px;
+  }
+  #detailfood .btn-qty{
+    float: left;
+  }
+  #detailfood .add-to-cart {
+    float: right;
+  }
+  #detailfood .price {
+    float: left;
+  }
+  #detailfood .buy {
+    font-size: 23px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #eb080e;
+  }
+  #detailfood .price {
+    color: #a94442;
+    font-size: 24px;
+  }
+  

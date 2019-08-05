@@ -1,0 +1,356 @@
+/*----------------- footer CSS--------------------------- */
+
+footer.owl-theme .owl-nav [class*=owl-] {
+    background: transparent;
+}
+
+footer .owl-theme .owl-nav {
+    position: relative;
+    bottom: 140px;
+}
+
+footer .owl-prev {
+    position: absolute;
+    left: 10px;
+}
+
+footer .owl-next {
+    position: absolute;
+    right: 10px;
+}
+
+footer .owl-theme .owl-dots .owl-dot.active span {
+    background: #e09422;
+    width: 30px;
+    transition: all 0.5s;
+}
+
+footer .owl-theme .owl-dots .owl-dot span {
+    background: #e09422;
+}
+
+/*footer .owl-carousel.owl-drag .owl-item:hover {
+  transform: scale(1.1); 
+}*/
+footer .owl-carousel .owl-nav button.owl-prev {
+    color: #282;
+
+}
+
+footer .owl-carousel .owl-nav button.owl-next {
+    color: #282;
+}
+
+footer .owl-carousel .owl-nav button.owl-prev:hover {
+    color: orange;
+}
+
+footer .owl-carousel .owl-nav button.owl-next:hover {
+    color: orange;
+}
+
+.footer-top-item {
+    margin: 20px 0 25px 0;
+}
+
+input[placeholder="Nhập email của bạn"] {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: 2px solid #28a745;
+}
+
+.footer-top-item .fab {
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid;
+    border-radius: 35px;
+    padding: 8px;
+    color: gray;
+    margin: 0 1px;
+}
+
+.footer-top-item .fab:hover {
+    color: orange;
+}
+
+footer .panel ul li {
+    list-style: none;
+}
+
+footer .panel ul li:before {
+    content: "< ";
+    color: black;
+}
+
+footer .panel ul li:hover:before {
+    color: orange;
+}
+
+footer .panel ul li:hover {
+    color: orange;
+}
+
+footer .panel ul li a {
+    color: black;
+}
+
+footer .panel {
+    margin: 40px;
+}
+
+.panel ul li a {
+    font-size: 14px;
+    color: black;
+    line-height: 20px;
+}
+
+.panel ul li a:hover {
+    color: orange;
+}
+
+.panel2 {
+    font-size: 14px;
+    line-height: 2;
+    color: #4e4e4e;
+}
+
+.panel2 a {
+    color: red;
+}
+
+.footer-bottom {
+    margin-top: 25px;
+    margin-left: 30px;
+    margin-bottom: 60px;
+    color: white;
+    font-size: 18px;
+}
+
+.footer-bottom-link .list-group .list-group-item {
+    background-color: #ece9e900;
+    border: none;
+}
+
+.footer-bottom-link a {
+    color: white;
+}
+
+
+/*----------------- album anh CSS---------------------------*/
+
+
+.album-anh a {
+    text-decoration: none;
+    color: black;
+}
+
+.album-anh .image-content h6:hover {
+    text-decoration: underline;
+    color: orange;
+}
+
+.album-anh .image-content {
+    margin-top: 20px;
+    text-align: justify;
+}
+
+/* ------------------------video-clip CSS--------------------------*/
+
+.video-content {
+    position: relative;
+    width: auto;
+}
+
+.video-content img[alt="video-image"] {
+    width: 194px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.video-content i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+
+.video-content:hover i {
+    display: block;
+    color: orange;
+    z-index: 500;
+}
+
+.video .video-title {
+    margin-top: 15px;
+}
+
+.video .video-title a {
+    font-weight: 600;
+    color: black;
+}
+
+.video .video-title a:hover {
+    color: orange;
+}
+
+/* -------kien-thuc/ am-thuc /doi-tac-chien-luoc CSS----------*/
+
+.content {
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 15px;
+    /* margin: 15px 25px; */
+}
+
+.content .content-head {
+    margin: 15px;
+}
+
+.content .content-head a {
+    color: black;
+}
+
+.content .content-head a:hover {
+    color: orange;
+}
+
+.content .content-left a {
+    color: #282
+}
+
+.content-left-head {
+    margin-bottom: 80px;
+}
+
+.content-left-head .thumbnail {
+    width: auto;
+    height: 250px;
+}
+
+.thumbnail {
+    width: auto;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -ms-transition-duration: 0.5s;
+}
+
+.thumbnail img:hover {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    cursor: pointer;
+}
+
+.content .content-right a:hover {
+    color: orange;
+}
+
+.content .content-right h5 {
+    text-align: center;
+    background-color: #282;
+    color: #e4f8e4;
+}
+
+.content .content-right .list-group-item-action:hover {
+    color: #f97706;
+}
+
+.content .content-right .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.content .content-right .list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.content .content-left-text .list-group-item {
+    border-radius: 0;
+    margin: 15px 0;
+    background-color: #228822;
+}
+
+.content-left-text .title-image a {
+    color: white;
+}
+
+.content-left-text .content-image {
+    margin-top: 10px;
+}
+
+
+
+/*---------sinh-to-la-he-cu-sen CSS----------------*/
+
+.brief {
+    border-left: 2px solid #ccc;
+    padding: 10px;
+    color: #777;
+}
+
+.badge {
+    border-radius: 0;
+    background-color: #777;
+}
+
+.title-image {
+    position: absolute;
+    bottom: 0;
+    padding: 10px 5px;
+    background-color: rgba(34, 136, 34, 0.8);
+    left: 0;
+    right: 0;
+}
+
+.share-socialNetWork {
+    margin: 15px 0 20px 0;
+}
+
+.share-socialNetWork button {
+    margin-right: 15px;
+    font-size: 10px;
+    border: none;
+    font-weight: bold;
+}
+
+
+
+
+@media (min-width: 992px) {
+    .fixed-bottom {
+      display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .fixed-bottom {
+        display: none;
+      }
+}
+
+@media (max-width: 576px) {
+    #fb-root {
+        display: none;
+    }
+}
+
+
+
+

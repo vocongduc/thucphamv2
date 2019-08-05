@@ -1,0 +1,28 @@
+
+
+#tuyen-truong-phong .title {
+    font-weight: bold;
+    color: #2cb12c;
+    font-size: 20px
+}
+
+#tuyen-truong-phong .fa-check {
+	color: #41cf41;
+}
+
+#tuyen-truong-phong .job-detail p {
+	font-size: 14px;
+}
+
+#tuyen-truong-phong .list-group-item{
+	padding-left: 0;
+}
+
+#tuyen-truong-phong .col-md-8 {
+	padding-left: 15px;
+}
+
+#tuyen-truong-phong span {
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,60 @@
+
+
+#sanPham .titles {
+	background: #282;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#sanPham a{
+	color: black;
+	padding: 0 15px;
+
+}
+
+#sanPham a:hover {
+    color: #ff5c00;
+    text-decoration: none;
+}
+#sanPham .list-group {
+	border: 1px solid rgba(0,0,0,0.125);
+}
+
+#sanPham .list-group-item:hover .dropdown-menu {
+	display: block;
+}
+
+#sanPham .price {
+	border: none;
+}
+
+#sanPham .form-control {
+	width: 150px;
+	height: 35px;
+	border-radius: 0;
+}
+
+#sanPham .select div {
+	float: left;
+
+}
+
+
+#sanPham .select-1 {
+	padding-left: 5px;
+
+}
+
+#sanPham .show-product img {
+	height: 178px;
+	width: 178px;
+
+}
+
+#sanPham .show-product div {
+	float: left;
+	padding-right: 15px;
+}
+

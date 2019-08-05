@@ -1,0 +1,83 @@
+#main_content{
+    margin-top: 20px;
+}
+
+.panel-heading{
+    background-color: #228822;
+    color: white;
+    text-transform: uppercase;
+}
+
+#main_content{
+    margin-top: 20px;
+}
+#main_content .content1{
+    padding: 0px 10px 0px 10px;
+}
+#main_content .view{
+    border: 1px solid #282;
+    background-color: white;
+    color: #282;
+    margin-top: 15px;
+}
+#main_content .card{
+    border: none;
+}
+#main_content .panel-heading{
+    background-color: #228822;
+    color: white;
+    text-transform: uppercase;
+}
+#main_content .left_content{
+    padding: 0px;
+}
+#main_content .right_content{
+    padding: 0px 10px 0px 10px;
+}
+#main_content .group{
+    padding: 0px;
+    margin: 0px;
+}
+#main_content #wrapper .clearfix {
+    overflow: auto;
+    margin: 0px 0px 15px 10px;
+     
+}
+#main_content .img2{
+    float: left;
+    margin:0px 10px 0px 0px;
+}
+#main_content .body{
+    padding: 0px;
+    margin: 0px 0px 20px 0px;
+    border-color: white;
+}
+#main_content .right_clearfix{
+    overflow: auto;
+    padding: 10px 0px 0px 0px;
+}
+#main_content .right_clearfix .img1{
+    width: 130px;
+    height: 90px;
+}
+#main_content .right_clearfix .img3{
+    width: 170px;
+    height: 170px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+#main_content .right_content .group .panel {
+    box-shadow: none;
+}
+#main_content .noidung img{
+   margin-left: auto;
+   margin-right: auto;
+   display: block;
+}
+#main_content .clear {
+    clear: both;
+}
+#main_content .icon {
+    float:right;
+    font-size: 25px;
+}
