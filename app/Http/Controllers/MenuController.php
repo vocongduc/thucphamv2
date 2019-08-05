@@ -26,6 +26,8 @@ class MenuController extends Controller
         view()->share('mess', $mess);
         $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
         view()->share('contact', $contact);
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
         $this->middleware('auth:admin');
     }
 

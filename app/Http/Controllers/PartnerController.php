@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class PartnerController extends Controller
 {
@@ -14,6 +15,15 @@ class PartnerController extends Controller
      */
 
 
+    public function __construct(){
+        $mess = DB::table('contacts')->count();
+        view()->share('mess', $mess);
+        $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
+        view()->share('contact', $contact);
+        $this->middleware('auth:admin');
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
+    }
     public function index()
     {
         $data['partner'] = DB::table('partner')->orderByDesc('id')->get();
