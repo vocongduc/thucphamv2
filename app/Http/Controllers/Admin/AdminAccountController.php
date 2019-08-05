@@ -25,6 +25,8 @@ class AdminAccountController extends Controller
             ->select('admins.*','role.name as role','role.id as level')
             ->join('role','admins.level','role.id')
             ->get();
+            $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
     /**
      * Display a listing of the resource.
