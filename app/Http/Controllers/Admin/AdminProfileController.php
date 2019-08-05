@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class AdminProfileController extends Controller
 {
+    public function __construct(){
+        $mess = DB::table('contacts')->count();
+        view()->share('mess', $mess);
+        $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
+        view()->share('contact', $contact);
+    }
     //binding data -> profile
     public function index(){
         $products = DB::table('products')->where('status','!=',1)->get();
