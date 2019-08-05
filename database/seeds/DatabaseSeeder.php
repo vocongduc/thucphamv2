@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'name' => 'user',
-            'avatar' => 'male.png',
             'email' => 'user@gmail.com',
             'status' => '1',
             'email_verified_at' => now(),
