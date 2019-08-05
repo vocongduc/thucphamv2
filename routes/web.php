@@ -12,7 +12,9 @@
 */
 
 
-
+Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createuser');
+Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
+Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
 
 Route::prefix('gioithieu')->group(function () {
 

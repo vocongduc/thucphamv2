@@ -31,8 +31,9 @@
     <link rel="stylesheet" href="{{asset('css/khuyenmai.css')}}">
     <link rel="stylesheet" href="{{asset('css/lichhang.css')}}">
     <link rel="stylesheet" href="{{asset('css/thucdon1.css')}}">
-    <link rel="stylesheet" href="{{asset('css/detail.css')}}">
+    {{--<link rel="stylesheet" href="{{asset('css/detail.css')}}">--}}
     <link rel="stylesheet" href="{{asset('css/khuyenmaichitiet.css')}}">
+    <link rel="stylesheet" href="{{ asset('toastr/css/toastr.css') }}">
 
    
 
@@ -60,8 +61,19 @@
     <script src="{{asset('js/wow.min.js')}}"></script>
     <script src="https://kit.fontawesome.com/da679a1af2.js"></script>
 
+    <script src="{{ asset('toastr/js/toastr.min.js') }}"></script>
 
-
+    @if(session('thongbao'))
+        <script type="text/javascript">
+            toastr.success('{{ session('thongbao') }}', 'Thông báo', {timeOut: 3000});
+            toastr.options.progressBar = true;
+        </script>
+    @endif
+    @if(session('error'))
+        <script type="text/javascript">
+            toastr.error('{{ session('error') }}', 'Thông báo', {timeOut: 3000});
+        </script>
+    @endif
 
 
     <!-- custom js -->
@@ -190,7 +202,7 @@
     </script>
 
     <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
+{{--<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>--}}
 
 
 
