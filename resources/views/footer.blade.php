@@ -11,7 +11,11 @@
                 <div class="owl-carousel owl-theme">
                     @foreach($partner as $value)
                         <div class="item">
+<<<<<<< HEAD
                             <a href="{{$value->link}}"><img src="{{ asset('assets/img_partner/'.$value->logo) }}" alt=""></a>
+=======
+                            <a target="_blank" href="{{$value->link}}"><img src="assets/img_partner/{{$value->logo}}" alt=""></a>
+>>>>>>> 5ad7f501d0e3b0e46940fee34eda5585c37efb98
                         </div>
                     @endforeach
 
