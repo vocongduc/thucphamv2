@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 
 class UserAccountController extends Controller
 {
@@ -14,6 +15,10 @@ class UserAccountController extends Controller
 
     public function __construct()
     {
+        $mess = DB::table('contacts')->count();
+        view()->share('mess', $mess);
+        $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
+        view()->share('contact', $contact);
         $this->users = DB::table('users')
             ->get();
     }
