@@ -111,6 +111,19 @@
                 </ul>
             </li>
             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-book"></i>
+                    <span>Theo dõi</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('follow.create')}}"><i class="fa fa-plus"></i> Thêm theo dõi </a></li>
+                    <li><a href="{{route('follow.index')}}"><i class="fa fa-list"></i> Danh sách theo dõi</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
                     <a href="#">
                         <i class="glyphicon glyphicon-comment"></i>
                         <span>Liên hệ</span>

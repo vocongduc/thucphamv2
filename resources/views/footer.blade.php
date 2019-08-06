@@ -43,11 +43,11 @@
                 <div class="col-md-4">
                     <div class="footer-top-item">
                         <span><strong>THEO DÕI</strong></span>
-                        <a href=""><i class="fab fa-facebook"></i></a>
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-google-plus"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-youtube" style="padding: 6px;"></i></a>
+                        @foreach($follow as $value)
+                            <a target="_blank" href="{{$value->link}}"><img width="30px" src="{{ asset('assets/img_follow/'.$value->logo)}}"></a>
+                        @endforeach
+
+
                     </div>
                 </div>
             </div>
@@ -150,9 +150,7 @@
                             <li class="list-group-item"><a href="">Chính sách bảo mật</a></li>
                             <li class="list-group-item"><a href="">Điều khoản sử dụng</a></li>
                             <li class="list-group-item">
-                                <a href=""><i class="fab fa-facebook"></i></a>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                                <a href=""><i class="fab fa-google-plus"></i></a>
+
                             </li>
                         </ul>
                     </div>
