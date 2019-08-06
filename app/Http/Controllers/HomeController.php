@@ -21,8 +21,6 @@ class HomeController extends Controller
         view()->share('contact', $contact);
         $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
         view()->share('contacts', $contacts);
-        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
-        view()->share('contacts', $contacts);
 
     }
 
