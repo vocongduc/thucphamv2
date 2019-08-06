@@ -22,41 +22,83 @@ class CateProductController extends Controller
 
     public function index(){
         $data['cate_parents']= DB::table('cate_products_lv1')->orderBy('id', 'desc')->get();
-        $data['cate_childs']= DB::table('cate_products_lv2')->orderBy('id', 'desc')->get();
+
 
         return view('admin.pages.product.cate_products.index',$data);
     }
-    function getAddCategory() {
-        $data['cate'] = CateProduct::all();
-        return view('admin.pages.product.addcategory',$data);
+
+    public function create(Request $request){
+        $this->validate($request,[
+                'cate-parent' => 'unique:cate_products_lv1,name',
+        ],[
+            'cate-parent.unique' => 'loại sản phẩm đa tồn tại',
+        ]);
+        //dd($request->all());
+        $input= $request->all();
+
+        DB::table('cate_products_lv1')->insert([
+            'name' => $input['cate-parent'],
+            'slug' => str_slug($input['cate-parent']).'-'.now().'.html'
+        ]);
+
+        $parent = DB::table('cate_products_lv1')->orderBy('id', 'desc')->first();
+        if($input['num-child']!=0){
+            for( $i=1; $i<=$input['num-child']; $i++){
+                DB::table('cate_products_lv2')->insert([
+                    'name' => $input['cate-child-'.$i],
+                    'slug' => str_slug($input['cate-child-'.$i]).'-'.now().'.html',
+                    'cate_lv1_id' => $parent->id,
+                ]);
+            }
+        }
+        return redirect()->back()->with('thongbao','Thêm Loại hàng Thành Công!');
+
+    }
+    public function update(Request $request, $id){
+        $input= $request->all();
+        DB::table('cate_products_lv1')->where('id', $id)->update([
+            'name' => $input['cate-parent-edit'],
+            'slug' => str_slug($input['cate-parent-edit']).'-'.now().'.html'
+        ]);
+        return redirect()->back()->with('thongbao','Thêm Loại hàng Thành Công!');
+    }
+    public function delete($id){
+        //dd($request->all());
+        DB::table('cate_products_lv1')->where('id', $id)->delete();
+        return redirect()->back()->with('thongbao','Xóa Loại hàng Thành Công!');
     }
 
-    function postAddCategory(request $r) {
-        $cate = new CateProduct;
-        $cate->name = $r->name;
-        $cate->slug = str_slug($r->name);
-        $cate->save();
-        return redirect()->back()->with('thongbao','Thêm danh mục thành công');
-    } 
 
-    function getEditCategory($cate_id) {
-        $data['cate_id'] = CateProduct::find($cate_id);
-        $data['cate'] = CateProduct::all();
-        // dd($data);
-        return view('admin.pages.product.editcategory',$data);
+    /*
+     * danh mục con
+     * */
+    public function child($id){
+        $data['cate_parents']= DB::table('cate_products_lv1')->find($id);
+        $data['cate_childs']= DB::table('cate_products_lv2')
+            ->where('cate_lv1_id',$id)
+            ->orderBy('id', 'desc')->get();
+        return view('admin.pages.product.cate_products.child',$data);
     }
-
-    function postEditCategory(request $r, $cate_id) {
-        $cate = CateProduct::find($cate_id);
-        $cate->name = $r->name;
-        $cate->slug = str_slug($r->name);
-        $cate->save(); 
-        return redirect()->route('add.category')->with('thongbao','Sửa thành công danh mục'); 
+    public function createchild(Request $request){
+        //dd($request->all());
+        DB::table('cate_products_lv2')->insert([
+            'name' => $request->name,
+            'slug' => str_slug($request->name).'-'.now().'.html',
+            'cate_lv1_id' => $request->cate_id,
+        ]);
+        return redirect()->back()->with('thongbao','Thêm Loại hàng Thành Công!');
     }
-
-    function DelCategory($cate_id) {
-        $cate = CateProduct::find($cate_id);
-        CateProduct::destroy($cate_id);
-        return redirect()->back()->With('thongbao','Đã xóa danh mục thành công!');
+    public function updatechild(Request $request, $id){
+        //dd($request->all());
+        DB::table('cate_products_lv2')->where('id', $id)->update([
+            'name' => $request->name,
+            'slug' => str_slug($request->name).'-'.now().'.html',
+        ]);
+        return redirect()->back()->with('thongbao','Sửa Loại hàng Thành Công!');
+    }
+    public function deletechild($id){
+        //dd($request->all());
+        DB::table('cate_products_lv2')->where('id', $id)->delete();
+        return redirect()->back()->with('thongbao','Xóa Loại hàng Thành Công!');
     }
 }

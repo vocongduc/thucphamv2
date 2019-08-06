@@ -10,6 +10,6 @@ class Product extends Model
 
     public function CateProduct()
     {
-        return $this->belongsTo('App\Model\CateProduct', 'cate_product', 'id');
+        return $this->belongsTo('App\Model\CateProduct', 'cate_product_lv2', 'id');
     }
 }

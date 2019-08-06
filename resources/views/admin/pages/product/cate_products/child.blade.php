@@ -18,32 +18,24 @@
         <div class="container-fluid">
             <section class="content-header">
                 <h1>
-                    Thêm thể loại sản phẩm.
+                    Sản Phẩm con Của "{{ $cate_parents->name }}"
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Sửa thể loại sản phẩm</li>
+                    <li class="active"><a href="{{ route('category_product.list') }}">Loại sản phẩm</a></li>
+                    <li class="active">{{ $cate_parents->name }}</li>
                 </ol>
             </section>
             <br>
             <button type="button" class="btn btn-primary" onclick="addcate()">Thêm thể loại sản phẩm</button>
             <div class="box box-primary"  id="add-cate" hidden>
                     <div class="box-body">
-                        <form action="{{ route('category_product.create') }}" method="post">
+                        <form action="{{ route('cate_child.create') }}" method="post">
                             @csrf
                                 <div class="form-group">
                                     <label for="">Thêm loại sản phẩm(*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="cate-parent" value="{{ old('name') }}" required>
-                                    <hr>
-                                </div>
-                                <button type="button" id="add" onclick="addchild(this)" title="Thêm Danh mục con"><i class="fa fa-plus"></i></button>
-
-                                <input type="hidden" name="num-child" id="num-childadd" value="0">
-                                <div id="childadd">
-                                    {{--<div class="form-group">
-                                        <label for="exampleInputEmail1">Thể Loại con 1(*)</label>
-                                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="cate-child-1" value="{{ old('name') }}" required>
-                                    </div>--}}
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name" value="{{ old('name') }}" required>
+                                    <input type="hidden" name="cate_id" value="{{ $cate_parents->id }}">
                                 </div>
                                 <div class="form-group" style="text-align: center">
                                     <hr>
@@ -72,7 +64,7 @@
                             @csrf
                                 <div class="form-group">
                                     <label for="">Sửa loại sản phẩm(*)</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" id="cate-parentedit" name="cate-parent-edit" value="{{ old('cate-parent-edit') }}" required>
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" id="cate-parentedit" name="name" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group" style="text-align: center">
                                     <hr>
@@ -81,19 +73,6 @@
                                 </div>
                         </form>
                     </div>
-               {{-- <form method="POST">
-                    @csrf
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Sửa thể loại  (*)</label>
-                            <input type="text" class="form-control" placeholder="" name="name"
-                                   value="{{ $cate_id->name }}" required>
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Thêm</button>
-                    </div>
-                </form>--}}
             </div>
             <section class="content">
                 <div class="row">
@@ -108,21 +87,17 @@
                                     <thead>
                                     <tr>
                                         <th>Tên </th>
-                                        <th>Danh Mục Con</th>
                                         <th>Hành động</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($cate_parents as $row)
+                                    @foreach($cate_childs as $row)
                                         <tr class="odd gradeX" align="center">
                                             <td><input type="text" style="border: none; background: none;" id="value-{{ $row->id }}" value="{{ $row->name }}" readonly></td>
                                             <td>
-                                               <a href="{{ url('admincp/category_product/cate_child/'.$row->id) }}">Xem Loại Sản Phẩm con</a>
-                                            </td>
-                                            <td>
                                                 <button type="button" class="btn btn-primary" id="{{ $row->id }}" onclick="editcate({{ $row->id}})">Sửa</button>
-                                                <a class="btn btn-danger" href="{{ url('admincp/category_product/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                <a class="btn btn-danger" href="{{ url('/admincp/category_product/cate_child/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -136,6 +111,7 @@
                         <!-- /.box -->
                         <!-- /.box -->
                     </div>
+                    <a href="{{ route('category_product.list') }}" class="btn btn-primary">Quay lại trang Loại hàng</a>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -149,7 +125,7 @@
                     $('#cate-parentedit').val($('#value-'+id).val());
                     var editid= "'edit'";
                     var num_child= $('#num-child-'+id).val();
-                    $('#form-edit').prop('action', '{{ url('admincp/category_product/update/') }}'+'/'+id);
+                    $('#form-edit').prop('action', '{{ url('/admincp/category_product/cate_child/update') }}'+'/'+id);
                     document.getElementById('edit-cate').removeAttribute('hidden');
                 }
 
