@@ -9,6 +9,7 @@
 
 
     <!-- libary style -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo-cut.png') }}" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">

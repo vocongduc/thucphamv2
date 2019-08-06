@@ -19,6 +19,13 @@ class CateProductController extends Controller
         $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
         view()->share('contacts', $contacts);
     }
+
+    public function index(){
+        $data['cate_parents']= DB::table('cate_products_lv1')->orderBy('id', 'desc')->get();
+        $data['cate_childs']= DB::table('cate_products_lv2')->orderBy('id', 'desc')->get();
+
+        return view('admin.pages.product.cate_products.index',$data);
+    }
     function getAddCategory() {
         $data['cate'] = CateProduct::all();
         return view('admin.pages.product.addcategory',$data);
