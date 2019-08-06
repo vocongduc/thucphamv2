@@ -48,5 +48,6 @@ class DatabaseSeeder extends Seeder
             'fblink' =>'http://www.facebook.com/mytammart.com.vn',
             'website' =>'http://www.mytammart.vn'
         ]);
+        
     }
 }
