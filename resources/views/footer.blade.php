@@ -11,7 +11,7 @@
                 <div class="owl-carousel owl-theme">
                     @foreach($partner as $value)
                         <div class="item">
-                            <a target="_blank" href="{{$value->link}}"><img src="assets/img_partner/{{$value->logo}}" alt=""></a>
+                            <a target="_blank" href="{{$value->link}}"><img src="{{ asset('assets/img_partner/'.$value->logo) }}" alt=""></a>
                         </div>
                     @endforeach
 
@@ -190,7 +190,8 @@
             js = d.createElement(s); js.id = id;
             js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!-- Your customer chat code -->
     <div class="fb-customerchat"
