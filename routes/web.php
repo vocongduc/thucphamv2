@@ -326,6 +326,23 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('/setactive/{id}/{status}', 'PartnerController@setactive')->name('partner.setactive');
     });
 
+//Theo dõi
+    Route::prefix('follow')->group(function () {
+        Route::get('/list', 'FollowController@index')->name('follow.index');
+
+        Route::get('/add', 'FollowController@create')->name('follow.create');
+        Route::post('/add', 'FollowController@store')->name('follow.store');
+
+
+
+        Route::get('/destroy/{id}', 'FollowController@destroy')->name('follow.destroy');
+        Route::get('/destroy-cate/{id}', 'FollowController@destroyCate')->name('follow.destroyCate');
+
+        Route::get('/show/{id}', 'FollowController@show')->name('follow.show');
+
+        Route::get('/detail/{id}', 'FollowController@detail')->name('follow.detail');
+        Route::get('/setactive/{id}/{status}', 'FollowController@setactive')->name('follow.setactive');
+    });
     //profile
     Route::group(['prefix' => 'profile'], function () {
         //list

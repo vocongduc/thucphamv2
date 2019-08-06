@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
-class PartnerController extends Controller
+class FollowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class PartnerController extends Controller
     }
     public function index()
     {
-        $data['partner'] = DB::table('partner')->orderByDesc('id')->get();
-        return view('admin.pages.partner.list',$data);
+        $data['follow'] = DB::table('follow')->orderByDesc('id')->get();
+        return view('admin.pages.follow.list',$data);
     }
 
     /**
@@ -37,7 +37,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.partner.add');
+        return view('admin.pages.follow.add');
     }
 
     /**
@@ -65,16 +65,16 @@ class PartnerController extends Controller
 
             $name = $file->getClientOriginalName();
             $image = str_random(4) . "_image_" . $name;
-            while (file_exists('assets/img_partner/' . $image)) {
+            while (file_exists('assets/img_follow/' . $image)) {
                 $image = str_random(4) . "_image_" . $name;
             }
-            $file->move('assets/img_partner/', $image);
+            $file->move('assets/img_follow/', $image);
             $file_name = $image;
 
         } else {
             $file_name = 'logo1.png';
         }
-        DB::table('partner')->insert([
+        DB::table('follow')->insert([
             'name'=>$request->name,
             'link'=>$request->link,
             'status'=>$request->status,
@@ -91,8 +91,8 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        $data['partner'] = DB::table('partner')->get();
-        return view('master-layout');
+        $data['follow'] = DB::table('follow')->get();
+        return view('master-layout',$data);
     }
 
     /**
@@ -101,10 +101,7 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -113,10 +110,7 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -126,12 +120,12 @@ class PartnerController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('partner')->where('id', '=', $id)->delete();
-        return redirect()->route('partner.index')->with('thongbao', 'Add Success');
+        DB::table('follow')->where('id', '=', $id)->delete();
+        return redirect()->route('follow.index')->with('thongbao', 'Add Success');
     }
     public function setactive($id, $status)
     {
-        DB::table('partner')->where('id', '=', $id)->update([
+        DB::table('follow')->where('id', '=', $id)->update([
             'status' => $status,
         ]);
         return redirect()->back()->with('thanhcong', 'Thành công');
