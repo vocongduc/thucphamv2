@@ -263,6 +263,16 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
 
     // product
 
+    Route::prefix('category_product')->group(function (){
+        Route::get('/','admin\CateProductController@index')->name('category_product.list');
+
+        Route::post('/create/{id}','admin\CateProductController@index')->name('category_product.create');
+        Route::post('/update/{id}','admin\CateProductController@index')->name('category_product.update');
+
+        Route::get('/delete/{id}','admin\CateProductController@index')->name('category_product.delete');
+
+
+    });
     Route::group(['prefix' => 'product'], function () {
         Route::get('add-category', 'admin\CateProductController@getAddCategory')->name('add.category');
         Route::post('add-category', 'admin\CateProductController@postAddCategory');

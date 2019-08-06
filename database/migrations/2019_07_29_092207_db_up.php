@@ -14,10 +14,21 @@ class DbUp extends Migration
     public function up()
     {
         // san pham
-        Schema::create('cate_products', function (Blueprint $table) {
+        Schema::create('cate_products_lv1', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
+            $table->timestamps();
+        });
+        Schema::create('cate_products_lv2', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('slug');
+            $table->bigInteger('cate_lv1_id')->unsigned();
+            $table->foreign('cate_lv1_id')
+                ->references('id')
+                ->on('cate_products_lv1')
+                ->onDelete('cascade');
             $table->timestamps();
         });
         Schema::create('products', function (Blueprint $table) {
@@ -27,16 +38,16 @@ class DbUp extends Migration
             $table->text('description');
             $table->string('slug');
             $table->string('image');
-            $table->bigInteger('quantity');
-            $table->bigInteger('pay');
-            $table->integer('sale');
-            $table->integer('price');
-            $table->integer('price_sale');
+            $table->integer('quantity');
+            $table->integer('pay');
+            $table->bigInteger('sale');
+            $table->bigInteger('price');
+            $table->bigInteger('price_sale');
             $table->tinyInteger('status')->default(1);
             $table->bigInteger('cate_product')->unsigned();
             $table->foreign('cate_product')
             ->references('id')
-            ->on('cate_products')
+            ->on('cate_products_lv2')
             ->onDelete('cascade');
             $table->timestamps();
         });

@@ -75,22 +75,23 @@
             window.scrollTo(0, 1);
         }
     </script>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo-cut.png') }}" />
     <!-- //Meta-Tags -->
     <!-- Index-Page-CSS -->
-    <link rel="stylesheet" href="{{ asset('admin/login') }}/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('assets/admin/login') }}/css/style.css" type="text/css" media="all">
     <!-- //Custom-Stylesheet-Links -->
     <!--fonts -->
     <link href="//fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400,500,600,700,800" rel="stylesheet">
     <!-- //fonts -->
     <!-- Font-Awesome-File-Links -->
-    <link rel="stylesheet" href="{{ asset('admin/login') }}/css/font-awesome.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('assets/admin/login') }}/css/font-awesome.css" type="text/css" media="all">
 </head>
 
 <body>
 <h1 class="title-agile text-center">Login Admin</h1>
 <div class="content-w3ls">
     <div class="content-top-agile">
-        <h2>sign in</h2>
+        <img src="{{ asset('images/logo1.jpg') }}" alt="">
     </div>
     <div class="content-bottom">
         <form method="POST" action="{{ route($loginRoute) }}">
@@ -136,9 +137,7 @@
                         </label>
                     </div>
                 </li>
-                <li>
-                    <a href="#" class="text-right" style="color: white">forgot password?</a>
-                </li>
+
                 <li class="clearfix"></li>
             </ul>
             <div class="wthree-field">
@@ -148,8 +147,8 @@
     </div>
 </div>
 <div class="copyright text-center">
-    <p>© 2018 Switch Login Form. All rights reserved | Design by
-        <a href="http://w3layouts.com">W3layouts</a>
+    <p>© 2018 Copy right
+        <a href="http://talentwins.co/">Talent Wins Technology</a>
     </p>
 </div>
 </body>
