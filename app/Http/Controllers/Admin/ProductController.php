@@ -21,17 +21,18 @@ class ProductController extends Controller
         view()->share('contacts', $contacts);
     }
    function getAddProduct() {
-       $data['cate'] = CateProduct::all();
+       $data['cate'] =  DB::table('cate_products_lv2')->get();
        return view('admin.pages.product.addproduct',$data);
    }
 
    function postAddProduct(ProductRequest $r) {
+        //dd($r->all());
        //dd($r->all());
         $prd = new Product;
         $prd->name = $r->name;
         $prd->code = $r->code;
         $prd->description = $r->description;
-        $prd->slug = str_slug($r->name);
+        $prd->slug = str_slug($r->name).'-'.now().'.html';
         $prd->quantity = $r->quantity;
         $prd->pay = 0;
         $prd->sale = $r->sale;
@@ -53,8 +54,11 @@ class ProductController extends Controller
 }
 
     function getListProduct() {
-        $data['prd'] = Product::all();
-        return view('admin.pages.product.listproduct',$data);
+        $data['products'] = DB::table('products')
+            ->select('products.*', 'cate_products_lv2.name as cate')
+            ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.id')
+            ->get();
+        return view('admin.pages.product.index',$data);
     }
 
     function getEditProduct($product_id){

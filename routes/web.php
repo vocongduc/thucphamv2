@@ -271,19 +271,28 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
     Route::prefix('category_product')->group(function (){
         Route::get('/','admin\CateProductController@index')->name('category_product.list');
 
-        Route::post('/create/{id}','admin\CateProductController@index')->name('category_product.create');
-        Route::post('/update/{id}','admin\CateProductController@index')->name('category_product.update');
+        Route::post('/create','admin\CateProductController@create')->name('category_product.create');
+        Route::post('/update/{id}','admin\CateProductController@update')->name('category_product.update');
 
-        Route::get('/delete/{id}','admin\CateProductController@index')->name('category_product.delete');
+        Route::get('/delete/{id}','admin\CateProductController@delete')->name('category_product.delete');
+        Route::prefix('cate_child')->group(function () {
+            Route::get('/{id}','admin\CateProductController@child')->name('cate_child.list');
 
+            Route::post('create', 'admin\CateProductController@createchild')->name('cate_child.create');
+            Route::post('update/{id}', 'admin\CateProductController@updatechild')->name('cate_child.update');
+            Route::get('delete/{id}', 'admin\CateProductController@deletechild')->name('cate_child.delete');
+        });
 
     });
-    Route::group(['prefix' => 'product'], function () {
-        Route::get('add-category', 'admin\CateProductController@getAddCategory')->name('add.category');
-        Route::post('add-category', 'admin\CateProductController@postAddCategory');
-        Route::get('edit-category/{cate_id}', 'admin\CateProductController@getEditCategory');
-        Route::post('edit-category/{cate_id}', 'admin\CateProductController@postEditCategory');
-        Route::get('del-category/{cate_id}', 'admin\CateProductController@DelCategory');
+   /* Route::prefix('product')->group(function (){
+        Route::get('/','admin\ProductController@index')->name('product.list');
+
+        Route::post('/create','admin\ProductController@store')->name('product.create');
+        Route::post('/update/{id}','admin\ProductController@update')->name('product.update');
+
+        Route::get('/delete/{id}','admin\ProductController@delete')->name('product.delete');
+    });*/
+  Route::group(['prefix' => 'product'], function () {
 
         Route::get('add-product', 'admin\ProductController@getAddProduct')->name('add.product');
         Route::post('add-product', 'admin\ProductController@postAddProduct');
