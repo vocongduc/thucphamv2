@@ -17,7 +17,7 @@
                                     src="{{asset('assets/img_new').'/'.$value->image}}">
                             </div>
                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                <h3 class="job-title"><a href="#">{{$value->title}}</a></h3>
+                                <h3 class="job-title"><a href="{{ route('tuyen-dung-chi-tiet') }}">{{$value->title}}</a></h3>
                                 <div class="job-position"><i>{{$value->title}}</i></div>
                                 <div class="job-bottom row">
                                     <div class="col-md-4 col-sm-12">

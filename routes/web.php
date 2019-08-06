@@ -16,6 +16,8 @@ Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createus
 Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
 Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
 
+    
+
 Route::prefix('gioithieu')->group(function () {
 
     Route::get('/', function () {
@@ -99,6 +101,9 @@ Route::prefix('lienhe')->group(function () {
 Route::prefix('tuyendung')->group(function () {
 
     Route::get('/', 'ClientController@tuyendung')->name('tuyen-dung');
+    Route::get('Tuyendungchitiet',function(){
+        return view('page.Tuyendungchitiet');
+        })->name('tuyen-dung-chi-tiet');
 
 });
 
