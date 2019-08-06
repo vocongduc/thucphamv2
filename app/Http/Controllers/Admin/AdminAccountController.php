@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 
 
 class AdminAccountController extends Controller
@@ -15,11 +16,17 @@ class AdminAccountController extends Controller
 
     public function __construct()
     {
+        $mess = DB::table('contacts')->count();
+        view()->share('mess', $mess);
+        $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
+        view()->share('contact', $contact);
         $this->middleware('auth:admin');
         $this->admins = DB::table('admins')
             ->select('admins.*','role.name as role','role.id as level')
             ->join('role','admins.level','role.id')
             ->get();
+            $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
     /**
      * Display a listing of the resource.

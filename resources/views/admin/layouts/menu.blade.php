@@ -63,6 +63,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="{{ route('category_product.list') }}"><i class="fa fa-plus"></i>danh mục sản phẩm</a></li>
                     <li><a href="{{ route('add.category') }}"><i class="fa fa-plus"></i> Thêm danh mục sản phẩm</a></li>
                     <li><a href="{{ route('add.product') }}"><i class="fa fa-plus"></i> Thêm sản phẩm</a></li>
                     <li><a href="{{ route('list.product') }}"><i  class="fa fa-list" ></i> Danh sách sản phẩm</a></li>
@@ -108,6 +109,19 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('partner.create')}}"><i class="fa fa-plus"></i> Thêm đối tác </a></li>
                     <li><a href="{{route('partner.index')}}"><i class="fa fa-list"></i> Danh sách đối tác</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-book"></i>
+                    <span>Theo dõi</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('follow.create')}}"><i class="fa fa-plus"></i> Thêm theo dõi </a></li>
+                    <li><a href="{{route('follow.index')}}"><i class="fa fa-list"></i> Danh sách theo dõi</a></li>
                 </ul>
             </li>
             <li class="treeview">

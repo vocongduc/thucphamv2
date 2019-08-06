@@ -12,7 +12,9 @@
 */
 
 
-
+Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createuser');
+Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
+Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
 
 Route::prefix('gioithieu')->group(function () {
 
@@ -261,6 +263,16 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
 
     // product
 
+    Route::prefix('category_product')->group(function (){
+        Route::get('/','admin\CateProductController@index')->name('category_product.list');
+
+        Route::post('/create/{id}','admin\CateProductController@index')->name('category_product.create');
+        Route::post('/update/{id}','admin\CateProductController@index')->name('category_product.update');
+
+        Route::get('/delete/{id}','admin\CateProductController@index')->name('category_product.delete');
+
+
+    });
     Route::group(['prefix' => 'product'], function () {
         Route::get('add-category', 'admin\CateProductController@getAddCategory')->name('add.category');
         Route::post('add-category', 'admin\CateProductController@postAddCategory');
@@ -314,6 +326,23 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('/setactive/{id}/{status}', 'PartnerController@setactive')->name('partner.setactive');
     });
 
+//Theo dõi
+    Route::prefix('follow')->group(function () {
+        Route::get('/list', 'FollowController@index')->name('follow.index');
+
+        Route::get('/add', 'FollowController@create')->name('follow.create');
+        Route::post('/add', 'FollowController@store')->name('follow.store');
+
+
+
+        Route::get('/destroy/{id}', 'FollowController@destroy')->name('follow.destroy');
+        Route::get('/destroy-cate/{id}', 'FollowController@destroyCate')->name('follow.destroyCate');
+
+        Route::get('/show/{id}', 'FollowController@show')->name('follow.show');
+
+        Route::get('/detail/{id}', 'FollowController@detail')->name('follow.detail');
+        Route::get('/setactive/{id}/{status}', 'FollowController@setactive')->name('follow.setactive');
+    });
     //profile
     Route::group(['prefix' => 'profile'], function () {
         //list

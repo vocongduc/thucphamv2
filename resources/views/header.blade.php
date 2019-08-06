@@ -1,5 +1,5 @@
 <header class="header" id="header">
-
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
     <!-- top-bar -->
     <section class="top-bar">   
@@ -12,8 +12,24 @@
                 </div>
                 <div class="col-7">
                     <div class="login-out text-right">
-                        <a href="#login" data-toggle="modal"><i class="fas fa-sign-in-alt"></i> <span> đăng nhập</span></a>
-                        <a href="#signUp" data-toggle="modal"><i class="fas fa-user-tag"></i><span> đăng ký</span></a>
+
+
+                        @guest
+                                <a href="#login" data-toggle="modal"><i class="fas fa-sign-in-alt"></i> <span> đăng nhập</span></a>
+                            @if (Route::has('register'))
+                                <a href="#signUp" data-toggle="modal"><i class="fas fa-user-tag"></i><span> đăng ký</span></a>
+                            @endif
+                        @else
+
+                                <a href="#">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <a  href="{{ route('logoutuser') }}">
+                                    {{ __('Logout') }}
+                                </a>
+
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -71,6 +87,7 @@
 
                 <!-- support-col -->
                 <div class="col-lg-5 support-col" style="bottom: 25px;">
+                    @foreach ($contacts as $value)
                     <div class="header-support">
                         <!-- support-box -->
                         <div class="support-box">
@@ -79,7 +96,7 @@
                             </div>
                             <div class="text-box text-support">
                                 <p class="phone-box m-0"><strong>Hỗ trợ:</strong></p>
-                                <p class="tel"><a href="#"><span>0967.26.88.26</span></a></p>
+                                <p class="tel"><a href="#"><span>{{$value->phone}}</span></a></p>
                             </div>
                         </div>
 
@@ -90,11 +107,12 @@
                             </div>
                             <div class="text-box text-email">
                                 <p class="phone-box m-0"><strong>Email:</strong></p>
-                                <p class="email"><a href="#"><span>cskh@mytammart.vn</span></a></p>
+                                <p class="email"><a href="mailto:{{$value->email}}"><span>{{$value->email}}</span></a></p>
                             </div>
                         </div>
 
                     </div>
+                    @endforeach
 
                 </div>
 
@@ -290,40 +308,85 @@
 
     <!-- login -->
     <section>
-        <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle" style="text-transform: uppercase;">đăng
-                            nhập
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" style="text-transform: capitalize;">tên tài khoản hoặc địa chỉ email <span
-                                        style="color: #d70000;">*</span></label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email" require>
+        <div class="modal fade" id="login">
+            <div class="modal-dialog">
+                <div class="modal-content login-custom-form">
+                    <form action="{{ route('loginuser') }}" method="post">
+                    @csrf
+                    <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title text-centerz" style="text-shadow: 1px 1px 3px;font-size: 30px;">Login</h4>
+                            <button type="button" class="close" data-dismiss="modal" style="margin-top:-40px;font-size: 65px;color: red;">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class=" w3l-form-group" style="padding-bottom:10px;">
+                                <label>Username:</label>
+                                <input id="login_email" type="email" class="form-control backgroundinput @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1" style="text-transform: capitalize;">mật khẩu <span style="color: #d70000;">*</span>
-                                </label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password" require>
+                            <label>Password:</label>
+                            <div class=" w3l-form-group">
+
+                                <div class="pass">
+                                    <input id="inputpassword" type="password" class="form-control backgroundinput @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                {{--                            <div class="showpass"><i class="fa fa-eye" aria-hidden="true" onclick="showpass()"></i></div>--}}
+
                             </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Ghi nhớ mật khẩu</label>
+                            <div class="forgot" style="padding: 5px 0;font-size:13px;">
+                                <a href="#" style="color:blue;margin-bottom:5px;">Forgot Password?</a>
+                                <div>
+                                    <p>
+                                        <span style="padding-right:10px;"><input type="checkbox"> Remember Me</span>
+                                        <span><input type="checkbox" onclick="showPass()"> Show Password</span>
+                                    </p>
+                                </div>
+                                <script>
+                                    function showPass() {
+                                        var x = document.getElementById('inputpassword');
+                                        if (x.type === 'password') {
+                                            x.type = 'text';
+                                        } else {
+                                            x.type = 'password';
+                                        }
+                                    }
+                                    function checkEmail(obj) {
+                                        var x = obj.value;
+                                        var vitri = x.search("@");
+                                        if (vitri === 0) {
+                                            alert('"@" cannot be at the beginning of the string');
+                                            obj.focus();
+                                        } else if (vitri === x.length - 1) {
+                                            alert('"@" cannot be at the the end of the string');
+                                            obj.focus();
+                                        } else if (vitri === -1) {
+                                            alert('Please include "@" in the email address');
+                                            obj.focus();
+                                        } else {
+                                        }
+                                    }
+                                </script>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="text-transform: uppercase;">đăng
-                                nhập</button>
-                        </form>
-                    </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-block btn-success">Login</button>
+
+                        </div>
+                    </form>
+                    <div style="text-align: center;margin-bottom:20px;">Don't you have an account? <a  target="_blank" class="btn" style="color:blue;font-size:15px;" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Create Account</a></div>
                 </div>
             </div>
         </div>
@@ -331,41 +394,103 @@
 
     <!-- sign up -->
     <section>
-        <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle" style="text-transform: uppercase;">đăng ký
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        <div class="modal fade" id="signUp">
+            <div class="modal-dialog">
+                <div class="modal-content login-custom-form">
+                    <div class="modal-header" >
+                        <h4 class="modal-title text-center" style="text-shadow: 1px 1px 3px;font-size: 30px;">Create Account</h4>
+                        <button type="button" class="close" data-dismiss="modal" style="margin-top:-40px;font-size:65px;color: red;">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" style="text-transform: capitalize;">tên tài khoản <span
-                                        style="color: #d70000;">*</span></label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" require>
+                        <form method="POST" action="{{ route('createuser') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-3 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                                <div class="col-md-9">
+                                    <input id="name" type="text" class="form-control backgroundinput @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" style="text-transform: capitalize;">địa chỉ email <span
-                                        style="color: #d70000;">*</span></label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" require>
+                            <div class="form-group row">
+                                <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                <div class="col-md-9">
+                                    <input id="email" type="email" class="form-control backgroundinput @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    @if($errors->first('email')!=null)
+                                        <script>
+                                            alert("{{ $errors->first('email') }}");
+                                        </script>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                <div class="col-md-9">
+                                    <input id="password" type="password" class="form-control backgroundinput @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"  onchange="lengthPasswword(this)">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    <div id="lengthpass" style="color: red; font-size: 15px"></div>
+                                    <script>
+                                        function lengthPasswword(obj) {
+                                            var x = obj.value;
+                                            if (x.length < 8) {
+                                                document.getElementById('lengthpass').style.display = 'block';
+                                                document.getElementById('lengthpass').innerHTML = '<span>Password length must be greater than or equal to 8 characters</span>';
+                                            } else {
+                                                document.getElementById('lengthpass').style.display = 'none';
+                                            }
+                                        }
+                                    </script>
+                                </div>
 
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputPassword1" style="text-transform: capitalize;">mật khẩu <span style="color: #d70000;">*</span>
-                                </label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" require>
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-3 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                <div class="col-md-9">
+                                    <input id="password-confirm" type="password" class="form-control backgroundinput" name="password_confirmation" required autocomplete="new-password" onchange="confirmPasswword(this)">
+                                    <p id="errorpass" style="color: red; font-size: 15px"></p>
+                                    <script>
+                                        function confirmPasswword(obj) {
+                                            var y = document.getElementById('password').value;
+                                            var x = obj.value;
+                                            if (x != y) {
+                                                document.getElementById('errorpass').style.display = 'block';
+                                                document.getElementById('errorpass').innerHTML = '<span>Confirm Pass word ís not correct</span>';
+                                            } else {
+                                                document.getElementById('errorpass').style.display = 'none';
+                                            }
+                                        }
+                                    </script>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="text-transform: uppercase;">đăng
-                                ký</button>
-                        </form>
                     </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="submit" value="Register" class="btn btn-block btn-warning float-right login_btn">
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

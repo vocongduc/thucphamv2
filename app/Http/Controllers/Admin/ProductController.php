@@ -17,6 +17,8 @@ class ProductController extends Controller
         $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
         view()->share('contact', $contact);
         $this->middleware('auth:admin');
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
    function getAddProduct() {
        $data['cate'] = CateProduct::all();

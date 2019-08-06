@@ -33,7 +33,7 @@
                                         <img src="{{asset('assets/img_new/logo1.png')}}" class="img-circle" alt="User Image">
                                     </div>
                                     <h4>
-                                        <input type="text" value="{{$value->fullname}}" style="border: none; background: none;" readonly id="name{{ $value->id}} ">
+                                        <input type="text" value="{{$value->fullname}}" style="border: none; background: none;" readonly id="fullname{{ $value->id}} ">
                                     </h4>
                                     <div><small><i class="fa fa-clock-o"></i> {{\Carbon\Carbon::parse($value->created_at)->diffForHumans()}}</small></div>
                                     <p><input type="text" value="{{$value->content}}" style="border: none; background: none;" readonly id="content{{ $value->id}}"></p>
