@@ -9,7 +9,8 @@
                 <div class="content-head">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="#">Thực đơn</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{$cate_name->name}}</a></li>
 
                     </ul>
                 </div>
@@ -18,20 +19,18 @@
                         <div class="content-left">
                             <div class="content-left-head">
                                 <div class="row">
-
                                     @foreach($menu as $key=> $value)
                                         @if($value->status == 1 )
-                                            @if($value->focus == 1 && $key < 3)
-
+                                            @if($value->focus == 1 && $key < 2)
                                                 <div class="col-md-6">
                                                     <div class="thumbnail">
-                                                        <a href="{{ url('admincp/news/detail/'.$value->id) }}">
-                                                            <img src="{{asset('assets/img_menu/').'/'.$value->image}}">
+                                                        <a href="{{ url('thucdon'.'/'.$cate_name->slug.'/'.$value->slug) }}">
+                                                            <img src="{{asset('assets/img_menu').'/'.$value->image}}">
                                                         </a>
                                                     </div>
                                                     <div class="discription">
                                                         <h6>
-                                                            <a href="{{ url('admincp/news/detail/'.$value->id) }}">{{$value->name}}</a>
+                                                            <a href="{{ url('thucdon'.'/'.$cate_name->slug.'/'.$value->slug) }}">{{$value->name}}</a>
                                                         </h6>
                                                         <small>
                                                             <i class='far fa-calendar-alt'></i>
@@ -39,7 +38,7 @@
                                                         </small>
                                                         <p>{!!  substr($value->summary, 0, 150).'...'!!}
                                                         </p>
-                                                        <a href="{{  url('admincp/news/detail/'.$value->id) }}"
+                                                        <a href="{{  url('thucdon'.'/'.$cate_name->slug.'/'.$value->slug) }}"
                                                            class="btn btn-outline-success btn-sm">
                                                             Đọc tiếp >>
                                                         </a>
@@ -55,8 +54,8 @@
                             </div>
                             <div>
                                 @foreach($menu as $value)
+                                    {{--Trem--}}
                                     @if($value->status == 1)
-                                        {{--Trem--}}
                                         <div class="content-left-body">
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -68,13 +67,13 @@
                                                 <div class="col-md-8">
                                                     <div>
                                                         <h6>
-                                                            <a href="{{ url('admincp/news/detail/'.$value->id) }}">{{$value->name}}</a>
+                                                            <a href="{{ url('thucdon'.'/'.$cate_name->slug.'/'.$value->slug) }}">{{$value->name}}</a>
                                                         </h6>
                                                         <small><i class='far fa-calendar-alt'></i>
                                                             &nbsp;{{$value->created_at}}
                                                         </small>
                                                         <p>{!!  substr($value->summary, 0, 150).'...'!!}</p>
-                                                        <a href="{{ url('admincp/news/detail/'.$value->id) }}"
+                                                        <a href="{{  url('thucdon'.'/'.$cate_name->slug.'/'.$value->slug)}}"
                                                            class="btn btn-outline-success btn-sm">
                                                             Đọc tiếp >>
                                                         </a>

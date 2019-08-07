@@ -19,12 +19,52 @@
             <div class="box box-primary">
                 <form role="form" method="POST" action="" enctype="multipart/form-data">
                     @csrf
-                    <div class="box-body">
-                        
+                    <div class="box-body col-md-5" style="background: white">
+                            
                         <div class="form-group">
                             <label>Tiêu đề tuyển dụng (*)</label>
                             <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="title" value="{{$recruitment->title}}">
                         </div>
+                        <div class="form-group">
+                            <label>Vị trí công việc:</label>
+                            <input type="text" class="form-control" placeholder="Vị trí công việc" name="vitri" value="{{$recruitment->vitri}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Số lượng:</label>
+                            <input type="number" class="form-control" name="soluong" value="{{$recruitment->soluong}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Độ tuổi:</label>
+                            <input type="text" class="form-control" placeholder="Độ tuổi" name="dotuoi" value="{{$recruitment->dotuoi}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Yêu cầu kinh nghiệm:</label>
+                            <input type="text" class="form-control" placeholder="Yêu cầu kinh nghiệm" name="kinhnghiem" value="{{$recruitment->kinhnghiem}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Trình độ học vấn:</label>
+                            <input type="text" class="form-control" placeholder="Trình độ học vấn" name="hocvan" value="{{$recruitment->hocvan}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Người liên hệ:</label>
+                            <input type="text" class="form-control" placeholder="Người liên hệ" name="nguoilienhe" value="{{$recruitment->nguoilienhe}}">
+                        </div>
+                        <div class="form-group">
+                            <label>SĐT liên hệ:</label>
+                            <input type="text" class="form-control" placeholder="Sđt" name="sdt" value="{{$recruitment->sdt}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Email liên hệ:</label>
+                            <input type="text" class="form-control" placeholder="Email liên hệ" name="email" value="{{ $recruitment->email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Ảnh nền</label>
+                            <input type="file" id="image" name="image" onchange="showIMG()">
+                            <input name="old_file" value="{{$recruitment->image}}" hidden>
+                        </div>
+                    </div>
+                    <div class="box-body col-md-5" style="background: wheat; margin-left: 3%">
+                        
                         <div class="form-group">
                             <label>Lương cơ bản (*)</label><br>
                             <label>Từ :</label>
@@ -40,20 +80,19 @@
                         </div>
                         <div class="form-group">
                             <label>Nội dung tuyển (*)</label>
-                            <textarea name="noidung" id="" cols="30" rows="10">{{$recruitment->content}}</textarea>
+                            <textarea name="noidung" id="" cols="50" rows="50">
+                                {{$recruitment->content}} 
+                            </textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">Ảnh nền</label>
-                            <input type="file" id="image" name="image" onchange="showIMG()">
-                            <input name="old_file" value="{{$recruitment->image}}" hidden>
-                        </div>
+                        
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-sm-12">
                         <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                        <div id="viewImg">
+                        <div id="viewImg" style="margin-left: 30%">
                             <img width="250px" height="150px" src="{{asset('assets/img_new').'/'.$recruitment->image}}" alt="">
                         </div>
                     </div>
+                    
 
                     {{-- tag --}}
                     <div class="col-sm-12">
@@ -67,7 +106,7 @@
                     </div>
                     {{-- endtag --}}
                     
-                    <div class="box-footer">
+                    <div class="box-footer col-sm-12" >
                         <a href="{{route('recruitment.index')}}" class="btn btn-warning">Quay lại</a>
                         <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>

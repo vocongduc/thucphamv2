@@ -39,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
             view()->share('contact', $contact);
             $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
             view()->share('contacts', $contacts);
+            $cate_news = DB::table('cate_news')->orderBy('id', 'DESC')->get();
+            view()->share('cate_news', $cate_news);
+            $cate_menu = DB::table('cate_menu')->orderBy('id', 'DESC')->get();
+            view()->share('cate_menu', $cate_menu);
+
         }
     }
 }
