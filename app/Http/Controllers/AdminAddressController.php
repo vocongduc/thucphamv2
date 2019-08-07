@@ -55,6 +55,28 @@ class AdminAddressController extends Controller
         return view('admin.pages.address.edit',compact('address'));
     }
 
+    public function update(Request $request,$id)
+    {
+        $this->validate($request,[
+            'address' => 'required|min:3',
+            'tel' => 'required',
+            'hotline' => 'required',
+        ],
+        [
+            'address.required' => 'Địa chỉ hệ thống không được để trống!',
+            'address.min' => 'Địa chỉ hệ thống quá ít ký tự',
+            'tel.required' => 'Tel không được để trống',
+            'hotline.required' => 'Hotline không được để trống',
+        ]);
+        $input = [
+            'address' => $request->address,
+            'tel' => $request->tel,
+            'hotline' => $request->hotline,
+            'updated_at' => now()
+        ];
+        DB::table('address')->whereId($id)->update($input);
+        return redirect()->route('admin.address.index')->with('thongbao','Sửa địa chỉ hệ thống thành công!');
+    }
     public function action($action,$id)
     {
         if ($action)
