@@ -371,4 +371,13 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         //user
 
     });
+    //address
+    Route::group(['prefix' => 'address'],function(){
+        Route::get('/','AdminAddressController@index')->name('admin.address.index');
+        Route::get('create','AdminAddressController@create')->name('admin.address.create');
+        Route::post('create','AdminAddressController@store');
+        Route::get('update/{id}','AdminAddressController@edit')->name('admin.address.edit');
+        Route::post('update/{id}','AdminAddressController@update');
+        Route::get('{action}/{id}','AdminAddressController@action')->name('admin.address.action');
+    });
 });
