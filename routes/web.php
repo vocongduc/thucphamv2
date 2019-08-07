@@ -31,37 +31,37 @@ Route::prefix('gioithieu')->group(function () {
     Route::get('video-Clip', function () {
         return view('page.videoClip');
     })->name('video-Clip');
-
-    Route::get('doi-Tac', function () {
-        return view('page.doiTac');
-    })->name('doi-Tac');
+    Route::get('doi-tac','ClientController@gioiThieuDoiTac')->name('doi-Tac');
 
     Route::get('giay-Chung-Nhan', function () {
         return view('page.giayChungNhan');
     })->name('giay-Chung-Nhan');
 });
-
-Route::prefix('tintuc')->group(function () {
-
-    Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
-
-    Route::get('am-thuc', function () {
-        return view('page.amThuc');
-    })->name('am-thuc');
-
-    Route::get('truyen-thong-bao-chi', function () {
-        return view('page.truyenThongBaoChi');
-    })->name('truyen-thong-bao-chi');
-
-    Route::get('kien-thuc', function () {
-        return view('page.kienThuc');
-    })->name('kien-thuc');
-    Route::get('tin-tuc-chi-tiet', function () {
-        return view('page.tintucchitiet');
-    })->name('tin-tuc-chi-tiet');
-
-
-});
+Route::get('tintuc/{slug}','ClientController@loaitintuc');
+Route::get('tintuc/{cate}/{slug}','ClientController@chitiettintuc');
+Route::get('thucdon/{slug}','ClientController@loaithucdon');
+Route::get('thucdon/{cate}/{slug}','ClientController@chitietthucdon');
+//Route::prefix('tintuc')->group(function () {
+//
+//    Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
+//
+//    Route::get('am-thuc', function () {
+//        return view('page.amThuc');
+//    })->name('am-thuc');
+//
+//    Route::get('truyen-thong-bao-chi', function () {
+//        return view('page.truyenThongBaoChi');
+//    })->name('truyen-thong-bao-chi');
+//
+//    Route::get('kien-thuc', function () {
+//        return view('page.kienThuc');
+//    })->name('kien-thuc');
+//    Route::get('tin-tuc-chi-tiet', function () {
+//        return view('page.tintucchitiet');
+//    })->name('tin-tuc-chi-tiet');
+//
+//
+//});
 
 Route::prefix('sanpham')->group(function () {
 
@@ -233,7 +233,7 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('/edit/{id}', 'NewsController@update')->name('news.update');
 
         Route::get('/destroy/{id}', 'NewsController@destroy')->name('news.destroy');
-        Route::get('/destroy-cate/{id}', 'NewsController@destroyCate')->name('news.destroyCate');
+        Route::get('/destroy-cate/{$id}', 'NewsController@destroyCate')->name('news.destroyCate');
 
         Route::get('/show/{id}', 'NewsController@show')->name('news.show');
 

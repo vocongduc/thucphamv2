@@ -108,7 +108,7 @@ class NewsController extends Controller
 
         DB::table('news')->insert([
             'name' => $request->name,
-            'slug' => str_slug($request->name),
+            'slug' => str_slug($request->name).now(),
             'summary' => $request->summary,
             'content' => $request->contentt,
             'image' => $file_name,
@@ -170,9 +170,9 @@ class NewsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $data['news'] = DB::table('news')->find($id);
+        $data['news'] = DB::table('news')->find($slug);
         return view('admin.pages.news.show', $data);
     }
 
@@ -182,8 +182,10 @@ class NewsController extends Controller
      */
     public function detail($id)
     {
-        $data['news_tags'] = DB::table('news_tags')->where('news_id', '=', $id)->get();
+        $news_id = DB::table('news')->where('slug',$id)->pluck('id');
+        $data['news_tags'] = DB::table('news_tags')->where('news_id', '=', $news_id)->get();
         $data['news'] = DB::table('news')->find($id);
+
         return view('admin.pages.news.detail', $data);
     }
 
