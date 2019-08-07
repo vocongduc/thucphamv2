@@ -61,9 +61,9 @@
                                         <td>{{ $row->created_at }}</td>
     
                                         <td>
-    
                                             <a class="btn btn-primary" id="{{ $row->id }}" href="{{ url('admincp/product/edit-category/'.$row->id) }}" onclick="">Sửa</a>
                                             <a class="btn btn-danger" href="{{ url('admincp/product/del-category/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

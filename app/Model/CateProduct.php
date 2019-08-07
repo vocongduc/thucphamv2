@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CateProduct extends Model
 {
-    protected $table = "cate_products";
+    protected $table = "cate_products_lv2";
 }

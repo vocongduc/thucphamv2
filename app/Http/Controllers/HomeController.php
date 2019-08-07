@@ -31,6 +31,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('page.home');
+        $data['cate_parents']= DB::table('cate_products_lv1')->orderBy('id', 'desc')->get();
+        $data['cate_childs']= DB::table('cate_products_lv2')->orderBy('id', 'desc')->get();
+        $data['products']= DB::table('products')
+            ->select('products.*', 'cate_products_lv2.cate_lv1_id')
+            ->join('cate_products_lv2', 'cate_products_lv2.id','=', 'products.cate_product')
+            ->where('status',1)->orderBy('id', 'desc')->get();
+        //dd($data);
+
+
+        return view('page.home', $data);
     }
 }
