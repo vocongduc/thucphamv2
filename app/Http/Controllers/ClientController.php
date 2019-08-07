@@ -26,7 +26,16 @@ class ClientController extends Controller
         $data['recruitment'] = DB::table('recruitments')->orderBy('id','desc')->paginate(8);
         return view('page.tuyenDung',$data);
     }
-    public function loaitintuc($slug)
+    // public function loaitintuc($slug)
+    //chi tiet tuyen dung
+    public function chitiettuyendung($slug){
+        $data['chitiet'] = DB::table('recruitments')->where('slug',$slug)->first();
+        // dd($data['chitiet']);
+        return view('page.Tuyendungchitiet',$data);
+    }
+
+//    tin tuc
+    public function tintuc()
     {
         $cate_id = DB::table('cate_news')->where('slug',$slug)->pluck('id')->first();
         $data['cate_name'] = DB::table('cate_news')->where('slug',$slug)->first();

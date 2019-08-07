@@ -101,9 +101,7 @@ Route::prefix('lienhe')->group(function () {
 Route::prefix('tuyendung')->group(function () {
 
     Route::get('/', 'ClientController@tuyendung')->name('tuyen-dung');
-    Route::get('Tuyendungchitiet',function(){
-        return view('page.Tuyendungchitiet');
-        })->name('tuyen-dung-chi-tiet');
+    Route::get('Tuyendungchitiet/{slug}','ClientController@chitiettuyendung')->name('tuyen-dung-chi-tiet');
 
 });
 
@@ -233,7 +231,7 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('/edit/{id}', 'NewsController@update')->name('news.update');
 
         Route::get('/destroy/{id}', 'NewsController@destroy')->name('news.destroy');
-        Route::get('/destroy-cate/{$id}', 'NewsController@destroyCate')->name('news.destroyCate');
+        Route::get('/destroy-cate/{id}', 'NewsController@destroyCate')->name('news.destroyCate');
 
         Route::get('/show/{id}', 'NewsController@show')->name('news.show');
 

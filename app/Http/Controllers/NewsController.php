@@ -170,9 +170,9 @@ class NewsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $data['news'] = DB::table('news')->find($slug);
+        $data['news'] = DB::table('news')->find($id);
         return view('admin.pages.news.show', $data);
     }
 

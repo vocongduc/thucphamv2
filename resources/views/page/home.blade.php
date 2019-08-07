@@ -1,5 +1,8 @@
 @extends('master-layout')
 
+@section('title')
+    Thực Phẩm sạch
+@endsection
 @section('content')
 
 <!-- home -->
