@@ -23,12 +23,17 @@ class ClientController extends Controller
     public function tuyendung(){
         $data['news_focus'] = DB::table('news')->where('focus','=',1)->orderByDesc('id')->take(3)->get();
         $data['news_view'] = DB::table('news')->orderByDesc('view')->take(3)->get();
+        $data['partner'] = DB::table('partner')->orderByDesc('id')->take(3)->get();
         $data['recruitment'] = DB::table('recruitments')->orderBy('id','desc')->paginate(8);
         return view('page.tuyenDung',$data);
     }
     // public function loaitintuc($slug)
     //chi tiet tuyen dung
     public function chitiettuyendung($slug){
+
+        $data['news_focus'] = DB::table('news')->where('focus','=',1)->orderByDesc('id')->take(3)->get();
+        $data['news_view'] = DB::table('news')->orderByDesc('view')->take(3)->get();
+        $data['partner'] = DB::table('partner')->orderByDesc('id')->take(3)->get();
         $data['chitiet'] = DB::table('recruitments')->where('slug',$slug)->first();
         // dd($data['chitiet']);
         return view('page.Tuyendungchitiet',$data);
