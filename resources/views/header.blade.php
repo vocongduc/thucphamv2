@@ -208,17 +208,32 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('tin-tuc') }}"> tin tức <i class="fa fa-angle-down"
+                            <a > tin tức <i class="fa fa-angle-down"
                                     aria-hidden="true"></i></a>
                             <ul class="menu_lv_2 animated fadeInUp">
-                                <li><a href="{{ route('am-thuc') }}">ẩm thực</a></li>
-                                <li><a href="{{ route('truyen-thong-bao-chi') }}">truyền thông báo chí</a></li>
-                                <li><a href="{{ route('kien-thuc') }}">kiến thức</a></li>
+
+                                @foreach($cate_news as $value)
+                                    <li><a href="{{ url('tintuc').'/'.$value->slug}}">{{$value->name}}</a></li>
+                                @endforeach
+                                {{--<li><a href="{{ route('am-thuc') }}">ẩm thực</a></li>--}}
+                                {{--<li><a href="{{ route('truyen-thong-bao-chi') }}">truyền thông báo chí</a></li>--}}
+                                {{--<li><a href="{{ route('kien-thuc') }}">kiến thức</a></li>--}}
 
                             </ul>
                         </li>
 
-                        <li><a href="{{ route('thuc-don') }}">thực dơn</a></li>
+                        <li>
+                            <a > thực đơn <i class="fa fa-angle-down"
+                                            aria-hidden="true"></i></a>
+                            <ul class="menu_lv_2 animated fadeInUp">
+
+                                @foreach($cate_menu as $value)
+                                    <li><a href="{{ url('thucdon').'/'.$value->slug}}">{{$value->name}}</a></li>
+                                @endforeach
+
+
+                            </ul>
+                        </li>
                         <li><a href="{{ route('lich-hang') }}">lịch hàng</a></li>
                         <li><a href="{{ route('khuyen-mai') }}">khuyến mãi</a></li>
                         <li><a href="{{ route('tuyen-dung') }}">tuyển dụng</a></li>

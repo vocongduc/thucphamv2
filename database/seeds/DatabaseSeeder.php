@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         
-
         $location = "Cộng tác viên,Quản trị viên,Admin";
         $explode = explode(',',$location);
         foreach($explode as $ex)
@@ -48,6 +47,12 @@ class DatabaseSeeder extends Seeder
             'fblink' =>'http://www.facebook.com/mytammart.com.vn',
             'website' =>'http://www.mytammart.vn'
         ]);
+        DB::table('cate_news')->insert([
+            'name'=>'Kiến thức',
+            'slug'=>'kien-thuc',
+            'created_at'=>now(),
+        ]);
         
+
     }
 }

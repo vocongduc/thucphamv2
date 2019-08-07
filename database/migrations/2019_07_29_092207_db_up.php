@@ -194,6 +194,11 @@ class DbUp extends Migration
             $table->string('name');
             $table->string('logo');
             $table->string('link');
+            $table->string('address');
+            $table->string('phone');
+            $table->text('summary');
+            $table->text('content');
+            $table->string('fax');
             $table->integer('status');
             $table->timestamps();
         });
