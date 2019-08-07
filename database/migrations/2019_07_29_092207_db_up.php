@@ -129,7 +129,15 @@ class DbUp extends Migration
         //tuyen dung
         Schema::create('recruitments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->nullable();
+            $table->string('vitri')->nullable();
+            $table->string('dotuoi')->nullable();
+            $table->string('kinhnghiem')->nullable();
+            $table->string('hocvan')->nullable();
+            $table->string('nguoilienhe')->nullable();
+            $table->string('sdt')->nullable();
+            $table->string('soluong')->nullable();
+            $table->string('email')->nullable();
             $table->integer('salaryMin');
             $table->integer('salaryMax');
             $table->string('address');
