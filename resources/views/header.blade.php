@@ -386,7 +386,7 @@
 
                         </div>
                     </form>
-                    <div style="text-align: center;margin-bottom:20px;">Don't you have an account? <a  target="_blank" class="btn" style="color:blue;font-size:15px;" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Create Account</a></div>
+                    <div style="text-align: center;margin-bottom:20px;">Don't you have an account? <a  target="_blank" class="btn" style="color:blue;font-size:15px;" data-dismiss="modal" data-toggle="modal" data-target="#signUp">Create Account</a></div>
                 </div>
             </div>
         </div>
