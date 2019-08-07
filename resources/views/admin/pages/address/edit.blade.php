@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <a class="btn btn-primary" href="{{ Route('admin.address.index') }}" type="submit" title="Cancel">Hủy</a>
-                            <input name="submit" class="btn btn-success" type="submit" value="Tạo" >
+                            <input name="submit" class="btn btn-success" type="submit" value="Cập nhật" >
                         </div>
                     </form>
                 </div>
