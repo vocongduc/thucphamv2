@@ -101,9 +101,7 @@ Route::prefix('lienhe')->group(function () {
 Route::prefix('tuyendung')->group(function () {
 
     Route::get('/', 'ClientController@tuyendung')->name('tuyen-dung');
-    Route::get('Tuyendungchitiet',function(){
-        return view('page.Tuyendungchitiet');
-        })->name('tuyen-dung-chi-tiet');
+    Route::get('Tuyendungchitiet/{slug}','ClientController@chitiettuyendung')->name('tuyen-dung-chi-tiet');
 
 });
 

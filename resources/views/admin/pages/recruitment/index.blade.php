@@ -30,11 +30,11 @@
                                     <tr>
                                         <th class="col-md-2">Tiêu đề </th>
                                         <th class="col-md-2">Mức lương</th>
-                                        <th >Avatar</th>
+                                        <th class="col-md-1">Avatar</th>
                                         <th class="col-md-2">Địa chỉ</th>
                                         <th class="col-md-3">Nội dung </th>
                                         <th class="col-md-1">Trạng thái</th>
-                                        <th class="col-md-3">Hành động</th>
+                                        <th class="col-md-4">Hành động</th>
 
                                     </tr>
                                     </thead>
@@ -49,16 +49,18 @@
                                             
                                                 @if ($value->status == 1)
                                                     <td><input style="color:green; border: none; text-align: center" id="tuyen" disabled value="Đang tuyển"></td>
-                                                    <td>    <a href="{{ url('admincp/recruitment/act').'/'.$value->id.'/0'}}" class="btn btn-warning">Dừng</a>
-                                                        <a class="btn btn-primary" id="edit" href="{{url('admincp/recruitment/edit').'/'.$value->id}}">Sửa</a>
-                                                        <a class="btn btn-danger" href="{{url('admincp/recruitment/delete').'/'.$value->id}}" onclick="return confirmAction()">Xóa</a>
+                                                    <td>    <a href="{{ url('admincp/recruitment/act').'/'.$value->id.'/0'}}" class="btn btn-warning glyphicon glyphicon-play" title="Dừng"></a>
+                                                        <a class="btn btn-primary glyphicon glyphicon-wrench" id="edit" href="{{url('admincp/recruitment/edit').'/'.$value->id}}" title="Sửa"></a>
+                                                        <a class="btn btn-default glyphicon glyphicon-eye-open" href="{{ url('tuyendung/Tuyendungchitiet').'/'.$value->slug }}" target="_blank" title="Xem"></a>
+                                                        <a class="btn btn-danger glyphicon glyphicon-minus-sign" href="{{url('admincp/recruitment/delete').'/'.$value->id}}" title="Xóa" onclick="return confirmAction()"></a>
                                                     </td>
                                                 @else
                                                     <td><input style="color:red ; border: none; text-align: center" id="dungtuyen" disabled value="Hết hạn hồ sơ"></td>
                                                     <td>
-                                                        <a href="{{ url('admincp/recruitment/act').'/'.$value->id.'/1'}}" class="btn btn-success">Tuyển</a>
-                                                        <a class="btn btn-primary" id="edit" href="{{url('admincp/recruitment/edit').'/'.$value->id}}">Sửa</a>
-                                                        <a class="btn btn-danger" href="{{url('admincp/recruitment/delete').'/'.$value->id}}" onclick="return confirmAction()">Xóa</a>
+                                                        <a href="{{ url('admincp/recruitment/act').'/'.$value->id.'/1'}}" class="btn btn-success glyphicon glyphicon-pause" title="Tuyển"></a>
+                                                        <a class="btn btn-primary glyphicon glyphicon-wrench" id="edit" href="{{url('admincp/recruitment/edit').'/'.$value->id}}" title="Sửa"></a>
+                                                        <a class="btn btn-default glyphicon glyphicon-eye-open" href="{{ url('tuyendung/Tuyendungchitiet').'/'.$value->slug }}" target="_blank" title="Xem"></a>
+                                                        <a class="btn btn-danger glyphicon glyphicon-minus-sign" href="{{url('admincp/recruitment/delete').'/'.$value->id}}" onclick="return confirmAction()" title="Xóa"></a>
                                                     </td> 
                                                 @endif
                                             

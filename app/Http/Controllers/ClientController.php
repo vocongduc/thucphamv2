@@ -26,6 +26,13 @@ class ClientController extends Controller
         $data['recruitment'] = DB::table('recruitments')->orderBy('id','desc')->paginate(8);
         return view('page.tuyenDung',$data);
     }
+    //chi tiet tuyen dung
+    public function chitiettuyendung($slug){
+        $data['chitiet'] = DB::table('recruitments')->where('slug',$slug)->first();
+        // dd($data['chitiet']);
+        return view('page.Tuyendungchitiet',$data);
+    }
+
 //    tin tuc
     public function tintuc()
     {
