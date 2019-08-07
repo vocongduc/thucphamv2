@@ -164,7 +164,7 @@
             
 
             <!-- thông tin của cột bên  phải -->
-            <div class="col-right col-xs-12 col-md-4 col-sm-4">
+			<div class="col-right col-xs-12 col-md-4 col-sm-4">
 				<!-- Tin tiêu điểm -->
 				<div class="panel panel-defaul panel-no-border">
 					<!-- phần đầu tin -->
@@ -174,131 +174,83 @@
 					<!--  phần body chứa các tin bên trong, mỗi tin chứa trong thẻ <li> -->
 					<div class="panel-body">
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-xs-4 col-sm-4" >
-										<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20190114/48982029_1628211580612408_5496795047745552384_n.jpg">
+							@foreach($news_focus as $value)
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-xs-4 col-sm-4">
+											<img
+													src="{{asset('assets/img_new/').'/'.$value->image}}">
+										</div>
+										<div class="col-xs-8 col-sm-8 news-title-1">
+											<strong><a href="{{ url('admincp/news/detail/'.$value->id) }}">{{$value->name}}</a></strong>
+											<p><i>{{$value->created_at}}</i></p>
+										</div>
 									</div>
-									<div class="col-xs-8 col-sm-8 news-title-1" >
-										<strong><a href="#">Những lý do bạn nên chọn Dâu tây giống Nhật của chúng tôi</a></strong>
-										<p><i>Ngày 04/01/2019</i></p>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-xs-4 col-sm-4" >
-										<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20181205/tac_dung_cua_dong_trung_ha_thao.jpg">
-									</div>
-									<div class="col-xs-8 col-sm-8 news-title-1" >
-										<strong><a href="#">Tìm hiểu công dụng lợi ích của Đông Trụng Hạ Thảo</a></strong>
-										<p><i>Ngày 04/01/2019</i></p>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">	
-								<div class="row">
-									<div class="col-xs-4 col-sm-4" >
-										<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/fck/files/h%E1%BB%A3p%20t%C3%A1c%20fukuoka1.jpg">
-									</div>
-									<div class="col-xs-8 col-sm-8 news-title-1" >
-										<strong><a href="#">Lạc quan với tương lai hợp tác nông nghiệp giữa Hà Nội và Fukuoka</a></strong>
-										<p><i>Ngày 04/01/2019</i></p>
-									</div>
-								</div></li>
-							</ul>				
-						</div>
+								</li>
+							@endforeach
+
+
+						</ul>
 					</div>
-					<!-- tin xem nhiều -->
-					<div class="panel panel-defaul panel-no-border ">
-						<div class="panel-heading mt-2">
-							<div class="panel-title">Tin xem nhiều</div>
-						</div>
-						<div class="panel-body">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20190114/48982029_1628211580612408_5496795047745552384_n.jpg">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-1" >
-											<strong><a href="#">Những lý do bạn nên chọn Dâu tây giống Nhật của chúng tôi</a></strong>
-											<p><i>Ngày 04/01/2019</i></p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20181205/tac_dung_cua_dong_trung_ha_thao.jpg">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-1" >
-											<strong><a href="#">Tìm hiểu công dụng lợi ích của Đông Trụng Hạ Thảo</a></strong>
-											<p><i>Ngày 04/01/2019</i></p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">	
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/fck/files/h%E1%BB%A3p%20t%C3%A1c%20fukuoka1.jpg">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-1" >
-											<strong><a href="#">Lạc quan với tương lai hợp tác nông nghiệp giữa Hà Nội và Fukuoka</a></strong>
-											<p><i>Ngày 04/01/2019</i></p>
-										</div>
-									</div>
-								</li>
-
-							</ul>
-						</div>
+				</div>
+				<!-- tin xem nhiều -->
+				<div class="panel panel-defaul panel-no-border ">
+					<div class="panel-heading mt-2">
+						<div class="panel-title">Tin xem nhiều</div>
 					</div>
-					<!-- Liên kết đối tác -->
-					<div class="panel panel-defaul panel-no-border ">
-						<div class="panel-heading mt-2">
-							<div class="panel-title">Liên kết đối tác</div>
-						</div>
-						<div class="panel-body">
-							<ul class="list-group list-group-flush">
+					<div class="panel-body">
+						<ul class="list-group list-group-flush">
+							@foreach($news_view as $value)
 								<li class="list-group-item">
 									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x256xdefault/upload/20366/20171202/Logo-mam-non66.png" >
+										<div class="col-xs-4 col-sm-4">
+											<img
+													src="{{asset('assets/img_new/').'/'.$value->image}}">
 										</div>
-										<div class="col-xs-8 col-sm-8 news-title-2" >
-											<strong><a href="#">CÔNG TY TNHH DỊCH VỤ VÀ GIÁO DỤC SEN VÀNG</a></strong>
+										<div class="col-xs-8 col-sm-8 news-title-1">
+											<strong><a href="{{ url('admincp/news/detail/'.$value->id) }}">{{$value->name}}</a></strong>
+											<p><i>{{$value->created_at}}</i></p>
 										</div>
 									</div>
 								</li>
+							@endforeach
+
+
+
+						</ul>
+					</div>
+				</div>
+				<!-- Liên kết đối tác -->
+				<div class="panel panel-defaul panel-no-border ">
+					<div class="panel-heading mt-2">
+						<div class="panel-title">Liên kết đối tác</div>
+					</div>
+					<div class="panel-body">
+						<ul class="list-group list-group-flush">
+
+							@foreach($partner as $key =>$value)
 								<li class="list-group-item">
 									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x256xdefault/upload/20366/20170906/Untitled.jpg">
+										<div class="col-xs-4 col-sm-4">
+											<img
+													src="assets/img_partner/{{$value->logo}}">
 										</div>
-										<div class="col-xs-8 col-sm-8 news-title-2" >
-											<strong><a href="#">VIỆN MÔI TRƯỜNG NÔNG NGHIỆP</a></strong>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">	
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x256xdefault/upload/20366/20171202/apollo-english-primary.png">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-2" >
-											<strong><a href="#">TRUNG TÂM ANH NGỮ QUỐC TẾ APOLLO</a></strong>
+										<div class="col-xs-8 col-sm-8 news-title-2">
+											<strong><a href="{{$value->link}}">{{$value->name}}</a></strong>
 										</div>
 									</div>
 								</li>
+							@endforeach
 
-							</ul>
 
-						</div>
-
+						</ul>
 
 					</div>
+
 
 				</div>
+
+			</div>
 		</div>
     </div>
     
