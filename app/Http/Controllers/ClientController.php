@@ -41,7 +41,8 @@ class ClientController extends Controller
 
 //    tin tuc
 
-    public function loaitintuc($slug)
+    // public function loaitintuc($slug)
+    public function loaitintuc()
     {
         $cate_id = DB::table('cate_news')->where('slug',$slug)->pluck('id')->first();
         $data['cate_name'] = DB::table('cate_news')->where('slug',$slug)->first();
