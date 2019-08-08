@@ -189,6 +189,14 @@ class DbUp extends Migration
             $table->integer('status');
             $table->timestamps();
         });
+
+        //Giới thiệu
+        Schema::create('introduce',function (Blueprint $table)
+        {
+            $table->bigIncrements('id');
+            $table->text('content');
+            $table->timestamps();
+        });
 //      Theo dõi
         Schema::create('follow',function (Blueprint $table)
         {

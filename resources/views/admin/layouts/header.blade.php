@@ -26,7 +26,7 @@
                     <li>
                         <!-- inner menu: contains the actual data -->
                         <ul class="menu">
-                            @foreach ($contact as $value)
+                            {{--  @foreach ($contact as $value)
                             <li>
                                 <a class="btn btn-default" data-toggle="modal" data-target="#myModal" onclick="show({{ $value->id}})">
                                     <div class="pull-left">
@@ -43,7 +43,7 @@
                                 </a>
                             </li>
 
-                            @endforeach 
+                            @endforeach   --}}
 
                         </ul>
                     </li>

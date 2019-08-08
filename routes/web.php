@@ -20,9 +20,7 @@ Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
 
 Route::prefix('gioithieu')->group(function () {
 
-    Route::get('/', function () {
-        return view('page.gioithieu');
-    })->name('gioi-thieu');
+    Route::get('/','IntroduceController@display')->name('gioi-thieu');
 
     Route::get('album-Anh', function () {
         return view('page.albumAnh');
@@ -91,7 +89,6 @@ Route::prefix('sanpham')->group(function () {
 
 
 });
-
 Route::prefix('lienhe')->group(function () {
 
     Route::get('/', 'ContactController@create')->name('lien-he');
@@ -316,6 +313,17 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         // edit
         Route::get('/edit/{id}', 'ContactController@edit')->name('contact.edit');
         Route::post('/edit/{id}','ContactController@editStore');
+    });
+    
+    //Giới thiệu
+    Route::prefix('introduce')->group(function () {
+        //list
+        Route::get('list', 'IntroduceController@index')->name('introduce.index');
+
+        // edit
+        Route::get('/edit/{id}', 'IntroduceController@edit')->name('introduce.edit');
+        Route::post('/edit/{id}','IntroduceController@editStore');
+        Route::get('/show/{id}', 'IntroduceController@show')->name('introduce.show');
     });    
     
 

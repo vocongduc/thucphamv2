@@ -38,6 +38,11 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'password' => bcrypt('12345678'), // password :12345678
         ]);
+
+        DB::table('introduce')->insert([
+            'content' => 'giới thiệu thử',
+            'created_at' => now(),
+        ]);
         // contact infor comny
         DB::table('change_contacts')->insert([
             'name' =>'CÔNG TY THỰC PHẨM SẠCH MYTAMMART VIỆT NAM',

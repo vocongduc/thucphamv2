@@ -19,6 +19,7 @@
                 <!-- right -->
                 <div class="col-md-8">
                     <div class="text">
+                    {!! $introduce->content !!}
                         <p>
                             <strong>Công ty Thực Phẩm Sạch BigGreen Việt Nam</strong> chính
                             thức được thành lập ngày 14/4/2010 do kỹ sư - Th.s Nông Nghiệp
