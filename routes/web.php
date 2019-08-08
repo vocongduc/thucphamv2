@@ -382,4 +382,14 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('update/{id}','AdminAddressController@update');
         Route::get('{action}/{id}','AdminAddressController@action')->name('admin.address.action');
     });
+
+    //albums ảnh
+    Route::group(['prefix' => 'album'],function(){
+        Route::get('/','AlbumController@index')->name('admin.album.index');
+        Route::get('create','AlbumController@create')->name('admin.album.create');
+        Route::post('create','AlbumController@store');
+        Route::get('update/{id}','AlbumController@edit')->name('admin.album.edit');
+        Route::post('update/{id}','AlbumController@update');
+        Route::get('{action}/{id}','AlbumController@action')->name('admin.album.action');
+    });
 });
