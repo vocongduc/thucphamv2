@@ -40,13 +40,16 @@ class ClientController extends Controller
     }
 
 //    tin tuc
-    public function tintuc()
+
+    // public function loaitintuc($slug)
+    public function loaitintuc($slug)
     {
         $cate_id = DB::table('cate_news')->where('slug',$slug)->pluck('id')->first();
         $data['cate_name'] = DB::table('cate_news')->where('slug',$slug)->first();
         $data['news'] = DB::table('news')->where('cate_id',$cate_id)->paginate(5);
         return view('page.tintuc',$data);
     }
+
     public function chitiettintuc($cate, $slug)
     {
         $news_id = DB::table('news')->where('slug',$slug)->pluck('id');

@@ -182,7 +182,7 @@ class NewsController extends Controller
      */
     public function detail($id)
     {
-        $news_id = DB::table('news')->where('slug',$id)->pluck('id');
+        $news_id = DB::table('news')->where('id',$id)->pluck('id')->first();
         $data['news_tags'] = DB::table('news_tags')->where('news_id', '=', $news_id)->get();
         $data['news'] = DB::table('news')->find($id);
 
