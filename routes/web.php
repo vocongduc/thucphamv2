@@ -326,9 +326,8 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('/edit/{id}', 'IntroduceController@edit')->name('introduce.edit');
         Route::post('/edit/{id}','IntroduceController@editStore');
         Route::get('/show/{id}', 'IntroduceController@show')->name('introduce.show');
-    });    
+    });   
     
-
 //    Đối tác
 
     Route::prefix('partner')->group(function () {
@@ -367,6 +366,34 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('/detail/{id}', 'FollowController@detail')->name('follow.detail');
         Route::get('/setactive/{id}/{status}', 'FollowController@setactive')->name('follow.setactive');
     });
+    //Video
+    Route::prefix('video')->group(function () {
+        Route::get('/list', 'VideoController@index')->name('video.index');
+
+        Route::get('/add', 'VideoController@create')->name('video.create');
+        Route::post('/add', 'VideoController@store')->name('video.store');
+
+        Route::get('/edit/{id}', 'VideoController@edit')->name('video.edit');
+        Route::post('/edit/{id}', 'VideoController@editstore')->name('video.editstore');
+
+        Route::get('/destroy/{id}', 'VideoController@destroy')->name('video.destroy');
+
+        Route::get('/show/{id}', 'VideoController@show')->name('video.show');
+    });
+    //certificate
+    Route::prefix('certificate')->group(function () {
+        //list
+        Route::get('list', 'CertificateController@index')->name('certificate.index');
+        //create
+        Route::get('create','CertificateController@create')->name('certificate.create');
+        Route::post('store','CertificateController@store')->name('certificate.store');
+        // edit
+        Route::get('/edit/{id}', 'CertificateController@edit')->name('certificate.edit');
+        Route::post('/edit/{id}','CertificateController@editStore')->name('certificate.save');
+        //delete
+        Route::get('/destroy/{id}', 'CertificateController@destroy')->name('certificate.destroy');
+        Route::get('/show/{id}', 'CertificateController@show')->name('certificate.show');
+    });   
     //profile
     Route::group(['prefix' => 'profile'], function () {
         //list

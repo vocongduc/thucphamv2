@@ -105,7 +105,7 @@
                             <div class="video">
                                 <div class="video-content">
                                     <a href="">
-                                        <img src="{{asset('images/hanh/video.jpg')}}" alt="video-image">
+                                        <video width="100px" type="video/mp4" src="assets/video/{{$video->video}}"></video>
                                         <i class='fab fa-youtube' style='font-size:35px'></i>
                                     </a>
                                 </div>

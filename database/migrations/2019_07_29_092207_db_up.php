@@ -174,10 +174,10 @@ class DbUp extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('address');
-            $table->string('certificate');
             $table->string('email');
             $table->string('fblink');
             $table->string('website');
+            $table->string('certificate');
             $table->timestamps();
         });
         // vai tro
@@ -203,6 +203,13 @@ class DbUp extends Migration
             $table->timestamps();
         });
 
+        Schema::create('video', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('video');
+            $table->timestamps();
+        });
+
         //Giới thiệu
         Schema::create('introduce',function (Blueprint $table)
         {
@@ -210,6 +217,14 @@ class DbUp extends Migration
             $table->text('content');
             $table->timestamps();
         });
+        //Giấy chứng nhận
+        
+        Schema::create('certificate', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('image');
+            $table->timestamps();
+        });
+        
 //      Theo dõi
         Schema::create('follow',function (Blueprint $table)
         {

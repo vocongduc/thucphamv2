@@ -19,7 +19,7 @@
                         <p>Giấy chứng nhận của Chi cục quản lý chất lượng của nông lâm và thủy sản Hà Nội - Biggreen đủ
                             điều kiện an toàn thực phẩm</p>
                         <div class="text-center">
-                            <img src="images/giay_chung_nhan.jpg" style="width: 700px;height: 1000px">
+                            <img src="assets/img_certificate/{{$certificate->image}}" style="width: 700px;height: 1000px">
                         </div>
                         <p>Giấy chứng nhận của Chi cục quản lý chất lượng của nông lâm và thủy sản Hà Nội - Biggreen đủ
                             điều kiện an toàn thực phẩm</p>

@@ -123,6 +123,19 @@
                     <li><a href="{{route('follow.index')}}"><i class="fa fa-list"></i> Danh sách theo dõi</a></li>
                 </ul>
             </li>
+             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-book"></i>
+                    <span>Video</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('video.index')}}"><i class="fa fa-list"></i> Danh sách video</a></li>
+                    <li><a href="{{route('video.create')}}"><i class="fa fa-plus"></i> Thêm video </a></li>
+                </ul>
+            </li>
             <li class="treeview">
                     <a href="#">
                         <i class="glyphicon glyphicon-comment"></i>
@@ -140,17 +153,40 @@
                     <a href="#">
                         <i class="glyphicon glyphicon-comment"></i>
                         <span>Giới thiệu</span>
+            
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{route('introduce.index')}}"><i class="fa fa-list"></i> Danh sách giới thiệu </a></li>
-                        <li><a href=""><i class="fa fa-plus"></i> Thay đổi giới thiệu </a></li>
-                        <li><a href="{{route('admin.address.index')}}"><i class="fa fa-list"></i> Danh sách địa chỉ hệ thống </a></li>
-                        <!-- <li><a href="{{route('contact.change')}}"><i class="fa fa-plus"></i> Thay đổi liên hệ công ty </a></li> -->
                     </ul>
                 </li>
+            <li class="treeview">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-comment"></i>
+                        <span>Giấy chứng nhận</span>
+            
+                        <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('certificate.index')}}"><i class="fa fa-list"></i> Danh sách giấy chứng nhận </a></li>
+                        <li><a href="{{route('certificate.create')}}"><i class="fa fa-plus"></i> Thêm chứng nhận </a></li>
+                    </ul>
+                </li>
+            <li class="treeview">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-comment"></i>
+                        <span>Địa chỉ</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                    </a>
+                <ul class="treeview-menu">
+                        <li><a href="{{route('admin.address.index')}}"><i class="fa fa-list"></i> Danh sách địa chỉ hệ thống </a></li>
+                    </ul>
+            </li>   
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
