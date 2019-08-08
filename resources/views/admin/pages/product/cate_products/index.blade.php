@@ -38,12 +38,12 @@
                                 </div>
                                 <button type="button" id="add" onclick="addchild(this)" title="Thêm Danh mục con"><i class="fa fa-plus"></i></button>
 
-                                <input type="hidden" name="num-child" id="num-childadd" value="0">
+                                <input type="hidden" name="num-child" id="num-childadd" value="1">
                                 <div id="childadd">
-                                    {{--<div class="form-group">
+                                    <div id="child-add-1" class="form-group addchild row">
                                         <label for="exampleInputEmail1">Thể Loại con 1(*)</label>
-                                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="cate-child-1" value="{{ old('name') }}" required>
-                                    </div>--}}
+                                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="cate-child-1" required>
+                                    </div>
                                 </div>
                                 <div class="form-group" style="text-align: center">
                                     <hr>

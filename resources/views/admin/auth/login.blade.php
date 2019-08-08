@@ -61,7 +61,7 @@
 <html lang="zxx">
 
 <head>
-    <title>Switch Login Form Flat Responsive Widget Template :: w3layouts</title>
+    <title>Login Admin</title>
     <!-- Meta-Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -91,7 +91,7 @@
 <h1 class="title-agile text-center">Login Admin</h1>
 <div class="content-w3ls">
     <div class="content-top-agile">
-        <img src="{{ asset('images/logo1.jpg') }}" alt="">
+        <a target="_blank" href="{{ url('') }}"><img src="{{ asset('images/logo1.jpg') }}" alt=""></a>
     </div>
     <div class="content-bottom">
         <form method="POST" action="{{ route($loginRoute) }}">
@@ -148,7 +148,7 @@
 </div>
 <div class="copyright text-center">
     <p>© 2018 Copy right
-        <a href="http://talentwins.co/">Talent Wins Technology</a>
+        <a target="_blank" href="http://talentwins.co/">Talent Wins Technology</a>
     </p>
 </div>
 </body>

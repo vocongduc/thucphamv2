@@ -118,272 +118,26 @@
                 <!-- show ảnh sản phẩm -->
                 <div class="row">
                     <div class="col-item col-xs-12 col-sm-4 col-md-12 col-mb-12  item-block show-product">
+                        @foreach($products as $value)
                         <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/trung_chim_tri.jpg">
+                            <img src="{{ asset('images/img/'.$value->image) }}">
                             <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
+                                @if ($value->quantity > 0)
+                                    <span>còn hàng</span>
+                                @else
+                                    <span>hết hàng</span>
+                                @endif
                                 <br>
                                 <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
                                 <br>
-                                <a href="{{ route('san-pham-chi-tiet') }}">Trứng chim trĩ</a>
+                                <a href="{{ route('san-pham-chi-tiet') }}">{{ $value->name }}</a>
                                 <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
+                                <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/Quả</span>
                             </p>
                         </div>
-                        <div>
-                            
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/na_giong_thai.jpg">
-                            
-                            
-                                <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/trung_chim_tri.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/na_giong_thai.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/trung_chim_tri.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/na_giong_thai.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/trung_chim_tri.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/na_giong_thai.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/trung_chim_tri.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190712/na_giong_thai.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
-
-                        <div>
-                            <img
-                                src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20180208/dua_kim_hoang_hau68.jpg">
-                            <p style="text-align: center;" class="mt-2">
-                                <span style="color: #3c763d">Còn hàng</span>
-                                <br>
-                                <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
-                                <br>
-                                <a href="#">Trứng chim trĩ</a>
-                                <br>
-                                <span style="color: red ; font-weight: bold;">18.000 VNĐ/Quả</span>
-                            </p>
-                        </div>
+                        @endforeach
                         <!-- thanh phân trang -->
-                        <div class="content-left-foot" style="padding-top:20px ">
+                     {{--   <div class="content-left-foot" style="padding-top:20px ">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item">
                                     <a class="page-link" href="javascript:void(0);">
@@ -414,7 +168,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>

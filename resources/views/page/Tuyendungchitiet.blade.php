@@ -8,26 +8,31 @@
 			<div class="col-left col-xs-12 col-md-8 col-sm-8">
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
-						<h2 class="title" >Tuyển Trưởng Phòng Nhân Sự</h2>
-						<p class="text-secondary" style="font-size: 14px"><i class="fa fa-clock-o" style="margin-right: 4px"></i>04/05/2018, 14:24:00</p>
-						<b style="color: red"> Đã hết hạn hồ sơ</b>
+						<h2 class="title" >{{$chitiet->vitri}}</h2>
+						<p class="text-secondary" style="font-size: 14px"><i class="fa fa-clock-o" style="margin-right: 4px"></i>{{\Carbon\Carbon::parse($chitiet->created_at)->diffForHumans()}}</p>
+						<div class="col-md-4 col-sm-12" style="font-size: 120%">
+							@if ($chitiet->status == 1)
+							<b  style="color:green;"> Đang tuyển</b>
+						@else
+							<b  style="color:red;"> Hết hạn hồ sơ</b>
+						@endif
+					</div>
 					</li>
 					<li class="list-group-item">
 						<div class="row job-detail">
 							<div class="col-md-6 " >
-								<p><i class="fa fa-check"></i><strong> Tiền lương:</strong> 8.000.000 - 10.000.000</p>
-								<p><i class="fa fa-check"></i><strong> Kinh nghiệm:</strong> 2 năm trở lên</p>
-								<p><i class="fa fa-check"></i><strong> Trình độ học vấn:</strong> Cao đẳng 
-								trở lên</p>
-								<p><i class="fa fa-check"></i><strong> Số lượng tuyển dụng:</strong> 1</p>
-								<p><i class="fa fa-check"></i><strong> Vị trí công việc:</strong> Trưởng phòng nhân sự</p>
+								<p><i class="fa fa-check"></i><strong> Tiền lương:</strong> {{ number_format($chitiet->salaryMin)}} - {{number_format($chitiet->salaryMax)}}</p>
+								<p><i class="fa fa-check"></i><strong> Kinh nghiệm:</strong> {{$chitiet->kinhnghiem}}</p>
+								<p><i class="fa fa-check"></i><strong> Trình độ học vấn:</strong> {{$chitiet->hocvan}} </p>
+								<p><i class="fa fa-check"></i><strong> Số lượng tuyển dụng:</strong> {{$chitiet->soluong}}</p>
+								<p><i class="fa fa-check"></i><strong> Vị trí công việc:</strong> {{$chitiet->vitri}}</p>
 							</div>
 							<div class="col-md-6">
-								<p><i class="fa fa-check"></i><strong> Địa điểm làm việc:</strong> 113 Hoàng Văn Thái, Thanh Xuân, Hà Nội</p>
-								<p><i class="fa fa-check"></i><strong> Vị trí:</strong> Trưởng phòng</p>
+								<p><i class="fa fa-check"></i><strong> Địa điểm làm việc:</strong> {{$chitiet->address}}</p>
+								<p><i class="fa fa-check"></i><strong> Vị trí:</strong> {{$chitiet->vitri}}</p>
 								<p><i class="fa fa-check"></i><strong> Giờ:</strong> Cố định</p>
 								<p><i class="fa fa-check"></i><strong> Yêu cầu giới tính:</strong> Nam/Nữ</p>
-								<p><i class="fa fa-check"></i><strong> Yêu cầu độ tuổi:</strong> 25 tuổi trở lên</p>
+								<p><i class="fa fa-check"></i><strong> Yêu cầu độ tuổi:</strong> {{$chitiet->dotuoi}}</p>
 							</div>
 						</div>
 					</li>
@@ -35,7 +40,7 @@
 	<!-- 	Thông tin tuyển dụng -->
 					<li class="list-group-item"><h2 class="title mt-3" >THÔNG TIN TUYỂN DỤNG</h2></li>
 					<li class="list-group-item">
-						<div class="row">
+						{{-- <div class="row">
 							<div class="col-md-4">
 								<p>MÔ TẢ CÔNG VIỆC</p>
 							</div>
@@ -124,7 +129,8 @@
 								</span>
 							</div>
 						</div>
-					</li>
+					</li> --}}
+					{!!$chitiet->content!!}
 		<!--Phần thông tin liên lạc -->
 					<li class="list-group-item">
 						<h2 class="title mt-3" >THÔNG TIN LIÊN LẠC</h2>
@@ -132,25 +138,25 @@
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-md-4"><p>NGƯỜI LIÊN HỆ</p></div>
-							<div class="col-md-8"><span>Chị Phương</span></div>
+							<div class="col-md-8"><span>{{$chitiet->nguoilienhe}}</span></div>
 						</div>
 					</li>
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-md-4"><p>ĐỊA CHỈ LIÊN HỆ</p></div>
-							<div class="col-md-8"><span>113 Hoàng Văn Thái, Thanh Xuân, Hà Nội</span></div>
+							<div class="col-md-8"><span>{{$chitiet->address}}</span></div>
 						</div>
 					</li>
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-md-4"><p>EMAIL LIÊN HỆ</p></div>
-							<div class="col-md-8"><span>nguyenphuong2912@gmail.com</span></div>
+							<div class="col-md-8"><span>{{$chitiet->email}}</span></div>
 						</div>
 					</li>
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-md-4"><p>SDT LIÊN HỆ</p></div>
-							<div class="col-md-8"><span>0936.295.998 - 09799.85.399</span></div>
+							<div class="col-md-8"><span>{{$chitiet->sdt}}</span></div>
 						</div>
 					</li>
 				</ul>
@@ -158,7 +164,7 @@
             
 
             <!-- thông tin của cột bên  phải -->
-            <div class="col-right col-xs-12 col-md-4 col-sm-4">
+			<div class="col-right col-xs-12 col-md-4 col-sm-4">
 				<!-- Tin tiêu điểm -->
 				<div class="panel panel-defaul panel-no-border">
 					<!-- phần đầu tin -->
@@ -168,131 +174,83 @@
 					<!--  phần body chứa các tin bên trong, mỗi tin chứa trong thẻ <li> -->
 					<div class="panel-body">
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-xs-4 col-sm-4" >
-										<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20190114/48982029_1628211580612408_5496795047745552384_n.jpg">
+							@foreach($news_focus as $value)
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-xs-4 col-sm-4">
+											<img
+													src="{{asset('assets/img_new/').'/'.$value->image}}">
+										</div>
+										<div class="col-xs-8 col-sm-8 news-title-1">
+											<strong><a href="{{ url('admincp/news/detail/'.$value->id) }}">{{$value->name}}</a></strong>
+											<p><i>{{$value->created_at}}</i></p>
+										</div>
 									</div>
-									<div class="col-xs-8 col-sm-8 news-title-1" >
-										<strong><a href="#">Những lý do bạn nên chọn Dâu tây giống Nhật của chúng tôi</a></strong>
-										<p><i>Ngày 04/01/2019</i></p>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-xs-4 col-sm-4" >
-										<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20181205/tac_dung_cua_dong_trung_ha_thao.jpg">
-									</div>
-									<div class="col-xs-8 col-sm-8 news-title-1" >
-										<strong><a href="#">Tìm hiểu công dụng lợi ích của Đông Trụng Hạ Thảo</a></strong>
-										<p><i>Ngày 04/01/2019</i></p>
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">	
-								<div class="row">
-									<div class="col-xs-4 col-sm-4" >
-										<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/fck/files/h%E1%BB%A3p%20t%C3%A1c%20fukuoka1.jpg">
-									</div>
-									<div class="col-xs-8 col-sm-8 news-title-1" >
-										<strong><a href="#">Lạc quan với tương lai hợp tác nông nghiệp giữa Hà Nội và Fukuoka</a></strong>
-										<p><i>Ngày 04/01/2019</i></p>
-									</div>
-								</div></li>
-							</ul>				
-						</div>
+								</li>
+							@endforeach
+
+
+						</ul>
 					</div>
-					<!-- tin xem nhiều -->
-					<div class="panel panel-defaul panel-no-border ">
-						<div class="panel-heading mt-2">
-							<div class="panel-title">Tin xem nhiều</div>
-						</div>
-						<div class="panel-body">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20190114/48982029_1628211580612408_5496795047745552384_n.jpg">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-1" >
-											<strong><a href="#">Những lý do bạn nên chọn Dâu tây giống Nhật của chúng tôi</a></strong>
-											<p><i>Ngày 04/01/2019</i></p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/20181205/tac_dung_cua_dong_trung_ha_thao.jpg">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-1" >
-											<strong><a href="#">Tìm hiểu công dụng lợi ích của Đông Trụng Hạ Thảo</a></strong>
-											<p><i>Ngày 04/01/2019</i></p>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">	
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x171xdefault/upload/20366/fck/files/h%E1%BB%A3p%20t%C3%A1c%20fukuoka1.jpg">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-1" >
-											<strong><a href="#">Lạc quan với tương lai hợp tác nông nghiệp giữa Hà Nội và Fukuoka</a></strong>
-											<p><i>Ngày 04/01/2019</i></p>
-										</div>
-									</div>
-								</li>
-
-							</ul>
-						</div>
+				</div>
+				<!-- tin xem nhiều -->
+				<div class="panel panel-defaul panel-no-border ">
+					<div class="panel-heading mt-2">
+						<div class="panel-title">Tin xem nhiều</div>
 					</div>
-					<!-- Liên kết đối tác -->
-					<div class="panel panel-defaul panel-no-border ">
-						<div class="panel-heading mt-2">
-							<div class="panel-title">Liên kết đối tác</div>
-						</div>
-						<div class="panel-body">
-							<ul class="list-group list-group-flush">
+					<div class="panel-body">
+						<ul class="list-group list-group-flush">
+							@foreach($news_view as $value)
 								<li class="list-group-item">
 									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x256xdefault/upload/20366/20171202/Logo-mam-non66.png" >
+										<div class="col-xs-4 col-sm-4">
+											<img
+													src="{{asset('assets/img_new/').'/'.$value->image}}">
 										</div>
-										<div class="col-xs-8 col-sm-8 news-title-2" >
-											<strong><a href="#">CÔNG TY TNHH DỊCH VỤ VÀ GIÁO DỤC SEN VÀNG</a></strong>
+										<div class="col-xs-8 col-sm-8 news-title-1">
+											<strong><a href="{{ url('admincp/news/detail/'.$value->id) }}">{{$value->name}}</a></strong>
+											<p><i>{{$value->created_at}}</i></p>
 										</div>
 									</div>
 								</li>
+							@endforeach
+
+
+
+						</ul>
+					</div>
+				</div>
+				<!-- Liên kết đối tác -->
+				<div class="panel panel-defaul panel-no-border ">
+					<div class="panel-heading mt-2">
+						<div class="panel-title">Liên kết đối tác</div>
+					</div>
+					<div class="panel-body">
+						<ul class="list-group list-group-flush">
+
+							@foreach($partner as $key =>$value)
 								<li class="list-group-item">
 									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x256xdefault/upload/20366/20170906/Untitled.jpg">
+										<div class="col-xs-4 col-sm-4">
+											<img
+													src="assets/img_partner/{{$value->logo}}">
 										</div>
-										<div class="col-xs-8 col-sm-8 news-title-2" >
-											<strong><a href="#">VIỆN MÔI TRƯỜNG NÔNG NGHIỆP</a></strong>
-										</div>
-									</div>
-								</li>
-								<li class="list-group-item">	
-									<div class="row">
-										<div class="col-xs-4 col-sm-4" >
-											<img src="https://biggreen.vn/publish/thumbnail/20366/256x256xdefault/upload/20366/20171202/apollo-english-primary.png">
-										</div>
-										<div class="col-xs-8 col-sm-8 news-title-2" >
-											<strong><a href="#">TRUNG TÂM ANH NGỮ QUỐC TẾ APOLLO</a></strong>
+										<div class="col-xs-8 col-sm-8 news-title-2">
+											<strong><a href="{{$value->link}}">{{$value->name}}</a></strong>
 										</div>
 									</div>
 								</li>
+							@endforeach
 
-							</ul>
 
-						</div>
-
+						</ul>
 
 					</div>
+
 
 				</div>
+
+			</div>
 		</div>
     </div>
     

@@ -19,9 +19,9 @@
 
                         <!--noi dung -->
 
-                        <h4>{!!  $news->name!!}</h4>
+                        <h4>{!!  $menu->name!!}</h4>
                         <div>
-                            <time>{{ $news->created_at }}</time>
+                            <time>{{ $menu->created_at }}</time>
                         </div>
                         <div class="float-right">
                             <button type="button" class="btn btn-primary btn-sm" style="font-size: 10px;border: none"><i
@@ -37,17 +37,17 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="brief"><p><span style="font-size:16px;"><span
-                                            style="font-family:Arial, Helvetica, sans-serif;"><strong>{!! $news->summary !!}</strong></span></span>
+                                            style="font-family:Arial, Helvetica, sans-serif;"><strong>{!! $menu->summary !!}</strong></span></span>
                             </p>
-                            {!! $news->content !!}
+                        {!! $menu->content !!}
 
 
-                            <!--tags -->
+                        <!--tags -->
 
                             <div style="margin: 25px 0;">
                                 <span class="badge badge-dark"><i class="fas fa-tags"></i> Tags</span>
-                                @foreach($news_tags as $tag)
-                                    <a href="{{asset('admincp/news/show/').'/'.$news->id}}"
+                                @foreach($menu_tags as $tag)
+                                    <a href="{{asset('admincp/menu/show/').'/'.$menu->id}}"
                                        class="badge badge-dark">{{$tag->name}}</a>
                                 @endforeach
                             </div>

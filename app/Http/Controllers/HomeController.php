@@ -21,8 +21,6 @@ class HomeController extends Controller
         view()->share('contact', $contact);
         $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
         view()->share('contacts', $contacts);
-        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
-        view()->share('contacts', $contacts);
 
     }
 
@@ -43,5 +41,23 @@ class HomeController extends Controller
 
 
         return view('page.home', $data);
+    }
+
+    public function catelv1($slug){
+        if($slug=='all'){
+            $data['products'] = DB::table('products')
+                ->where('status', 1)->orderBy('id', 'desc')->get();
+        }
+        else {
+            $data['cate_parents'] = DB::table('cate_products_lv1')->where('slug', $slug)->first();
+            $data['cate_childs'] = DB::table('cate_products_lv2')->where('cate_lv1_id', $data['cate_parents']->id)->get();
+            $data['products'] = DB::table('products')
+                ->select('products.*', 'cate_products_lv2.cate_lv1_id')
+                ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
+                ->where('cate_products_lv2.cate_lv1_id', $data['cate_parents']->id)
+                ->where('status', 1)->orderBy('id', 'desc')->get();
+        }
+
+        return view('page.sanPham', $data);
     }
 }

@@ -196,29 +196,44 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('san-pham') }}">sản phẩm<i class="fa fa-angle-down"
+                            <a href="{{ url('loaisanpham/all') }}">sản phẩm<i class="fa fa-angle-down"
                                     aria-hidden="true"></i></a>
                             <ul class="menu_lv_2 animated fadeInUp">
-                                <li><a href="{{ route('dac-san-vung-mien') }}">đặc sản vùng miền</a></li>
-                                <li><a href="{{ route('rau-cu') }}">rau - củ</a></li>
+                                @foreach($cate_products as $cate)
+                                <li><a href="{{ url('loaisanpham/'.$cate->slug) }}">{{ $cate->name }}</a></li>
+                               @endforeach
+                                {{-- <li><a href="{{ route('rau-cu') }}">rau - củ</a></li>
                                 <li><a href="{{ route('hoa-qua') }}">Hoa quả</a></li>
-                                <li><a href="{{ route('thuc-pham-tuoi-song') }}">Thực phẩm tươi</a></li>
-
-
+                                <li><a href="{{ route('thuc-pham-tuoi-song') }}">Thực phẩm tươi</a></li>--}}
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('tin-tuc') }}"> tin tức <i class="fa fa-angle-down"
+                            <a > tin tức <i class="fa fa-angle-down"
                                     aria-hidden="true"></i></a>
                             <ul class="menu_lv_2 animated fadeInUp">
-                                <li><a href="{{ route('am-thuc') }}">ẩm thực</a></li>
-                                <li><a href="{{ route('truyen-thong-bao-chi') }}">truyền thông báo chí</a></li>
-                                <li><a href="{{ route('kien-thuc') }}">kiến thức</a></li>
+
+                                @foreach($cate_news as $value)
+                                    <li><a href="{{ url('tintuc').'/'.$value->slug}}">{{$value->name}}</a></li>
+                                @endforeach
+                                {{--<li><a href="{{ route('am-thuc') }}">ẩm thực</a></li>--}}
+                                {{--<li><a href="{{ route('truyen-thong-bao-chi') }}">truyền thông báo chí</a></li>--}}
+                                {{--<li><a href="{{ route('kien-thuc') }}">kiến thức</a></li>--}}
 
                             </ul>
                         </li>
 
-                        <li><a href="{{ route('thuc-don') }}">thực dơn</a></li>
+                        <li>
+                            <a > thực đơn <i class="fa fa-angle-down"
+                                            aria-hidden="true"></i></a>
+                            <ul class="menu_lv_2 animated fadeInUp">
+
+                                @foreach($cate_menu as $value)
+                                    <li><a href="{{ url('thucdon').'/'.$value->slug}}">{{$value->name}}</a></li>
+                                @endforeach
+
+
+                            </ul>
+                        </li>
                         <li><a href="{{ route('lich-hang') }}">lịch hàng</a></li>
                         <li><a href="{{ route('khuyen-mai') }}">khuyến mãi</a></li>
                         <li><a href="{{ route('tuyen-dung') }}">tuyển dụng</a></li>
@@ -386,7 +401,7 @@
 
                         </div>
                     </form>
-                    <div style="text-align: center;margin-bottom:20px;">Don't you have an account? <a  target="_blank" class="btn" style="color:blue;font-size:15px;" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Create Account</a></div>
+                    <div style="text-align: center;margin-bottom:20px;">Don't you have an account? <a  target="_blank" class="btn" style="color:blue;font-size:15px;" data-dismiss="modal" data-toggle="modal" data-target="#signUp">Create Account</a></div>
                 </div>
             </div>
         </div>

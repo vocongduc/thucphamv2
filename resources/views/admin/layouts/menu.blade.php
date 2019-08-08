@@ -147,6 +147,8 @@
                     <ul class="treeview-menu">
                         <li><a href="{{route('introduce.index')}}"><i class="fa fa-list"></i> Danh sách giới thiệu </a></li>
                         <li><a href=""><i class="fa fa-plus"></i> Thay đổi giới thiệu </a></li>
+                        <li><a href="{{route('admin.address.index')}}"><i class="fa fa-list"></i> Danh sách địa chỉ hệ thống </a></li>
+                        <!-- <li><a href="{{route('contact.change')}}"><i class="fa fa-plus"></i> Thay đổi liên hệ công ty </a></li> -->
                     </ul>
                 </li>
             <li class="treeview">
@@ -165,7 +167,7 @@
                 </ul>
             </li>
             <li>
-                <a href="pages/widgets.html">
+                <a href="">
                     <i class="fa fa-th"></i> <span>Widgets</span>
                     <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
