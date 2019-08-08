@@ -14,8 +14,12 @@
 
 Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createuser');
 Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
-Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
+Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');\
 
+/*
+ * sản phẩm
+ * */
+Route::get('loaisanpham/{slug}', 'HomeController@catelv1')->name('cate.lv1');
     
 
 Route::prefix('gioithieu')->group(function () {

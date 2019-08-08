@@ -196,15 +196,15 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('san-pham') }}">sản phẩm<i class="fa fa-angle-down"
+                            <a href="{{ url('loaisanpham/all') }}">sản phẩm<i class="fa fa-angle-down"
                                     aria-hidden="true"></i></a>
                             <ul class="menu_lv_2 animated fadeInUp">
-                                <li><a href="{{ route('dac-san-vung-mien') }}">đặc sản vùng miền</a></li>
-                                <li><a href="{{ route('rau-cu') }}">rau - củ</a></li>
+                                @foreach($cate_products as $cate)
+                                <li><a href="{{ url('loaisanpham/'.$cate->slug) }}">{{ $cate->name }}</a></li>
+                               @endforeach
+                                {{-- <li><a href="{{ route('rau-cu') }}">rau - củ</a></li>
                                 <li><a href="{{ route('hoa-qua') }}">Hoa quả</a></li>
-                                <li><a href="{{ route('thuc-pham-tuoi-song') }}">Thực phẩm tươi</a></li>
-
-
+                                <li><a href="{{ route('thuc-pham-tuoi-song') }}">Thực phẩm tươi</a></li>--}}
                             </ul>
                         </li>
                         <li>

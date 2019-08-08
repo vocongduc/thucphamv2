@@ -38,7 +38,7 @@ class CateProductController extends Controller
 
         DB::table('cate_products_lv1')->insert([
             'name' => $input['cate-parent'],
-            'slug' => str_slug($input['cate-parent']).'-'.now().'.html'
+            'slug' => str_slug($input['cate-parent']).'-'.time().'.html'
         ]);
 
         $parent = DB::table('cate_products_lv1')->orderBy('id', 'desc')->first();
@@ -46,7 +46,7 @@ class CateProductController extends Controller
             for( $i=1; $i<=$input['num-child']; $i++){
                 DB::table('cate_products_lv2')->insert([
                     'name' => $input['cate-child-'.$i],
-                    'slug' => str_slug($input['cate-child-'.$i]).'-'.now().'.html',
+                    'slug' => str_slug($input['cate-child-'.$i]).'-'.time().'.html',
                     'cate_lv1_id' => $parent->id,
                 ]);
             }
@@ -58,7 +58,7 @@ class CateProductController extends Controller
         $input= $request->all();
         DB::table('cate_products_lv1')->where('id', $id)->update([
             'name' => $input['cate-parent-edit'],
-            'slug' => str_slug($input['cate-parent-edit']).'-'.now().'.html'
+            'slug' => str_slug($input['cate-parent-edit']).'-'.time().'.html'
         ]);
         return redirect()->back()->with('thongbao','Thêm Loại hàng Thành Công!');
     }
@@ -83,7 +83,7 @@ class CateProductController extends Controller
         //dd($request->all());
         DB::table('cate_products_lv2')->insert([
             'name' => $request->name,
-            'slug' => str_slug($request->name).'-'.now().'.html',
+            'slug' => str_slug($request->name).'-'.time().'.html',
             'cate_lv1_id' => $request->cate_id,
         ]);
         return redirect()->back()->with('thongbao','Thêm Loại hàng Thành Công!');
@@ -92,7 +92,7 @@ class CateProductController extends Controller
         //dd($request->all());
         DB::table('cate_products_lv2')->where('id', $id)->update([
             'name' => $request->name,
-            'slug' => str_slug($request->name).'-'.now().'.html',
+            'slug' => str_slug($request->name).'-'.time().'.html',
         ]);
         return redirect()->back()->with('thongbao','Sửa Loại hàng Thành Công!');
     }
