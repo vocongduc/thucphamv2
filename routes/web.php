@@ -35,37 +35,37 @@ Route::prefix('gioithieu')->group(function () {
     Route::get('video-Clip', function () {
         return view('page.videoClip');
     })->name('video-Clip');
-
-    Route::get('doi-Tac', function () {
-        return view('page.doiTac');
-    })->name('doi-Tac');
+    Route::get('doi-tac','ClientController@gioiThieuDoiTac')->name('doi-Tac');
 
     Route::get('giay-Chung-Nhan', function () {
         return view('page.giayChungNhan');
     })->name('giay-Chung-Nhan');
 });
-
-Route::prefix('tintuc')->group(function () {
-
-    Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
-
-    Route::get('am-thuc', function () {
-        return view('page.amThuc');
-    })->name('am-thuc');
-
-    Route::get('truyen-thong-bao-chi', function () {
-        return view('page.truyenThongBaoChi');
-    })->name('truyen-thong-bao-chi');
-
-    Route::get('kien-thuc', function () {
-        return view('page.kienThuc');
-    })->name('kien-thuc');
-    Route::get('tin-tuc-chi-tiet', function () {
-        return view('page.tintucchitiet');
-    })->name('tin-tuc-chi-tiet');
-
-
-});
+Route::get('tintuc/{slug}','ClientController@loaitintuc');
+Route::get('tintuc/{cate}/{slug}','ClientController@chitiettintuc');
+Route::get('thucdon/{slug}','ClientController@loaithucdon');
+Route::get('thucdon/{cate}/{slug}','ClientController@chitietthucdon');
+//Route::prefix('tintuc')->group(function () {
+//
+//    Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
+//
+//    Route::get('am-thuc', function () {
+//        return view('page.amThuc');
+//    })->name('am-thuc');
+//
+//    Route::get('truyen-thong-bao-chi', function () {
+//        return view('page.truyenThongBaoChi');
+//    })->name('truyen-thong-bao-chi');
+//
+//    Route::get('kien-thuc', function () {
+//        return view('page.kienThuc');
+//    })->name('kien-thuc');
+//    Route::get('tin-tuc-chi-tiet', function () {
+//        return view('page.tintucchitiet');
+//    })->name('tin-tuc-chi-tiet');
+//
+//
+//});
 
 Route::prefix('sanpham')->group(function () {
 
@@ -105,9 +105,7 @@ Route::prefix('lienhe')->group(function () {
 Route::prefix('tuyendung')->group(function () {
 
     Route::get('/', 'ClientController@tuyendung')->name('tuyen-dung');
-    Route::get('Tuyendungchitiet',function(){
-        return view('page.Tuyendungchitiet');
-        })->name('tuyen-dung-chi-tiet');
+    Route::get('Tuyendungchitiet/{slug}','ClientController@chitiettuyendung')->name('tuyen-dung-chi-tiet');
 
 });
 
@@ -374,5 +372,14 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('account-user-delete', 'Admin\AdminProfileController@listUserDelete')->name('account-user-delete');//delete
         //user
 
+    });
+    //address
+    Route::group(['prefix' => 'address'],function(){
+        Route::get('/','AdminAddressController@index')->name('admin.address.index');
+        Route::get('create','AdminAddressController@create')->name('admin.address.create');
+        Route::post('create','AdminAddressController@store');
+        Route::get('update/{id}','AdminAddressController@edit')->name('admin.address.edit');
+        Route::post('update/{id}','AdminAddressController@update');
+        Route::get('{action}/{id}','AdminAddressController@action')->name('admin.address.action');
     });
 });

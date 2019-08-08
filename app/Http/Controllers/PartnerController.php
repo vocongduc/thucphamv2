@@ -53,11 +53,18 @@ class PartnerController extends Controller
         $this->validate($request,[
             'name'=>'required|min:3',
             'link' => 'required|regex:'.$regex,
+            'phone'=>'required',
+            'fax'=>'required',
+            'status'=>'required',
+
         ],[
             'name.required' => 'Tên không được xác định',
             'name.min' => 'Tên không được ít hơn 3 kí tự',
             'link.required'=>'Link không được xác định',
             'link.regex'=>'Sai định dạng url',
+            'phone.required'=>'Số điện thoại không được để trống',
+            'fax.required'=>'Số điện thoại không được để trống',
+
         ]);
         if ($request->hasFile('image')) {
 
@@ -78,6 +85,11 @@ class PartnerController extends Controller
             'name'=>$request->name,
             'link'=>$request->link,
             'status'=>$request->status,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'fax'=>$request->fax,
+            'content'=>$request->contentt,
+            'summary'=>$request->summary,
             'logo'=>$file_name,
         ]);
         return redirect()->back()->with('thongbao',"Thành công");
