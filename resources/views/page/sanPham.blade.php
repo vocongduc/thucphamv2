@@ -1,7 +1,11 @@
-
-
 @extends('master-layout')
-
+@section('title')
+    @isset($cate_parents)
+        {{ $cate_parents->name }}
+    @else
+        Tất Cả Sản Phẩm
+    @endif
+@endsection
 @section('content')
 
 <!-- san pham -->
@@ -132,7 +136,7 @@
                                 <br>
                                 <a href="{{ route('san-pham-chi-tiet') }}">{{ $value->name }}</a>
                                 <br>
-                                <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/Quả</span>
+                                <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/{{ $value->unit }}</span>
                             </p>
                         </div>
                         @endforeach
