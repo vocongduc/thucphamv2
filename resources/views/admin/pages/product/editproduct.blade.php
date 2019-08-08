@@ -63,6 +63,18 @@
                                       placeholder="Nhập số lượng"  value="{{ $prd->quantity }}">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Đơn vị (*)</label>
+                        <select name="unit">
+                            @foreach($units as $unit)
+                                <option value="{{ $unit->id }}"
+                                @if($unit->id == $prd->unit_id)
+                                    selected
+                                @endif
+                                >{{ $unit->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputFile">Ảnh nền</label>
                         <input type="file" id="image" name="image" onchange="showIMG()" class="form-control" >
                         <input id="" name="old_image" onchange="showIMG()" class="form-control"  value="{{ $prd->image }}" type="hidden">

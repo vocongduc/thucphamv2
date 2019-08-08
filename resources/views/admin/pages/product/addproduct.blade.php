@@ -61,6 +61,14 @@
                                    placeholder="Nhập số lượng">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Đơn vị (*)</label>
+                            <select name="unit">
+                                @foreach($units as $unit)
+                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Sales</label>
                             <select class="form-control" name="sale">
                                 <option value="0">0%</option>

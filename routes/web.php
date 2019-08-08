@@ -304,6 +304,15 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('del-product/{product_id}', 'admin\ProductController@delProduct');
 
     });
+  Route::group(['prefix' => 'unit'], function (){
+     Route::get('/', 'Admin\UnitController@index')->name('unit.list');
+
+     Route::post('/create', 'Admin\UnitController@store')->name('unit.store');
+     Route::post('/update/{id}', 'Admin\UnitController@update')->name('unit.update');
+     Route::get('/delete/{id}', 'Admin\UnitController@delete')->name('unit.delete');
+
+
+  });
     //lien he
     Route::prefix('contact')->group(function () {
         //list

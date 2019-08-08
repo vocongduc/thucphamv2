@@ -31,6 +31,11 @@ class DbUp extends Migration
                 ->onDelete('cascade');
             $table->timestamps();
         });
+        Schema::create('units', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+        });
+
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -43,6 +48,11 @@ class DbUp extends Migration
             $table->bigInteger('sale');
             $table->bigInteger('price');
             $table->bigInteger('price_sale');
+            $table->bigInteger('unit_id')->unsigned();
+            $table->foreign('unit_id')
+                ->references('id')
+                ->on('units')
+                ->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
             $table->bigInteger('cate_product')->unsigned();
             $table->foreign('cate_product')

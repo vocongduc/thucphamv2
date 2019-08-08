@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>HaiThuWeb-@yield('title')</title>
+    <title>Mỹ Tâm Mart-@yield('title')</title>
     <base href="{{asset('')}}">
     <!-- Tell the browser to be responsive to screen width -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo-cut.png') }}" />
