@@ -67,6 +67,14 @@ Route::get('thucdon/{cate}/{slug}','ClientController@chitietthucdon');
 //
 //});
 
+
+/*
+ * ajax
+ * */
+Route::post('hienthi', 'AjaxController@hienthi')->name('hienthi');
+Route::post('sapxep', 'AjaxController@sapxep')->name('sapxep');
+Route::post('gia', 'AjaxController@gia')->name('gia');
+
 Route::prefix('sanpham')->group(function () {
 
     Route::get('/', function () {
