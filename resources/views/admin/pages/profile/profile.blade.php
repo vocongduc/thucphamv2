@@ -244,7 +244,6 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên tài khoản</th>
-                                            <th>Avatar</th>
                                             <th>Ngày tạo</th>
                                             <th>Chức năng</th>
                                         </tr>
@@ -258,9 +257,6 @@
                                                     <input type="hidden" value="{{$user->id}}">
                                                     <td>{{$i++}}.</td>
                                                     <td>{{$user->email}}</td>
-                                                    <td>
-                                                        <img style="width:50px;border-radius:50%" src="{{asset('images/avatar/'.$user->avatar)}}" alt="">
-                                                    </td>
                                                     <td>
                                                         <?php \Carbon\Carbon::setLocale('vi')?>
                                                         {!! \Carbon\Carbon::createFromTimeStamp(strtotime($user->created_at))->diffforHumans() !!}
@@ -395,7 +391,6 @@
                 success: function(data){
                     document.getElementById('id_user').value = data.user.id;
                     document.getElementById('upated_name_user').value = data.user.email;
-                    // {{asset('images/avatar/'.$user->avatar)}}
                     //document.getElementById('idAvatar').src =  '{{asset('')}}/images/avatar/'+data.user.avatar;
 
 
@@ -427,7 +422,6 @@
                             {{--  console.log(data.status);  --}}
                             // document.getElementById('id_user').value = data.user.id;
                             //document.getElementById('upated_name_user').value = data.user.email;
-                            // {{asset('images/avatar/'.$user->avatar)}}
                             //document.getElementById('idAvatar').src =  '{{asset('')}}/images/avatar/'+data.user.avatar;
 
 

@@ -69,7 +69,6 @@ class AdminAccountController extends Controller
         if (Gate::allows('admin.create.admin.account'))
         {
             $this->validator($request);
-            dd($request->all());
             $createAdmin = DB::table('admins')->insert([
                'name' => $request->name,
                'email' => $request->email,
