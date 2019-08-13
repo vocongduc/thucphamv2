@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
-                            <textarea name="description" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
+                            <textarea name="contentt" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm (*)</label>

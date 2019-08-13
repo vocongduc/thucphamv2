@@ -23,8 +23,7 @@
                             <ul>
                                 @foreach($cate_product_lv2 as $cate_lv2)
                                     <hr>
-                                <li><a href="" class="dropdown-item">{{ $cate_lv2->name }}</a></li>
-
+                                    <li><a href="" class="dropdown-item">{{ $cate_lv2->name }}</a></li>
                                @endforeach
 
                             </ul>
@@ -230,7 +229,7 @@
                                 <br>
                                 <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
                                 <br>
-                                <a href="{{ route('san-pham-chi-tiet') }}">{{ $value->name }}</a>
+                                <a href="{{ url('sanpham/'.$value->slug) }}">{{ $value->name }}</a>
                                 <br>
                                 <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/{{ $value->unit }}</span>
                             </p>
@@ -276,6 +275,29 @@
 
     </div>
 </main>
+    <script>
+        function addcart(obj) {
+            // alert(obj.value);
+            var x= obj.value.split(',');
+            //alert(x[0]+x[1]);
+            var agrs = {
+                url: "{{ route('addcart') }}", // gửi ajax đến file result.php
+                type: "post", // chọn phương thức gửi là post
+                dataType: "text", // dữ liệu trả về dạng text
+                data: { // Danh sách các thuộc tính sẽ gửi đi
+                    _token: '{{ csrf_token() }}',
+                    cate_id: cate,
+                    min: x[0],
+                    max: x[1]
+                },
+                success: function (result) {
+
+                    $('#product').html(result);
+                }
+            };
+            $.ajax(agrs);
+        }
+    </script>
 
 
 @endsection

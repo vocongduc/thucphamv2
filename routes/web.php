@@ -75,6 +75,14 @@ Route::post('hienthi', 'AjaxController@hienthi')->name('hienthi');
 Route::post('sapxep', 'AjaxController@sapxep')->name('sapxep');
 Route::post('gia', 'AjaxController@gia')->name('gia');
 
+//giỏ hàng
+Route::post('addcart', 'AjaxController@addcart')->name('add.cart');
+
+
+/*
+ * sản phẩm
+ * */
+
 Route::prefix('sanpham')->group(function () {
 
     Route::get('/', function () {
@@ -98,7 +106,7 @@ Route::prefix('sanpham')->group(function () {
         return view('page.thucphamkhac');
     })->name('thuc-pham-khac');
     Route::get('san-pham-chi-tiet', function () {
-        return view('page.sanphamchitiet');
+        return view('page.sanphamchitiet')
     })->name('san-pham-chi-tiet');
 
 
@@ -152,6 +160,8 @@ Route::prefix('gio-hang')->group(function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('sanpham/{slug}', 'HomeController@sanpham')->name('sanpham');
 
 /*
  * Route cho admin

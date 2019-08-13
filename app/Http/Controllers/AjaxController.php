@@ -33,7 +33,6 @@ class AjaxController extends Controller
 
     public function hienthi(Request $request){
         //dd($request->all());
-
         if($request->cate_id != null){
             $products = DB::table('products')
                 ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
@@ -78,15 +77,14 @@ class AjaxController extends Controller
         $this->html($products);
     }
     public function gia(Request $request){
-        //dd($request->all());
+        //dd($request->cate_id);
              if($request->cate_id != null){
-                 if ($request->max != null) {
+               if ($request->max != null) {
                      $products = DB::table('products')
                               ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
                               ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
                               ->join('units', 'units.id', '=', 'products.unit_id')
                          ->where([
-                             ['cate_id', $request->cate_id],
                              ['sale', '>', $request->min],
                              ['sale', '<', $request->max],
                              ['products.status', 1],
@@ -100,7 +98,6 @@ class AjaxController extends Controller
                          ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
                          ->join('units', 'units.id', '=', 'products.unit_id')
                          ->where([
-                             ['cate_id', $request->cate_id],
                              ['sale', '>', $request->min],
                              ['products.status', 1],
                              ['cate_products_lv2.cate_lv1_id', $request->cate_id],
@@ -109,7 +106,7 @@ class AjaxController extends Controller
                  }
              }
              else {
-                    if ($request->max != null) {
+                   if ($request->max != null) {
                         $products = DB::table('products')
                             ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
                             ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
@@ -133,6 +130,7 @@ class AjaxController extends Controller
                             ->get();
                     }
              }
+             //dd($products);
         $this->html($products);
     }
 }
