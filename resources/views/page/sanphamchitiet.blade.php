@@ -1,5 +1,7 @@
 @extends('master-layout')
-
+@section('title')
+ {{ $products->name }}
+@endsection
 @section('content')
 
 
@@ -10,10 +12,9 @@
         <!-- ảnh sản phẩm bên trái -->
         <div class="col-md-5">
           <div class="big_item">
-            <img src="https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/bKkAAOSwAzxcCth8/$_86.JPG"
-              style="width: 99%; height: 640px">
+            <img src="{{ asset('images/img/'.$products->image) }}" style="width: 99%; height: 640px">
           </div>
-          <div class="item">
+         {{-- <div class="item">
             <img src="https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/bKkAAOSwAzxcCth8/$_86.JPG"
               style="width: 96px; height:97px">
             <img src="https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/bKkAAOSwAzxcCth8/$_86.JPG"
@@ -24,12 +25,12 @@
               style="width: 96px; height:97px">
             <img src="https://i.ebayimg.com/00/s/MTAyNFg3Njg=/z/bKkAAOSwAzxcCth8/$_86.JPG"
               style="width: 96px; height:97px">
-          </div>
+          </div>--}}
         </div>
         <!-- nội dung sản phẩm bên phải -->
         <div class="col-md-7">
           <div class="product-summary">
-            <h1 class="product-name">Rau Bò Khai</h1>
+            <h1 class="product-name">{{ $products->name }}</h1>
             <!-- sao + đánh giá -->
             <div class="rate-star-product">
               <div class="rating-stars">
@@ -54,10 +55,15 @@
             <!-- trạng thái: còn hàng -->
             <p class="product-status">
               <span class="product-code">
-                <span>Mã:</span><span class="text"> RBK1</span>
+                <span>Mã:</span><span class="text"> {{ $products->code }}</span>
               </span>
               <span class="statustext-danger">
-                <i class="fas fa-check"></i> Còn hàng
+                <i class="fas fa-check"></i>
+                   @if ($products->quantity > 0)
+                  <span>còn hàng</span>
+                @else
+                  <span>hết hàng</span>
+                @endif
               </span>
             </p>
             <!-- chi tiết sản phẩm -->
@@ -93,9 +99,9 @@
 
             <div>
               <div class="price" >
-                  <strong class=" text-danger" >78.000</strong>
+                  <strong class=" text-danger" >{{ number_format($products->price_sale) }}</strong>
                   <sup>đ</sup>
-                  <span class="p-unit">/Kg</span>
+                  <span class="p-unit">/{{ $products->unit }}</span>
               </div>
               
               <div class="add-to-cart" style="padding-top:10px">
@@ -103,9 +109,10 @@
                 <!-- <span class="qty-plus qty-button" onclick="changeQty('gt');return false;"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
                 <span class="qty-minus qty-button" onclick="changeQty('lt');return false;"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                 </div> -->
-                <input type="text" name="fields[orderQuantity]" id="qty" maxlength="12" value="1" title="Số lượng" class="input-text qty" style="width:70px">
-                 &nbsp;Kg 
-                <a href="javascript:;" title="Thêm vào giỏ hàng" class="button btn-cart" onclick="addToCart('59a649fb333085254b68079b');" ><i class="fa fa-plus" aria-hidden="true"></i><span>Thêm vào giỏ hàng</span></a>
+                <input type="text" name="fields[orderQuantity]" id="quantityadd{{ $products->id }}" maxlength="12" value="1" title="Số lượng" class="input-text qty" style="width:70px">
+                 &nbsp;{{ $products->unit }}
+                  <br>
+                <button title="Thêm vào giỏ hàng" id="add{{ $products->id }}" class="btn btn-outline-primary" onclick="addcart(this, {{ $products->id }})" ><i class="fa fa-plus" aria-hidden="true"></i><span>Thêm vào giỏ hàng</span></button>
                 </div>
                 <br/>
                 <br/>
@@ -144,27 +151,8 @@
     <div class="detail-product">
       <div style="padding: 6px 15px 18px;">
         <p><strong>Chi tiết sản phẩm</strong></p>
-        <p>Củ sen đây là phần cắm sâu xuống lớp bùn đen chỉ được thu hoạch khi hồ sen đã héo tàn, nhưng
-          lại là món thuốc quý với sức khỏe con người.</p>
-
-        <p><strong>Củ sen</strong> là phần cắm sâu xuống lớp bùn đen chỉ được thu hoạch khi hồ sen đã héo
-          tàn, nhưng lại là món thuốc quý với sức khỏe con người.</p>
-
-        <p>Tác dụng của <strong>Củ sen</strong> tươi có vị bùi, giòn có thể ăn sống hoặc nấu chín tùy theo
-          khẩu vị của mỗi người. Theo Trung y, muốn trị bệnh máu cam hiệu quả tốt nhất là ăn củ sen vì
-          củ sen có tác dụng làm mát máu, mát gan, điều hòa kinh mạch, lưu thông khí huyết.</p>
-
-        <p>Củ sen còn là món ăn giàu dinh dưỡng, tăng cường chức năng của tim, bao tử và cho giấc ngủ tốt.
-          Cách chọn và bảo quản: Chọn những củ vừa tầm tròn thuôn đều. Nếu muốn chọn củ có hàm lượng
-          tinh bột cao thì chọn củ có mặt cắt 7 lỗ, hàm lượng nước ít, mềm, dẻo thích hợp cho món canh.
-          Còn những củ với mặt cắt là 9 lỗ thì hàm lượng nước cao, ròn thích hợp cho món xào, sa-lát.
-          Củ sen nếu chưa chế biến ngay để nguyên củ ở nơi thoáng. Sau khi gọt lớp vỏ bên ngoài củ sen
-          thường bị thâm vì vậy phải ngâm vào nước lạnh có pha giấm khoảng 5 – 10 phút rồi tráng qua nước
-          lạnh để củ sen trắng và giòn. Từ món xào, chiên đến những tô canh hầm, củ sen đều cho bạn
-          những món ăn ngon và bổ dưỡng.</p>
-
-        <p style="font-style: italic;"><strong>Củ sen tươi có bán tại các cửa hàng thuộc hệ thống MyTamMart</strong></p>
-
+       {!! $products->description !!}
+        <hr>
         <p>Công ty Thực phẩm sạch MyTamMart cung cấp các mặt hàng rau, củ, hoa quả, thực phẩm sạch, thực phẩm an toàn.
           Quý khách có nhu cầu xin liên hệ:</p>
 

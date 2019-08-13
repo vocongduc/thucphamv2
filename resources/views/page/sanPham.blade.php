@@ -23,8 +23,7 @@
                             <ul>
                                 @foreach($cate_product_lv2 as $cate_lv2)
                                     <hr>
-                                <li><a href="" class="dropdown-item">{{ $cate_lv2->name }}</a></li>
-
+                                    <li><a href="" class="dropdown-item">{{ $cate_lv2->name }}</a></li>
                                @endforeach
 
                             </ul>
@@ -230,7 +229,7 @@
                                 <br>
                                 <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
                                 <br>
-                                <a href="{{ route('san-pham-chi-tiet') }}">{{ $value->name }}</a>
+                                <a href="{{ url('sanpham/'.$value->slug) }}">{{ $value->name }}</a>
                                 <br>
                                 <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/{{ $value->unit }}</span>
                             </p>
@@ -276,8 +275,6 @@
 
     </div>
 </main>
-
-
 @endsection
 
 

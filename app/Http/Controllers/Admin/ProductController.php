@@ -32,8 +32,8 @@ class ProductController extends Controller
         $prd = new Product;
         $prd->name = $r->name;
         $prd->code = $r->code;
-        $prd->description = $r->description;
-        $prd->slug = str_slug($r->name).'-'.now().'.html';
+        $prd->description = $r->contentt;
+        $prd->slug = str_slug($r->name).'-'.time().'.html';
         $prd->quantity = $r->quantity;
         $prd->pay = 0;
         $prd->sale = $r->sale;
@@ -74,8 +74,8 @@ class ProductController extends Controller
         $product = Product::find($product_id);
         $product->name = $r->name;
         $product->code = $r->code;
-        $product->description = $r->description;
-        $product->slug = str_slug($r->name);
+        $product->description = $r->contentt;
+        $product->slug = str_slug($r->name).'-'.time().'.html';
         $product->quantity = $r->quantity;
         $product->pay = 0;
         $product->sale = $r->sale;

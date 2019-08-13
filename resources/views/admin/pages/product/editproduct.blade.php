@@ -48,8 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
-                        <input name="description" placeholder="Mô tả sản phẩm"
-                                  class="form-control" value="{{ $prd->description }}">
+                        <textarea name="contentt" placeholder="Mô tả sản phẩm"
+                                  class="form-control">{{ $prd->description }}</textarea>
                     </div>
                     <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm (*)</label>

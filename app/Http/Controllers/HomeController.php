@@ -64,4 +64,12 @@ class HomeController extends Controller
 
         return view('page.sanPham', $data);
     }
+    public function sanpham($slug){
+        $data['products'] = DB::table('products')
+            ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
+            ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
+            ->join('units', 'units.id', '=', 'products.unit_id')
+            ->where('products.slug', $slug)->first();
+        return view('page.sanphamchitiet', $data);
+    }
 }

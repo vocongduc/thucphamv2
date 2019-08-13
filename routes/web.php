@@ -66,14 +66,20 @@ Route::get('thucdon/{cate}/{slug}','ClientController@chitietthucdon');
 //
 //
 //});
-
-
 /*
  * ajax
  * */
 Route::post('hienthi', 'AjaxController@hienthi')->name('hienthi');
 Route::post('sapxep', 'AjaxController@sapxep')->name('sapxep');
 Route::post('gia', 'AjaxController@gia')->name('gia');
+
+//giỏ hàng
+Route::post('addcart', 'AjaxController@addcart')->name('add.cart');
+
+
+/*
+ * sản phẩm
+ * */
 
 Route::prefix('sanpham')->group(function () {
 
@@ -100,8 +106,6 @@ Route::prefix('sanpham')->group(function () {
     Route::get('san-pham-chi-tiet', function () {
         return view('page.sanphamchitiet');
     })->name('san-pham-chi-tiet');
-
-
 });
 
 Route::prefix('lienhe')->group(function () {
@@ -152,6 +156,8 @@ Route::prefix('gio-hang')->group(function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('sanpham/{slug}', 'HomeController@sanpham')->name('sanpham');
 
 /*
  * Route cho admin
