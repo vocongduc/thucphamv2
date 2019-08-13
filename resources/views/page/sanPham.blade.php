@@ -275,31 +275,6 @@
 
     </div>
 </main>
-    <script>
-        function addcart(obj) {
-            // alert(obj.value);
-            var x= obj.value.split(',');
-            //alert(x[0]+x[1]);
-            var agrs = {
-                url: "{{ route('addcart') }}", // gửi ajax đến file result.php
-                type: "post", // chọn phương thức gửi là post
-                dataType: "text", // dữ liệu trả về dạng text
-                data: { // Danh sách các thuộc tính sẽ gửi đi
-                    _token: '{{ csrf_token() }}',
-                    cate_id: cate,
-                    min: x[0],
-                    max: x[1]
-                },
-                success: function (result) {
-
-                    $('#product').html(result);
-                }
-            };
-            $.ajax(agrs);
-        }
-    </script>
-
-
 @endsection
 
 

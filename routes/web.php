@@ -66,8 +66,6 @@ Route::get('thucdon/{cate}/{slug}','ClientController@chitietthucdon');
 //
 //
 //});
-
-
 /*
  * ajax
  * */
@@ -106,10 +104,8 @@ Route::prefix('sanpham')->group(function () {
         return view('page.thucphamkhac');
     })->name('thuc-pham-khac');
     Route::get('san-pham-chi-tiet', function () {
-        return view('page.sanphamchitiet')
+        return view('page.sanphamchitiet');
     })->name('san-pham-chi-tiet');
-
-
 });
 
 Route::prefix('lienhe')->group(function () {

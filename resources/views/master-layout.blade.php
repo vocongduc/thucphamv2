@@ -80,9 +80,6 @@
     <!-- custom js -->
     <script>
     $(document).ready(function() {
-
-
-
         // slider product
         $('.slider-list').owlCarousel({
             margin: 10,
@@ -200,6 +197,24 @@
 
 
     });
+    function addcart(obj,id) {
+        alert(obj.id);
+        /*var agrs = {
+            url: "{{ url('addcart') }}", // gửi ajax đến file result.php
+            type: "post", // chọn phương thức gửi là post
+            dataType: "text", // dữ liệu trả về dạng text
+            data: { // Danh sách các thuộc tính sẽ gửi đi
+                _token: '{{ csrf_token() }}',
+                id: id,
+                quantity: 1,
+            },
+            success: function (result) {
+                $('#result'+obj.id).html(result);
+            }
+        };
+        $.ajax(agrs);*/
+        return false;
+    }
     </script>
 
     <div id="fb-root"></div>

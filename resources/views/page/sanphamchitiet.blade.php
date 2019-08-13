@@ -109,10 +109,10 @@
                 <!-- <span class="qty-plus qty-button" onclick="changeQty('gt');return false;"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
                 <span class="qty-minus qty-button" onclick="changeQty('lt');return false;"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                 </div> -->
-                <input type="text" name="fields[orderQuantity]" id="qty" maxlength="12" value="1" title="Số lượng" class="input-text qty" style="width:70px">
+                <input type="text" name="fields[orderQuantity]" id="quantityadd{{ $products->id }}" maxlength="12" value="1" title="Số lượng" class="input-text qty" style="width:70px">
                  &nbsp;{{ $products->unit }}
                   <br>
-                <button title="Thêm vào giỏ hàng" class="btn btn-outline-primary" onclick="addToCart('59a649fb333085254b68079b');" ><i class="fa fa-plus" aria-hidden="true"></i><span>Thêm vào giỏ hàng</span></button>
+                <button title="Thêm vào giỏ hàng" id="add{{ $products->id }}" class="btn btn-outline-primary" onclick="addcart(this, {{ $products->id }})" ><i class="fa fa-plus" aria-hidden="true"></i><span>Thêm vào giỏ hàng</span></button>
                 </div>
                 <br/>
                 <br/>
