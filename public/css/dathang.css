@@ -1,0 +1,22 @@
+.box-sp {
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+.thongtin .form-control {
+    width: 95%;
+    font-size: 1.35rem;
+}
+
+ .thongtin .list-group-item {
+    border-bottom: none  ;
+   
+}
+
+.box-sp a {
+    text-decoration: none;
+    color: #4798e8;
+}
+.thanhtoan .form-control {
+    width: 96%;
+}

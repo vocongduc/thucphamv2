@@ -99,7 +99,7 @@ main .wrapper-product {
         main .wrapper-product .colum-right .panel-default .panelBody .product-slider .slider-list .item .wrap-item-slide-colum .slide-colum-1 .product-list-img .action {
           position: absolute;
           bottom: 0;
-          left: 40px;
+          left: 64px;
           z-index: 1000;
           display: none; }
           main .wrapper-product .colum-right .panel-default .panelBody .product-slider .slider-list .item .wrap-item-slide-colum .slide-colum-1 .product-list-img .action ul li {
