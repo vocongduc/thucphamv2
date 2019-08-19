@@ -22,6 +22,15 @@
         padding: 0 15px;
         max-width: 720px;
     }
+    .product-image-member img{
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-image-member img{
+        height: 250px;
+    }
 }
 
 @media (min-width: 992px) {

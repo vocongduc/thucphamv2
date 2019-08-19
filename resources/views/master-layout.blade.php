@@ -31,8 +31,9 @@
     <link rel="stylesheet" href="{{asset('css/khuyenmai.css')}}">
     <link rel="stylesheet" href="{{asset('css/lichhang.css')}}">
     <link rel="stylesheet" href="{{asset('css/thucdon1.css')}}">
-    <link rel="stylesheet" href="{{asset('css/detail.css')}}">
     <link rel="stylesheet" href="{{asset('css/khuyenmaichitiet.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sanphamchitiet.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dathang.css')}}">
 
    
 
@@ -80,13 +81,14 @@
                     items: 1
                 },
                 600: {
-                    items: 3
+                    items: 2
                 },
                 1000: {
-                    items: 5
+                    items: 4
                 }
             }
-        })
+        });
+     
         // news slider
         $('#list-news').owlCarousel({
             loop: true,
@@ -106,8 +108,41 @@
                     items: 5
                 }
             }
-        })
+        });
+         $('#listsp').owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 5000,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+  
 
+        $(".product-image").owlCarousel({
+		items:1,
+		loop:true,
+		autoplay:true,
+		nav:false,
+		dots:true,
+		dotsContainer:'#product-custom-dots'
+	});
+	$('.owl-dot').click(function () {
+		$(".product-image").trigger('to.owl.carousel', [$(this).index(), 300]);
+	});
+    
+    
         // footer
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -125,13 +160,16 @@
                     items: 1
                 },
                 600: {
-                    items: 3
+                    items: 2
                 },
                 1000: {
-                    items: 5
+                    items: 4
                 }
             }
         })
+
+
+        
 
         // menu mobile
         $("#menu-button").click(function() {

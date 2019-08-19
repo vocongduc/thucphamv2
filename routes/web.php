@@ -86,6 +86,9 @@ Route::prefix('sanpham')->group(function () {
     Route::get('san-pham-chi-tiet', function () {
         return view('page.sanphamchitiet');
     })->name('san-pham-chi-tiet');
+    Route::get('dat-hang', function () {
+        return view('page.dathang');
+    })->name('dat-hang');
 
 
 });
@@ -131,9 +134,15 @@ Route::prefix('thucdon')->group(function () {
 
 Route::prefix('gio-hang')->group(function () {
 
-    Route::get('/', function () {
-        return view('page.giohang');
-    })->name('gio-hang');
+    // Route::get('/', function () {
+    //     return view('page.giohang');
+    // })->name('gio-hang');
+    Route::get('gio-hang-chi-tiet', function () {
+        return view('page.giohangchitiet');
+    })->name('gio-hang-chi-tiet');
+    Route::get('dia-chi-giao-hang', function () {
+        return view('page.diachigiaohang');
+    })->name('dia-chi-giao-hang');
 
 });
 
