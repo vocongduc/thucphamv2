@@ -14,12 +14,28 @@ class DbUp extends Migration
     public function up()
     {
         // san pham
-        Schema::create('cate_products', function (Blueprint $table) {
+        Schema::create('cate_products_lv1', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
             $table->timestamps();
         });
+        Schema::create('cate_products_lv2', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('slug');
+            $table->bigInteger('cate_lv1_id')->unsigned();
+            $table->foreign('cate_lv1_id')
+                ->references('id')
+                ->on('cate_products_lv1')
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
+        Schema::create('units', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+        });
+
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -27,16 +43,21 @@ class DbUp extends Migration
             $table->text('description');
             $table->string('slug');
             $table->string('image');
-            $table->bigInteger('quantity');
-            $table->bigInteger('pay');
-            $table->integer('sale');
-            $table->integer('price');
-            $table->integer('price_sale');
+            $table->integer('quantity');
+            $table->integer('pay');
+            $table->bigInteger('sale');
+            $table->bigInteger('price');
+            $table->bigInteger('price_sale');
+            $table->bigInteger('unit_id')->unsigned();
+            $table->foreign('unit_id')
+                ->references('id')
+                ->on('units')
+                ->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
             $table->bigInteger('cate_product')->unsigned();
             $table->foreign('cate_product')
             ->references('id')
-            ->on('cate_products')
+            ->on('cate_products_lv2')
             ->onDelete('cascade');
             $table->timestamps();
         });
@@ -118,7 +139,15 @@ class DbUp extends Migration
         //tuyen dung
         Schema::create('recruitments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->nullable();
+            $table->string('vitri')->nullable();
+            $table->string('dotuoi')->nullable();
+            $table->string('kinhnghiem')->nullable();
+            $table->string('hocvan')->nullable();
+            $table->string('nguoilienhe')->nullable();
+            $table->string('sdt')->nullable();
+            $table->string('soluong')->nullable();
+            $table->string('email')->nullable();
             $table->integer('salaryMin');
             $table->integer('salaryMax');
             $table->string('address');
@@ -175,6 +204,11 @@ class DbUp extends Migration
             $table->string('name');
             $table->string('logo');
             $table->string('link');
+            $table->string('address');
+            $table->string('phone');
+            $table->text('summary');
+            $table->text('content');
+            $table->string('fax');
             $table->integer('status');
             $table->timestamps();
         });

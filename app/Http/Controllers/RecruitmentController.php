@@ -14,6 +14,8 @@ class RecruitmentController extends Controller
         view()->share('mess', $mess);
         $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
         view()->share('contact', $contact);
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
     // index list
     public function index(){
@@ -71,6 +73,14 @@ class RecruitmentController extends Controller
 
         DB::table('recruitments')->insert([
             'title' => $request->title,
+            'vitri' => $request->vitri,
+            'dotuoi' => $request->dotuoi,
+            'kinhnghiem' => $request->kinhnghiem,
+            'hocvan' => $request->hocvan,
+            'nguoilienhe' => $request->nguoilienhe,
+            'sdt' => $request->sdt,
+            'email' =>$request->email,
+            'soluong' => $request->soluong,
             'slug' => str_slug($request->title),
             'salaryMin' => $request->salaryMin,
             'salaryMax' => $request->salaryMax,
@@ -143,6 +153,14 @@ class RecruitmentController extends Controller
         DB::table('recruitments')->where('id',$id)->update([
             'title' => $request->title,
             'slug' => str_slug($request->title),
+            'vitri' => $request->vitri,
+            'dotuoi' => $request->dotuoi,
+            'kinhnghiem' => $request->kinhnghiem,
+            'hocvan' => $request->hocvan,
+            'nguoilienhe' => $request->nguoilienhe,
+            'sdt' => $request->sdt,
+            'email' => $request->email,
+            'soluong' => $request->soluong,
             'salaryMin' => $request->salaryMin,
             'salaryMax' => $request->salaryMax,
             'address' => $request->address,

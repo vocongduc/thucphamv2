@@ -58,12 +58,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($prd as $row)
+                                @foreach($products as $row)
                                     <tr class="odd gradeX" align="center">
                                         <td>{{$row->name}}</td>
                                         <td>{{$row->code}}</td>
-                                        <td><img width="100px" src="{{ asset('images/img').'/'.$row->image }}"> </td>
-                                        <td>{{$row->CateProduct->name}}</td>
+                                        <td><img width="100px" src="{{ asset('images/img/'.$row->image) }}"> </td>
+                                        <td>{{$row->cate}}</td>
                                         <td>{{$row->created_at}}</td>
                                         <td>
                                            @if ($row->quantity > 0)
@@ -100,7 +100,7 @@
             </div>
             <!-- /.row -->
         </section>
-        <script>
+     {{--   <script>
             function update(id) {
                 var input= document.querySelector('#name'+id);
                 var edit= document.querySelector('#edit'+id);
@@ -133,7 +133,7 @@
                     return false;
                 }
             }
-        </script>
+        </script>--}}
     
     </div>
 </div>

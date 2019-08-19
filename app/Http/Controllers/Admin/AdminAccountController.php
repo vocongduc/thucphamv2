@@ -25,6 +25,8 @@ class AdminAccountController extends Controller
             ->select('admins.*','role.name as role','role.id as level')
             ->join('role','admins.level','role.id')
             ->get();
+            $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
     /**
      * Display a listing of the resource.
@@ -67,7 +69,6 @@ class AdminAccountController extends Controller
         if (Gate::allows('admin.create.admin.account'))
         {
             $this->validator($request);
-            dd($request->all());
             $createAdmin = DB::table('admins')->insert([
                'name' => $request->name,
                'email' => $request->email,

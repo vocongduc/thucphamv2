@@ -48,8 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
-                        <input name="description" placeholder="Mô tả sản phẩm"
-                                  class="form-control" value="{{ $prd->description }}">
+                        <textarea name="contentt" placeholder="Mô tả sản phẩm"
+                                  class="form-control">{{ $prd->description }}</textarea>
                     </div>
                     <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm (*)</label>
@@ -61,6 +61,18 @@
                             <label for="exampleInputEmail1">Số lượng (*)</label>
                             <input class="form-control" name="quantity" cols="50" rows="10"
                                       placeholder="Nhập số lượng"  value="{{ $prd->quantity }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Đơn vị (*)</label>
+                        <select name="unit">
+                            @foreach($units as $unit)
+                                <option value="{{ $unit->id }}"
+                                @if($unit->id == $prd->unit_id)
+                                    selected
+                                @endif
+                                >{{ $unit->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Ảnh nền</label>

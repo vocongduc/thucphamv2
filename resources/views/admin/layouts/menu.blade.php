@@ -63,7 +63,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('add.category') }}"><i class="fa fa-plus"></i> Thêm danh mục sản phẩm</a></li>
+                    <li><a href="{{ route('category_product.list') }}"><i class="fa fa-plus"></i>danh mục sản phẩm</a></li>
+                    <li><a href="{{ route('unit.list') }}"><i class="fa fa-plus"></i>Đơn vị</a></li>
                     <li><a href="{{ route('add.product') }}"><i class="fa fa-plus"></i> Thêm sản phẩm</a></li>
                     <li><a href="{{ route('list.product') }}"><i  class="fa fa-list" ></i> Danh sách sản phẩm</a></li>
                 </ul>
@@ -111,6 +112,19 @@
                 </ul>
             </li>
             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-book"></i>
+                    <span>Theo dõi</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('follow.create')}}"><i class="fa fa-plus"></i> Thêm theo dõi </a></li>
+                    <li><a href="{{route('follow.index')}}"><i class="fa fa-list"></i> Danh sách theo dõi</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
                     <a href="#">
                         <i class="glyphicon glyphicon-comment"></i>
                         <span>Liên hệ</span>
@@ -123,6 +137,31 @@
                         <li><a href="{{route('contact.change')}}"><i class="fa fa-plus"></i> Thay đổi liên hệ công ty </a></li>
                     </ul>
                 </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-card"></i>
+                    <span>Địa chỉ</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.address.index')}}"><i class="fa fa-list"></i> Danh sách địa chỉ hệ thống </a></li>
+                    <!-- <li><a href="{{route('contact.change')}}"><i class="fa fa-plus"></i> Thay đổi liên hệ công ty </a></li> -->
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="angle-right"></i>
+                    <span>Albums</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.album.index')}}"><i class="fa fa-list"></i> Danh sách album ảnh </a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o"></i>
@@ -139,7 +178,7 @@
                 </ul>
             </li>
             <li>
-                <a href="pages/widgets.html">
+                <a href="">
                     <i class="fa fa-th"></i> <span>Widgets</span>
                     <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>

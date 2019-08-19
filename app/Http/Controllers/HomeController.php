@@ -19,6 +19,8 @@ class HomeController extends Controller
         view()->share('mess', $mess);
         $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
         view()->share('contact', $contact);
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
 
     }
 
@@ -29,6 +31,45 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('page.home');
+        $data['cate_parents']= DB::table('cate_products_lv1')->orderBy('id', 'desc')->get();
+        $data['cate_childs']= DB::table('cate_products_lv2')->orderBy('id', 'desc')->get();
+        $data['products']= DB::table('products')
+            ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
+            ->join('units', 'units.id', '=', 'products.unit_id')
+            ->join('cate_products_lv2', 'cate_products_lv2.id','=', 'products.cate_product')
+            ->where('status',1)->orderBy('id', 'desc')->get();
+        //dd($data);
+
+
+        return view('page.home', $data);
+    }
+
+    public function catelv1($slug){
+        if($slug=='all'){
+            $data['products'] = DB::table('products')
+                ->select('products.*', 'units.name as unit')
+                ->join('units', 'units.id', '=', 'products.unit_id')
+                ->where('status', 1)->orderBy('id', 'desc')->get();
+        }
+        else {
+            $data['cate_parents'] = DB::table('cate_products_lv1')->where('slug', $slug)->first();
+            $data['cate_childs'] = DB::table('cate_products_lv2')->where('cate_lv1_id', $data['cate_parents']->id)->get();
+            $data['products'] = DB::table('products')
+                ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
+                ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
+                ->join('units', 'units.id', '=', 'products.unit_id')
+                ->where('cate_products_lv2.cate_lv1_id', $data['cate_parents']->id)
+                ->where('status', 1)->orderBy('id', 'desc')->get();
+        }
+
+        return view('page.sanPham', $data);
+    }
+    public function sanpham($slug){
+        $data['products'] = DB::table('products')
+            ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
+            ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
+            ->join('units', 'units.id', '=', 'products.unit_id')
+            ->where('products.slug', $slug)->first();
+        return view('page.sanphamchitiet', $data);
     }
 }

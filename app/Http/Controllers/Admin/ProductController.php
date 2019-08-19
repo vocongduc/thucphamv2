@@ -17,23 +17,28 @@ class ProductController extends Controller
         $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
         view()->share('contact', $contact);
         $this->middleware('auth:admin');
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
    function getAddProduct() {
-       $data['cate'] = CateProduct::all();
+       $data['cate'] =  DB::table('cate_products_lv2')->get();
+       $data['units'] =  DB::table('units')->get();
        return view('admin.pages.product.addproduct',$data);
    }
 
    function postAddProduct(ProductRequest $r) {
+        //dd($r->all());
        //dd($r->all());
         $prd = new Product;
         $prd->name = $r->name;
         $prd->code = $r->code;
-        $prd->description = $r->description;
-        $prd->slug = str_slug($r->name);
+        $prd->description = $r->contentt;
+        $prd->slug = str_slug($r->name).'-'.time().'.html';
         $prd->quantity = $r->quantity;
         $prd->pay = 0;
         $prd->sale = $r->sale;
         $prd->price = $r->price;
+        $prd->unit_id = $r->unit;
         $prd->price_sale = ($r->price*(100-$r->sale))/100;
         $prd->cate_product = $r->cate_product;
         if ($r->has('image')) {
@@ -51,12 +56,16 @@ class ProductController extends Controller
 }
 
     function getListProduct() {
-        $data['prd'] = Product::all();
-        return view('admin.pages.product.listproduct',$data);
+        $data['products'] = DB::table('products')
+            ->select('products.*', 'cate_products_lv2.name as cate')
+            ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.id')
+            ->get();
+        return view('admin.pages.product.index',$data);
     }
 
     function getEditProduct($product_id){
         $data['cate'] = CateProduct::all();
+        $data['units'] =  DB::table('units')->get();
         $data['prd'] = Product::find($product_id);
         return view('admin.pages.product.editproduct',$data);
     }
@@ -65,12 +74,13 @@ class ProductController extends Controller
         $product = Product::find($product_id);
         $product->name = $r->name;
         $product->code = $r->code;
-        $product->description = $r->description;
-        $product->slug = str_slug($r->name);
+        $product->description = $r->contentt;
+        $product->slug = str_slug($r->name).'-'.time().'.html';
         $product->quantity = $r->quantity;
         $product->pay = 0;
         $product->sale = $r->sale;
         $product->price = $r->price;
+        $product->unit_id = $r->unit;
         $product->price_sale = ($r->price*(100-$r->sale))/100;
         $product->cate_product = $r->cate_product;
         if ($r->has('image')) {

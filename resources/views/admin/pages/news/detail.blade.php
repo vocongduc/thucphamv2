@@ -40,15 +40,6 @@
                                             style="font-family:Arial, Helvetica, sans-serif;"><strong>{!! $news->summary !!}</strong></span></span>
                             </p>
                             {!! $news->content !!}
-                            <p><strong class="float-right" style="font-style: italic;">Theo Báo điện tử đài truyền hình
-                                    Việt Nam vtv.vn</strong></p>
-                            <div class="clearfix"></div>
-                            <hr>
-                            <div>
-                                <span class="float-left"><i class="fas fa-user"></i><strong> Tác giả:</strong> Thu Hiền </span>
-                                <span class="float-right"><i
-                                            class="fab fa-font-awesome-flag"></i><strong> Nguồn:</strong> vtv.vn</span>
-                            </div>
 
 
                             <!--tags -->

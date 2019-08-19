@@ -20,6 +20,8 @@ class NewsController extends Controller
         view()->share('mess', $mess);
         $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
         view()->share('contact', $contact);
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
 
     /**
@@ -106,7 +108,7 @@ class NewsController extends Controller
 
         DB::table('news')->insert([
             'name' => $request->name,
-            'slug' => str_slug($request->name),
+            'slug' => str_slug($request->name).now(),
             'summary' => $request->summary,
             'content' => $request->contentt,
             'image' => $file_name,
@@ -180,8 +182,10 @@ class NewsController extends Controller
      */
     public function detail($id)
     {
-        $data['news_tags'] = DB::table('news_tags')->where('news_id', '=', $id)->get();
+        $news_id = DB::table('news')->where('id',$id)->pluck('id')->first();
+        $data['news_tags'] = DB::table('news_tags')->where('news_id', '=', $news_id)->get();
         $data['news'] = DB::table('news')->find($id);
+
         return view('admin.pages.news.detail', $data);
     }
 

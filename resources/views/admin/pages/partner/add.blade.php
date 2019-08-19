@@ -30,10 +30,34 @@
                             <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
                                    value="{{ old('title') }}">
                         </div>
+
+
                         <div class="form-group">
                             <label>Đường dẫn (*)</label>
                             <input type="text" class="form-control" placeholder="Nhập đường dẫn" name="link"
                                    value="{{ old('title') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tóm tắt  (*)</label>
+                            <textarea name="summary" rows="10" placeholder="Nhập tóm tắt "
+                                      class="form-control">{{ old('summary') }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nội dung (*)</label>
+                            <textarea name="contentt" rows="10" placeholder="Nhập nội dung"
+                                      class="form-control">{{ old('content') }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{{old('title')}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="number" class="form-control" placeholder="Nhập số điện thoại" name="phone" value="{{old('phone')}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Fax</label>
+                            <input type="number" class="form-control" placeholder="Nhập fax" name="fax" value="{{old('fax')}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Ảnh nền</label>

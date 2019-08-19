@@ -21,6 +21,8 @@ class UserAccountController extends Controller
         view()->share('contact', $contact);
         $this->users = DB::table('users')
             ->get();
+            $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
     }
     /**
      * Display a listing of the resource.

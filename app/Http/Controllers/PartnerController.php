@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class PartnerController extends Controller
 {
@@ -14,6 +15,15 @@ class PartnerController extends Controller
      */
 
 
+    public function __construct(){
+        $mess = DB::table('contacts')->count();
+        view()->share('mess', $mess);
+        $contact = DB::table('contacts')->orderBy('id', 'DESC')->get();
+        view()->share('contact', $contact);
+        $this->middleware('auth:admin');
+        $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
+        view()->share('contacts', $contacts);
+    }
     public function index()
     {
         $data['partner'] = DB::table('partner')->orderByDesc('id')->get();
@@ -43,11 +53,18 @@ class PartnerController extends Controller
         $this->validate($request,[
             'name'=>'required|min:3',
             'link' => 'required|regex:'.$regex,
+            'phone'=>'required',
+            'fax'=>'required',
+            'status'=>'required',
+
         ],[
             'name.required' => 'Tên không được xác định',
             'name.min' => 'Tên không được ít hơn 3 kí tự',
             'link.required'=>'Link không được xác định',
             'link.regex'=>'Sai định dạng url',
+            'phone.required'=>'Số điện thoại không được để trống',
+            'fax.required'=>'Số điện thoại không được để trống',
+
         ]);
         if ($request->hasFile('image')) {
 
@@ -68,6 +85,11 @@ class PartnerController extends Controller
             'name'=>$request->name,
             'link'=>$request->link,
             'status'=>$request->status,
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'fax'=>$request->fax,
+            'content'=>$request->contentt,
+            'summary'=>$request->summary,
             'logo'=>$file_name,
         ]);
         return redirect()->back()->with('thongbao',"Thành công");
@@ -81,7 +103,8 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['partner'] = DB::table('partner')->get();
+        return view('master-layout');
     }
 
     /**
@@ -117,5 +140,12 @@ class PartnerController extends Controller
     {
         DB::table('partner')->where('id', '=', $id)->delete();
         return redirect()->route('partner.index')->with('thongbao', 'Add Success');
+    }
+    public function setactive($id, $status)
+    {
+        DB::table('partner')->where('id', '=', $id)->update([
+            'status' => $status,
+        ]);
+        return redirect()->back()->with('thanhcong', 'Thành công');
     }
 }

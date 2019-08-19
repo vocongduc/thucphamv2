@@ -1,5 +1,8 @@
 @extends('master-layout')
 
+@section('title')
+    Thực Phẩm sạch
+@endsection
 @section('content')
 
 <!-- home -->
@@ -122,7 +125,7 @@
 
     <hr>
 
-
+    @foreach($cate_parents as $cate_parent)
     <!-- product-1 -->
     <section class="wrapper-product">
         <div class="container">
@@ -133,15 +136,16 @@
                     <div class="listProd">
 
                         <div class="panel-title panel-rau-1" style="border-radius:10px 0 0">
-                            <h5>rau - củ</h5>
+                            <h5>{{ $cate_parent->name }}</h5>
                         </div>
 
                         <div class="navProd">
                             <ul>
-                                <li><a href="#">rau hữu cơ</a></li>
-                                <li><a href="#">rau đặc sản</a></li>
-                                <li><a href="#">rau an toàn</a></li>
-                                <li><a href="#">rau hữu cơ</a></li>
+                                @foreach($cate_childs as $cate_child)
+                                    @if($cate_child->cate_lv1_id == $cate_parent->id)
+                                        <li><a href="#">{{ $cate_child->name }}</a></li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -157,6 +161,8 @@
                                 <!-- owl-carousel -->
                                 <div class="slider-list owl-carousel owl-theme owl-loaded owl-drag">
 
+                                @foreach($products as $product)
+                                    @if($product->cate_lv1_id == $cate_parent->id)
                                     <!-- item-1 -->
                                     <div class="item">
 
@@ -165,10 +171,7 @@
 
                                                 <div class="product-list-img">
                                                     <div class="thumbnail">
-                                                        <a href="#"><img
-                                                            src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20190718/ngo_nu_hoang_do.jpg"
-                                                            alt="">
-                                                        </a>
+                                                        <a href="#"><img src="{{ asset('images/img/'.$product->image) }}" alt=""></a>
                                                     </div>
                                                     <div class="action animated zoomIn">
                                                         <ul>
@@ -180,45 +183,21 @@
                                                 </div>
 
                                                 <div class="product-list-text">
-                                                    <span>còn hàng</span>
-                                                    <h5><a href="{{ route('san-pham-chi-tiet') }}">đậu hà lan ăn quả</a></h5>
-                                                    <p><strong>11.000/VND</strong></p>
+                                                    @if ($product->quantity > 0)
+                                                        <span>còn hàng</span>
+                                                    @else
+                                                        <span>hết hàng</span>
+                                                    @endif
+
+                                                    <h5><a href="{{ route('san-pham-chi-tiet') }}">{{ $product->name }}</a></h5>
+                                                    <p><strong>{{ number_format($product->price_sale).' VNĐ' }}</strong></p>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="wrap-item-slide-colum text-center">
-                                            <div class="slide-colum-1">
-
-                                                <div class="product-list-img">
-                                                <div class="thumbnail">
-                                                    <a href="{{ route('san-pham-chi-tiet') }}"><img
-                                                            src="https://biggreen.vn/publish/thumbnail/20366/400x400xdefault/upload/20366/20171011/Cu_sen_tuoi39.jpg"
-                                                            alt="">
-                                                    </a>
-                                                </div>
-                                                    <div class="action animated zoomIn">
-                                                        <ul>
-                                                            <li><a class="buy" href="#">Mua hàng</a></li>
-                                                            <li><a class="view" href="{{ route('san-pham-chi-tiet') }}"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product-list-text">
-                                                    <span>Còn Hàng</span>
-                                                    <h5><a href="{{ route('san-pham-chi-tiet') }}">Đậu Hà Lan ăn quả</a></h5>
-                                                    <p><strong>11.000/VND</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
                                     </div>
-
-                                    <!-- item-2 -->
+                                    @endif
+                                @endforeach
+                                   {{-- <!-- item-2 -->
                                     <div class="item">
 
                                         <div class="wrap-item-slide-colum text-center">
@@ -631,7 +610,7 @@
 
 
 
-                                    </div>
+                                    </div>--}}
 
 
                                 </div>
@@ -645,7 +624,8 @@
             </div>
         </div>
     </section>
-
+    @endforeach
+{{--
     <!-- product-2 -->
     <section class="wrapper-product">
         <div class="container">
@@ -2316,7 +2296,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--}}
 
     
 

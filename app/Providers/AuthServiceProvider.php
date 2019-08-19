@@ -55,7 +55,7 @@ class AuthServiceProvider extends ServiceProvider
          * Admin - Manager account
          */
         Gate::define('admin.view.admin.account',function($user){
-            return $this->only('admin');
+            return $this->only(['admin']);
         });
         Gate::define('admin.view-create.admin.account',function ($user){
             return $this->only('admin');
