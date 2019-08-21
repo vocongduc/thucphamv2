@@ -36,6 +36,11 @@
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="cate-parent" value="{{ old('name') }}" required>
                                     <hr>
                                 </div>
+                            <div class="form-group">
+                                <label for="">Màu sắc(*)</label>
+                                <input type="color" name="color" />
+                                <hr>
+                            </div>
                                 <button type="button" id="add" onclick="addchild(this)" title="Thêm Danh mục con"><i class="fa fa-plus"></i></button>
 
                                 <input type="hidden" name="num-child" id="num-childadd" value="1">

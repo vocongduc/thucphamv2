@@ -45,7 +45,7 @@
                 <!-- logo -->
                 <div class="col-lg-3 logo-col">
                     <div class="logo">
-                        <a href="#"><img src="{{ asset('images/logo1.jpg')}}" alt=""></a>
+                        <a href="#"><img src="{{ asset('images/logo1-v3.png')}}" alt=""></a>
                     </div>
                 </div>
 

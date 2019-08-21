@@ -28,6 +28,7 @@ class CateProductController extends Controller
     }
 
     public function create(Request $request){
+        dd($request->all());
         $this->validate($request,[
                 'cate-parent' => 'unique:cate_products_lv1,name',
         ],[

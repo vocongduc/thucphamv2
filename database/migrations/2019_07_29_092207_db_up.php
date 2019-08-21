@@ -28,7 +28,7 @@ class DbUp extends Migration
             $table->foreign('cate_lv1_id')
                 ->references('id')
                 ->on('cate_products_lv1')
-                ->onDelete('cascade');
+                ->onDelete('casdae');
             $table->timestamps();
         });
         Schema::create('units', function (Blueprint $table) {
@@ -54,7 +54,7 @@ class DbUp extends Migration
                 ->on('units')
                 ->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
-            $table->bigInteger('cate_product')->unsigned();
+            $table->bigInteger('cate_product')->unsigned()->nullable();
             $table->foreign('cate_product')
             ->references('id')
             ->on('cate_products_lv2')
