@@ -175,7 +175,7 @@
                 <!-- cart-shop -->
                 <div class="cart-shop">
                     <div class="icon-cart">
-                        <a href="{{ route('gio-hang') }}"><i class="fas fa-cart-plus" style="font-size: 25px"></i></a>
+                        <a href="{{ route('gio-hang-chi-tiet') }}"><i class="fas fa-cart-plus" style="font-size: 25px"></i></a>
                     </div>
                 </div>
 

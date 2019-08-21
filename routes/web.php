@@ -12,14 +12,8 @@
 */
 
 
-Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createuser');
-Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
-Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');\
 
-/*
- * sản phẩm
- * */
-Route::get('loaisanpham/{slug}', 'HomeController@catelv1')->name('cate.lv1');
+
     
 
 Route::prefix('gioithieu')->group(function () {
@@ -35,51 +29,37 @@ Route::prefix('gioithieu')->group(function () {
     Route::get('video-Clip', function () {
         return view('page.videoClip');
     })->name('video-Clip');
-    Route::get('doi-tac','ClientController@gioiThieuDoiTac')->name('doi-Tac');
+
+    Route::get('doi-Tac', function () {
+        return view('page.doiTac');
+    })->name('doi-Tac');
 
     Route::get('giay-Chung-Nhan', function () {
         return view('page.giayChungNhan');
     })->name('giay-Chung-Nhan');
 });
-Route::get('tintuc/{slug}','ClientController@loaitintuc');
-Route::get('tintuc/{cate}/{slug}','ClientController@chitiettintuc');
-Route::get('thucdon/{slug}','ClientController@loaithucdon');
-Route::get('thucdon/{cate}/{slug}','ClientController@chitietthucdon');
-//Route::prefix('tintuc')->group(function () {
-//
-//    Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
-//
-//    Route::get('am-thuc', function () {
-//        return view('page.amThuc');
-//    })->name('am-thuc');
-//
-//    Route::get('truyen-thong-bao-chi', function () {
-//        return view('page.truyenThongBaoChi');
-//    })->name('truyen-thong-bao-chi');
-//
-//    Route::get('kien-thuc', function () {
-//        return view('page.kienThuc');
-//    })->name('kien-thuc');
-//    Route::get('tin-tuc-chi-tiet', function () {
-//        return view('page.tintucchitiet');
-//    })->name('tin-tuc-chi-tiet');
-//
-//
-//});
-/*
- * ajax
- * */
-Route::post('hienthi', 'AjaxController@hienthi')->name('hienthi');
-Route::post('sapxep', 'AjaxController@sapxep')->name('sapxep');
-Route::post('gia', 'AjaxController@gia')->name('gia');
 
-//giỏ hàng
-Route::post('addcart', 'AjaxController@addcart')->name('add.cart');
+Route::prefix('tintuc')->group(function () {
+
+    Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
+
+    Route::get('am-thuc', function () {
+        return view('page.amThuc');
+    })->name('am-thuc');
+
+    Route::get('truyen-thong-bao-chi', function () {
+        return view('page.truyenThongBaoChi');
+    })->name('truyen-thong-bao-chi');
+
+    Route::get('kien-thuc', function () {
+        return view('page.kienThuc');
+    })->name('kien-thuc');
+    Route::get('tin-tuc-chi-tiet', function () {
+        return view('page.tintucchitiet');
+    })->name('tin-tuc-chi-tiet');
 
 
-/*
- * sản phẩm
- * */
+});
 
 Route::prefix('sanpham')->group(function () {
 
@@ -106,6 +86,11 @@ Route::prefix('sanpham')->group(function () {
     Route::get('san-pham-chi-tiet', function () {
         return view('page.sanphamchitiet');
     })->name('san-pham-chi-tiet');
+    Route::get('dat-hang', function () {
+        return view('page.dathang');
+    })->name('dat-hang');
+
+
 });
 
 Route::prefix('lienhe')->group(function () {
@@ -117,7 +102,9 @@ Route::prefix('lienhe')->group(function () {
 Route::prefix('tuyendung')->group(function () {
 
     Route::get('/', 'ClientController@tuyendung')->name('tuyen-dung');
-    Route::get('Tuyendungchitiet/{slug}','ClientController@chitiettuyendung')->name('tuyen-dung-chi-tiet');
+    Route::get('Tuyendungchitiet',function(){
+        return view('page.Tuyendungchitiet');
+        })->name('tuyen-dung-chi-tiet');
 
 });
 
@@ -147,17 +134,21 @@ Route::prefix('thucdon')->group(function () {
 
 Route::prefix('gio-hang')->group(function () {
 
-    Route::get('/', function () {
-        return view('page.giohang');
-    })->name('gio-hang');
+    // Route::get('/', function () {
+    //     return view('page.giohang');
+    // })->name('gio-hang');
+    Route::get('gio-hang-chi-tiet', function () {
+        return view('page.giohangchitiet');
+    })->name('gio-hang-chi-tiet');
+    Route::get('dia-chi-giao-hang', function () {
+        return view('page.diachigiaohang');
+    })->name('dia-chi-giao-hang');
 
 });
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('sanpham/{slug}', 'HomeController@sanpham')->name('sanpham');
 
 /*
  * Route cho admin
@@ -284,31 +275,12 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
 
     // product
 
-    Route::prefix('category_product')->group(function (){
-        Route::get('/','admin\CateProductController@index')->name('category_product.list');
-
-        Route::post('/create','admin\CateProductController@create')->name('category_product.create');
-        Route::post('/update/{id}','admin\CateProductController@update')->name('category_product.update');
-
-        Route::get('/delete/{id}','admin\CateProductController@delete')->name('category_product.delete');
-        Route::prefix('cate_child')->group(function () {
-            Route::get('/{id}','admin\CateProductController@child')->name('cate_child.list');
-
-            Route::post('create', 'admin\CateProductController@createchild')->name('cate_child.create');
-            Route::post('update/{id}', 'admin\CateProductController@updatechild')->name('cate_child.update');
-            Route::get('delete/{id}', 'admin\CateProductController@deletechild')->name('cate_child.delete');
-        });
-
-    });
-   /* Route::prefix('product')->group(function (){
-        Route::get('/','admin\ProductController@index')->name('product.list');
-
-        Route::post('/create','admin\ProductController@store')->name('product.create');
-        Route::post('/update/{id}','admin\ProductController@update')->name('product.update');
-
-        Route::get('/delete/{id}','admin\ProductController@delete')->name('product.delete');
-    });*/
-  Route::group(['prefix' => 'product'], function () {
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('add-category', 'admin\CateProductController@getAddCategory')->name('add.category');
+        Route::post('add-category', 'admin\CateProductController@postAddCategory');
+        Route::get('edit-category/{cate_id}', 'admin\CateProductController@getEditCategory');
+        Route::post('edit-category/{cate_id}', 'admin\CateProductController@postEditCategory');
+        Route::get('del-category/{cate_id}', 'admin\CateProductController@DelCategory');
 
         Route::get('add-product', 'admin\ProductController@getAddProduct')->name('add.product');
         Route::post('add-product', 'admin\ProductController@postAddProduct');
@@ -318,15 +290,6 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('del-product/{product_id}', 'admin\ProductController@delProduct');
 
     });
-  Route::group(['prefix' => 'unit'], function (){
-     Route::get('/', 'Admin\UnitController@index')->name('unit.list');
-
-     Route::post('/create', 'Admin\UnitController@store')->name('unit.store');
-     Route::post('/update/{id}', 'Admin\UnitController@update')->name('unit.update');
-     Route::get('/delete/{id}', 'Admin\UnitController@delete')->name('unit.delete');
-
-
-  });
     //lien he
     Route::prefix('contact')->group(function () {
         //list
@@ -365,23 +328,6 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('/setactive/{id}/{status}', 'PartnerController@setactive')->name('partner.setactive');
     });
 
-//Theo dõi
-    Route::prefix('follow')->group(function () {
-        Route::get('/list', 'FollowController@index')->name('follow.index');
-
-        Route::get('/add', 'FollowController@create')->name('follow.create');
-        Route::post('/add', 'FollowController@store')->name('follow.store');
-
-
-
-        Route::get('/destroy/{id}', 'FollowController@destroy')->name('follow.destroy');
-        Route::get('/destroy-cate/{id}', 'FollowController@destroyCate')->name('follow.destroyCate');
-
-        Route::get('/show/{id}', 'FollowController@show')->name('follow.show');
-
-        Route::get('/detail/{id}', 'FollowController@detail')->name('follow.detail');
-        Route::get('/setactive/{id}/{status}', 'FollowController@setactive')->name('follow.setactive');
-    });
     //profile
     Route::group(['prefix' => 'profile'], function () {
         //list
@@ -395,24 +341,5 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('account-user-delete', 'Admin\AdminProfileController@listUserDelete')->name('account-user-delete');//delete
         //user
 
-    });
-    //address
-    Route::group(['prefix' => 'address'],function(){
-        Route::get('/','AdminAddressController@index')->name('admin.address.index');
-        Route::get('create','AdminAddressController@create')->name('admin.address.create');
-        Route::post('create','AdminAddressController@store');
-        Route::get('update/{id}','AdminAddressController@edit')->name('admin.address.edit');
-        Route::post('update/{id}','AdminAddressController@update');
-        Route::get('{action}/{id}','AdminAddressController@action')->name('admin.address.action');
-    });
-
-    //albums ảnh
-    Route::group(['prefix' => 'album'],function(){
-        Route::get('/','AlbumController@index')->name('admin.album.index');
-        Route::get('create','AlbumController@create')->name('admin.album.create');
-        Route::post('create','AlbumController@store');
-        Route::get('update/{id}','AlbumController@edit')->name('admin.album.edit');
-        Route::post('update/{id}','AlbumController@update');
-        Route::get('{action}/{id}','AlbumController@action')->name('admin.album.action');
     });
 });
