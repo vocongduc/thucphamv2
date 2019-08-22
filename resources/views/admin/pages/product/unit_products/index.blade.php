@@ -29,7 +29,7 @@
             <button type="button" class="btn btn-primary" onclick="addcate()">Thêm đơn vị</button>
             <div class="box box-primary"  id="add-cate" hidden>
                     <div class="box-body">
-                        <form action="{{ route('unit.store') }}" method="post">
+                        <form action="{{ route('unit.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
                                     <label for="">Thêm đơn vị(*)</label>
@@ -58,7 +58,7 @@
             </div>
             <div class="box box-primary"  id="edit-cate" hidden>
                     <div class="box-body">
-                        <form action="" id="form-edit" method="post">
+                        <form action="" id="form-edit" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
                                     <label for="">Sửa Đơn Vị(*)</label>
@@ -109,7 +109,7 @@
                                             <td><input type="text" style="border: none; background: none;" id="value-{{ $row->id }}" value="{{ $row->name }}" readonly></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" id="{{ $row->id }}" onclick="editcate({{ $row->id}})">Sửa</button>
-                                                <a class="btn btn-danger" href="{{ url('admincp/unit/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                <a class="btn btn-danger" href="{{ url('admincp/product/unit/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -136,7 +136,7 @@
                     $('#cate-parentedit').val($('#value-'+id).val());
                     var editid= "'edit'";
                     var num_child= $('#num-child-'+id).val();
-                    $('#form-edit').prop('action', '{{ url('admincp/unit/update/') }}'+'/'+id);
+                    $('#form-edit').prop('action', '{{ url('admincp/product/unit/update/') }}'+'/'+id);
                     document.getElementById('edit-cate').removeAttribute('hidden');
                 }
                 function huychild(number, id) {

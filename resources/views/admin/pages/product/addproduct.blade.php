@@ -70,31 +70,56 @@
                         </div>
                         <div class="form-group">
                             <label>Sales</label>
-                            <select class="form-control" name="sale">
-                                <option value="0">0%</option>
-                                <option value="10">10%</option>
-                                <option value="20">20%</option>
-                                <option value="30">30%</option>
-                                <option value="40">40%</option>
-                                <option value="50">50%</option>
-                                <option value="60">60%</option>
-                                <option value="70">70%</option>
-                                <option value="70">80%</option>
-                            </select>
+                            <input name="sale" id="sale" class="form-control" min="0" max="100" value="10" type="number" onchange="ktrasale(this)"/>
+                            <div id="errorsale" style="color: red"></div>
+                            <script>
+                                function ktrasale(obj) {
+                                    var x= document.getElementById('errorsale');
+                                    if(obj.value<0){
+                                        x.innerHTML= 'phần trăm sale phải lớn hơn 0%';
+                                        obj.value=0;
+                                    }
+                                    else if(obj.value>100){
+                                        x.innerHTML= 'phần trăm sale phải nhỏ hơn 100%';
+                                        obj.value=0;
+                                    }
+                                    else{
+                                        x.innerHTML= '';
+                                    }
+                                }
+                            </script>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">Ảnh nền</label>
-                            <input type="file" id="image" name="image" onchange="showIMG()" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                            <div id="viewImg">
-
+                            <div class="form-group" id="image">
+                                <label for="exampleInputFile">Ảnh nền</label>
+                                <input type="file" id="image-0" name="image" onchange="fileValidation(this)" class="form-control">
+                                <div id="imagePreviewimage-0"></div>
                             </div>
-                        </div>
 
                     </div>
-
+                    <input id="image-number" name="image-number" value="0" type="hidden">
+                    <a id="addimage" class="btn btn-primary" onclick="addimage()">Thêm Ảnh</a>
+                    <script>
+                        function addimage(){
+                            var number = parseInt($('#image-number').val()) + 1;
+                            var html = '<div class="image-item" id="image-item' + number + '">';
+                            html+="<div style='text-align: right'><a onclick='huychon("+number+")'><i class='fa fa-times' ></i></a> </div>";
+                            html += '<label class="text-body custom-control-label">Ảnh ' + number + '(*):</label>';
+                            html += '<input name="file-' + number + '" id="file-' + number + '" class="form-control" type="file" required onchange="fileValidation(this)">';
+                            html += '<div id="imagePreviewfile-' + number + '">';
+                            html += '</div>';
+                            html += '</div>';
+                            $('#image').append(html);
+                            $('#image-number').val(number);
+                            if(number==4) {
+                                $('#addimage').addClass('hide');
+                            }
+                        }
+                        function huychon(id) {
+                            var parent = document.getElementById("image");
+                            var child = document.getElementById('image-item'+id);
+                            parent.removeChild(child);
+                        }
+                    </script>
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Thêm</button>
@@ -111,29 +136,26 @@
                     filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
                     filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
                 });
-
-
-                function showIMG() {
-                    var fileInput = document.getElementById('image');
-                    var filePath = fileInput.value; //lấy giá trị input theo id
-                    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
+                function fileValidation(obj) {
+                    //var fileInput = document.getElementById('file'+id);
+                    var filePath = obj.value; //lấy giá trị input theo id
+                    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; //các tập tin cho phép
                     //Kiểm tra định dạng
                     if (!allowedExtensions.exec(filePath)) {
-                        alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                        fileInput.value = '';
+                        alert('You can only select files with .jpeg/.jpg/.png/.gif extension.');
+                        obj.value = '';
                         return false;
                     } else {
                         //Image preview
-                        if (fileInput.files && fileInput.files[0]) {
+                        if (obj.files && obj.files[0]) {
                             var reader = new FileReader();
                             reader.onload = function (e) {
-                                document.getElementById('viewImg').innerHTML = '<img style="width:300px; height: 300px;" src="' + e.target.result + '"/>';
+                                document.getElementById('imagePreview'+obj.id).innerHTML = '<img style="width:200px;" src="' + e.target.result + '"/>';
                             };
-                            reader.readAsDataURL(fileInput.files[0]);
+                            reader.readAsDataURL(obj.files[0]);
                         }
                     }
                 }
-
             </script>
         </div>
     </div>

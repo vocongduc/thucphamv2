@@ -63,7 +63,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('category_product.list') }}"><i class="fa fa-plus"></i>danh mục sản phẩm</a></li>
+                    <li><a href="{{ route('catelv1.list') }}"><i class="fa fa-plus"></i>danh mục sản phẩm</a></li>
                     <li><a href="{{ route('unit.list') }}"><i class="fa fa-plus"></i>Đơn vị</a></li>
                     <li><a href="{{ route('add.product') }}"><i class="fa fa-plus"></i> Thêm sản phẩm</a></li>
                     <li><a href="{{ route('list.product') }}"><i  class="fa fa-list" ></i> Danh sách sản phẩm</a></li>
@@ -147,7 +147,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('admin.address.index')}}"><i class="fa fa-list"></i> Danh sách địa chỉ hệ thống </a></li>
-                    <!-- <li><a href="{{route('contact.change')}}"><i class="fa fa-plus"></i> Thay đổi liên hệ công ty </a></li> -->
+                    <!-- <li><a href="route('contact.change')"><i class="fa fa-plus"></i> Thay đổi liên hệ công ty </a></li> -->
                 </ul>
             </li>
             <li class="treeview">

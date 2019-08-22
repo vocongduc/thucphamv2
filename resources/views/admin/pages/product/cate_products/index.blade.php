@@ -29,7 +29,7 @@
             <button type="button" class="btn btn-primary" onclick="addcate()">Thêm thể loại sản phẩm</button>
             <div class="box box-primary"  id="add-cate" hidden>
                     <div class="box-body">
-                        <form action="{{ route('category_product.create') }}" method="post">
+                        <form action="{{ route('catelv1.create') }}" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
                                     <label for="">Thêm loại sản phẩm(*)</label>
@@ -38,7 +38,13 @@
                                 </div>
                             <div class="form-group">
                                 <label for="">Màu sắc(*)</label>
-                                <input type="color" name="color" />
+                                <input type="color" id="color-addicon" name="color" />
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Icon(*)</label>
+                                <input type="file" name="icon" id="addicon" class="form-control" onchange="fileValidation(this)"/>
+                                <div id="imagePreviewaddicon"></div>
                                 <hr>
                             </div>
                                 <button type="button" id="add" onclick="addchild(this)" title="Thêm Danh mục con"><i class="fa fa-plus"></i></button>
@@ -73,12 +79,24 @@
             </div>
             <div class="box box-primary"  id="edit-cate" hidden>
                     <div class="box-body">
-                        <form action="" id="form-edit" method="post">
+                        <form action="" id="form-edit" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
                                     <label for="">Sửa loại sản phẩm(*)</label>
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" id="cate-parentedit" name="cate-parent-edit" value="{{ old('cate-parent-edit') }}" required>
                                 </div>
+                            <div class="form-group">
+                                <label for="">Màu sắc(*)</label>
+                                <input type="color" id="color-editicon" name="color" />
+                                <hr>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Icon(*)</label>
+                                <input type="file" name="icon" id="editicon" class="form-control" onchange="fileValidation(this)"/>
+                                <input type="text" id="iconedit">
+                                <div id="imagePreviewediticon"></div>
+                                <hr>
+                            </div>
                                 <div class="form-group" style="text-align: center">
                                     <hr>
                                     <input type="submit" class="btn btn-success" name="submit" value="Thêm">
@@ -113,6 +131,8 @@
                                     <thead>
                                     <tr>
                                         <th>Tên </th>
+                                        <th>Màu</th>
+                                        <th>Icon</th>
                                         <th>Danh Mục Con</th>
                                         <th>Hành động</th>
 
@@ -123,11 +143,19 @@
                                         <tr class="odd gradeX" align="center">
                                             <td><input type="text" style="border: none; background: none;" id="value-{{ $row->id }}" value="{{ $row->name }}" readonly></td>
                                             <td>
-                                               <a href="{{ url('admincp/category_product/cate_child/'.$row->id) }}">Xem Loại Sản Phẩm con</a>
+                                                <input id="color-{{ $row->id }}" type="hidden" value="{{ $row->color }}">
+                                                <div style="border-radius:50%;width: 40px; height: 40px; background-color: {{ $row->color }}"></div>
+                                            </td>
+                                            <td>
+                                                <input id="icon-{{ $row->id }}" type="hidden" value="{{ $row->image }}">
+                                                <div><img style="background-color: {{ $row->color }}" src="{{ asset('images/cate-icon/'.$row->image) }}" alt=""></div>
+                                            </td>
+                                            <td>
+                                               <a href="{{ route('catelv2.list', $row->id) }}">Xem Loại Sản Phẩm con</a>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" id="{{ $row->id }}" onclick="editcate({{ $row->id}})">Sửa</button>
-                                                <a class="btn btn-danger" href="{{ url('admincp/category_product/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                <a class="btn btn-danger" href="{{ route('catelv1.delete', $row->id) }}" onclick="return confirm('Hành động sẽ xóa mục này! bạn có muốn tiếp tục?')">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -151,10 +179,13 @@
                     document.getElementById('add-cate').removeAttribute('hidden');
                 }
                 function editcate(id) {
+                    $('#color-editicon').val($('#color-'+id).val());
                     $('#cate-parentedit').val($('#value-'+id).val());
+                    $('#iconedit').val($('#icon-'+id).val());
+                    document.getElementById('imagePreviewediticon').innerHTML = '<img style="background-color: '+$('#color-'+id).val()+'" src="{{ asset('images/cate-icon/') }}/'+$('#icon-'+id).val()+'"/>';
                     var editid= "'edit'";
                     var num_child= $('#num-child-'+id).val();
-                    $('#form-edit').prop('action', '{{ url('admincp/category_product/update/') }}'+'/'+id);
+                    $('#form-edit').prop('action', '{{ url('admincp/product/category/level1/update/') }}'+'/'+id);
                     document.getElementById('edit-cate').removeAttribute('hidden');
                 }
 
@@ -196,6 +227,32 @@
                     }
                     else {
                         return false;
+                    }
+                }
+                function fileValidation(obj) {
+                    if($('#color-'+obj.id).val()!=null) {
+                        //var fileInput = document.getElementById('file'+id);
+                        var filePath = obj.value; //lấy giá trị input theo id
+                        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; //các tập tin cho phép
+                        //Kiểm tra định dạng
+                        if (!allowedExtensions.exec(filePath)) {
+                            alert('You can only select files with .jpeg/.jpg/.png/.gif extension.');
+                            obj.value = '';
+                            return false;
+                        } else {
+                            //Image preview
+                            if (obj.files && obj.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    document.getElementById('imagePreview' + obj.id).innerHTML = '<img style="background-color: ' + $('#color-' + obj.id).val() + '" src="' + e.target.result + '"/>';
+                                };
+                                reader.readAsDataURL(obj.files[0]);
+                            }
+                        }
+                    }
+                    else{
+                        toastr.error('Bạn chưa chọn màu nền', 'Thông báo', {timeOut: 3000});
+                        toastr.options.progressBar = true;
                     }
                 }
             </script>

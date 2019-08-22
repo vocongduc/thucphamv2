@@ -1,3 +1,8 @@
+.nonepadding{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 main .service .service-1 {
   display: inline-block;
   text-align: center;
@@ -32,15 +37,15 @@ main .wrapper-product {
       text-transform: capitalize;
       color: #fff;
       line-height: 35px; }
-      main .wrapper-product .listProd .panel-title h5::before {
-        content: "";
-        width: 22px;
-        height: 25px;
-        background: url(https://biggreen.vn/upload/20366/fck/cssImg/rau-cu.png);
-        background-repeat: no-repeat;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 10px; }
+      /*main .wrapper-product .listProd .panel-title h5::before {*/
+        /*content: "";*/
+        /*width: 22px;*/
+        /*height: 25px;*/
+        /*background: url(https://biggreen.vn/upload/20366/fck/cssImg/rau-cu.png);*/
+        /*background-repeat: no-repeat;*/
+        /*display: inline-block;*/
+        /*vertical-align: middle;*/
+        /*margin-right: 10px; }*/
   main .wrapper-product .listProd .panel-rau-1 {
     background: #02894c !important; }
   main .wrapper-product .listProd .panel-fruid-1 {
@@ -66,7 +71,7 @@ main .wrapper-product {
         text-decoration: none; }
         main .wrapper-product .listProd .navProd ul li a:hover {
           color: #ff5c00; }
-  main .wrapper-product .colum-right::before {
+ /* main .wrapper-product .colum-right::before {
     position: absolute;
     left: -16px;
     top: 0;
@@ -74,7 +79,7 @@ main .wrapper-product {
     display: block;
     width: 31px;
     height: 55px;
-    background: #e8e8e8; }
+    background: #e8e8e8; }*/
   main .wrapper-product .colum-right .panel-default .panel-heading {
     display: block;
     background: #e8e8e8;
@@ -156,8 +161,8 @@ main .wrapper-product {
         main .wrapper-product .colum-right .panel-default .panelBody .product-slider .slider-list .owl-next:hover {
           color: #ff5c00;
           background: transparent; }
-  main .wrapper-product .right-1::before {
-    border-bottom: 2px solid #02894c !important; }
+  /*main .wrapper-product .right-1::before {
+    border-bottom: 2px solid #02894c !important; }*/
   main .wrapper-product .right-2::before {
     border-bottom: 2px solid #569e16 !important; }
   main .wrapper-product .right-3::before {

@@ -43,6 +43,13 @@
     <link rel="stylesheet" type="text/css" href="{{asset('')}}tag/dist/jquery-tagsinput.min.css"/>
     <script src="{{asset('')}}tag/dist/jquery-tagsinput.min.js" defer></script>
     {{-- endtag --}}
+    <style>
+        .form-group:hover{
+            /*box-shadow: 5px 5px 10px 5px grey;*/
+            padding: 15px 15px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
