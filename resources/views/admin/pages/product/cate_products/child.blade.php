@@ -22,7 +22,7 @@
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active"><a href="{{ route('category_product.list') }}">Loại sản phẩm</a></li>
+                    <li class="active"><a href="{{ route('catelv1.list') }}">Loại sản phẩm</a></li>
                     <li class="active">{{ $cate_parents->name }}</li>
                 </ol>
             </section>
@@ -30,7 +30,7 @@
             <button type="button" class="btn btn-primary" onclick="addcate()">Thêm thể loại sản phẩm</button>
             <div class="box box-primary"  id="add-cate" hidden>
                     <div class="box-body">
-                        <form action="{{ route('cate_child.create') }}" method="post">
+                        <form action="{{ route('catelv2.create') }}" method="post">
                             @csrf
                                 <div class="form-group">
                                     <label for="">Thêm loại sản phẩm(*)</label>
@@ -97,7 +97,7 @@
                                             <td><input type="text" style="border: none; background: none;" id="value-{{ $row->id }}" value="{{ $row->name }}" readonly></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" id="{{ $row->id }}" onclick="editcate({{ $row->id}})">Sửa</button>
-                                                <a class="btn btn-danger" href="{{ url('/admincp/category_product/cate_child/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                <a class="btn btn-danger" href="{{  route('catelv2.delete', $row->id) }}" onclick="return confirm('Hành động sẽ xóa mục này! bạn có muốn tiếp tục?')">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -111,7 +111,7 @@
                         <!-- /.box -->
                         <!-- /.box -->
                     </div>
-                    <a href="{{ route('category_product.list') }}" class="btn btn-primary">Quay lại trang Loại hàng</a>
+                    <a href="{{ route('catelv1.list') }}" class="btn btn-primary">Quay lại trang Loại hàng</a>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -125,7 +125,7 @@
                     $('#cate-parentedit').val($('#value-'+id).val());
                     var editid= "'edit'";
                     var num_child= $('#num-child-'+id).val();
-                    $('#form-edit').prop('action', '{{ url('/admincp/category_product/cate_child/update') }}'+'/'+id);
+                    $('#form-edit').prop('action', '{{ url('/admincp/product/category/level2/update') }}'+'/'+id);
                     document.getElementById('edit-cate').removeAttribute('hidden');
                 }
 

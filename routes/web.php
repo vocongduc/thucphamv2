@@ -83,7 +83,7 @@ Route::prefix('sanpham')->group(function () {
     Route::get('thuc-pham-khac', function () {
         return view('page.thucphamkhac');
     })->name('thuc-pham-khac');
-    Route::get('san-pham-chi-tiet', function () {
+    Route::get('san-pham-tiet', function () {
         return view('page.sanphamchitiet');
     })->name('san-pham-chi-tiet');
     Route::get('dat-hang', function () {
@@ -150,6 +150,13 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+/*
+* Đăng nhập user
+*/
+    Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
+    Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createuser');
+    Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
+    
 /*
  * Route cho admin
  */
@@ -276,6 +283,34 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
     // product
 
     Route::group(['prefix' => 'product'], function () {
+        Route::group(['prefix' => 'category'], function () {
+            Route::group(['prefix' => 'level1'], function () {
+                Route::get('/', 'Admin\CateProductController@index')->name('catelv1.list');
+
+                Route::post('/create' ,'Admin\CateProductController@create')->name('catelv1.create');
+                Route::post('/update/{id}' ,'Admin\CateProductController@update')->name('catelv1.update');
+                Route::get('/delete/{id}' ,'Admin\CateProductController@delete')->name('catelv1.delete');
+
+            });
+            Route::group(['prefix' => 'level2'], function () {
+                Route::get('/{id}', 'Admin\CateProductController@child')->name('catelv2.list');
+
+                Route::post('/create' ,'Admin\CateProductController@createchild')->name('catelv2.create');
+                Route::post('/update/{id}' ,'Admin\CateProductController@updatechild')->name('catelv2.update');
+                Route::get('/delete/{id}' ,'Admin\CateProductController@deletechild')->name('catelv2.delete');
+            });
+        });
+        Route::group(['prefix' => 'unit'], function () {
+            Route::get('/', 'Admin\UnitController@index')->name('unit.list');
+
+            Route::post('/create', 'Admin\UnitController@store')->name('unit.store');
+            Route::post('/update/{id}', 'Admin\UnitController@update')->name('unit.update');
+            Route::get('/delete/{id}', 'Admin\UnitController@delete')->name('unit.delete');
+
+        });
+
+
+
         Route::get('add-category', 'admin\CateProductController@getAddCategory')->name('add.category');
         Route::post('add-category', 'admin\CateProductController@postAddCategory');
         Route::get('edit-category/{cate_id}', 'admin\CateProductController@getEditCategory');
@@ -289,6 +324,20 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('list-product', 'admin\ProductController@getListProduct')->name('list.product');
         Route::get('del-product/{product_id}', 'admin\ProductController@delProduct');
 
+    });
+
+    //follow
+    Route::prefix('follow')->group(function (){
+       Route::get('/', 'FollowController@index')->name('follow.index');
+       Route::get('/create', 'FollowController@create')->name('follow.create');
+    });
+    Route::prefix('address')->group(function (){
+        Route::get('/', 'AdminAddressController@index')->name('admin.address.index');
+        Route::get('/create', 'AdminAddressController@create')->name('admin.address.create');
+    });
+    Route::prefix('album')->group(function (){
+        Route::get('/', 'AlbumController@index')->name('admin.album.index');
+        Route::get('/create', 'AlbumController@create')->name('admin.address.create');
     });
     //lien he
     Route::prefix('contact')->group(function () {

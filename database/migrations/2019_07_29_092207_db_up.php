@@ -17,6 +17,8 @@ class DbUp extends Migration
         Schema::create('cate_products_lv1', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('color')->nullable();
+            $table->string('image')->nullable();
             $table->string('slug');
             $table->timestamps();
         });
@@ -42,7 +44,8 @@ class DbUp extends Migration
             $table->string('code');
             $table->text('description');
             $table->string('slug');
-            $table->string('image');
+            $table->string('main_image');
+            $table->text('image');
             $table->integer('quantity');
             $table->integer('pay');
             $table->bigInteger('sale');
@@ -54,7 +57,7 @@ class DbUp extends Migration
                 ->on('units')
                 ->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
-            $table->bigInteger('cate_product')->unsigned();
+            $table->bigInteger('cate_product')->unsigned()->nullable();
             $table->foreign('cate_product')
             ->references('id')
             ->on('cate_products_lv2')

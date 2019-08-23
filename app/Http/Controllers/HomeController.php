@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['cate_parents']= DB::table('cate_products_lv1')->orderBy('id', 'desc')->get();
+        $data['cate_parents']= DB::table('cate_products_lv1')->orderBy('id', 'desc')->paginate(4);
         $data['cate_childs']= DB::table('cate_products_lv2')->orderBy('id', 'desc')->get();
         $data['products']= DB::table('products')
             ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')

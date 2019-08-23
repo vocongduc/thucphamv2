@@ -28,6 +28,20 @@ class CateProductController extends Controller
     }
 
     public function create(Request $request){
+        //dd($request->all());
+        if ($request->hasFile('icon')) {
+            $file = $request->file('icon');
+            $name = $this->imagename($file->getClientOriginalName());
+            $avatar = strtotime(now()) . "_cate_icon_" . $name;
+            while (file_exists('images/cate-icon/' . $avatar)) {
+                $avatar = strtotime(now()) . "_cate_icon_" . $name;
+            }
+            $file->move('images/cate-icon/', $avatar);
+            $file_name = $avatar;
+        }
+        else{
+            $file_name = 'default.png';
+        }
         $this->validate($request,[
                 'cate-parent' => 'unique:cate_products_lv1,name',
         ],[
@@ -38,6 +52,8 @@ class CateProductController extends Controller
 
         DB::table('cate_products_lv1')->insert([
             'name' => $input['cate-parent'],
+            'color' => $input['color'],
+            'image' => $file_name,
             'slug' => str_slug($input['cate-parent']).'-'.time().'.html'
         ]);
 
@@ -55,15 +71,42 @@ class CateProductController extends Controller
 
     }
     public function update(Request $request, $id){
+        //dd($request->all());
         $input= $request->all();
+
+        $old = DB::table('cate_products_lv1')->find($id);
+        if ($request->hasFile('icon')) {
+            $file = $request->file('icon');
+            $name = $this->imagename($file->getClientOriginalName());
+            $avatar = strtotime(now()) . "_cate_icon_" . $name;
+            while (file_exists('images/cate-icon/' . $avatar)) {
+                $avatar = strtotime(now()) . "_cate_icon_" . $name;
+            }
+            $file->move('images/cate-icon/', $avatar);
+            $file_name = $avatar;
+            if($old->image != 'default.png' && file_exists('images/cate-icon/' . $old->image)){
+                unlink('images/cate-icon/' . $old->image);
+            }
+
+        }
+        else{
+            $file_name = 'default.png';
+        }
+
         DB::table('cate_products_lv1')->where('id', $id)->update([
             'name' => $input['cate-parent-edit'],
+            'color' => $input['color'],
+            'image' => $file_name,
             'slug' => str_slug($input['cate-parent-edit']).'-'.time().'.html'
         ]);
         return redirect()->back()->with('thongbao','Thêm Loại hàng Thành Công!');
     }
     public function delete($id){
         //dd($request->all());
+        $old = DB::table('cate_products_lv1')->find($id);
+        if($old->image != 'default.png' && file_exists('images/cate-icon/' . $old->image)){
+            unlink('images/cate-icon/' . $old->image);
+        }
         DB::table('cate_products_lv1')->where('id', $id)->delete();
         return redirect()->back()->with('thongbao','Xóa Loại hàng Thành Công!');
     }

@@ -21,8 +21,13 @@
 					</div>
 					<div class="product-image-member">
 						<img src="https://i.ytimg.com/vi/fzIRr95OdbI/hqdefault.jpg" class="img-thumbnail">
-          </div>
-         
+                     </div>
+                    <div class="product-image-member">
+						<img src="https://i.ytimg.com/vi/fzIRr95OdbI/hqdefault.jpg" class="img-thumbnail">
+                     </div>
+                    <div class="product-image-member">
+						<img src="https://i.ytimg.com/vi/fzIRr95OdbI/hqdefault.jpg" class="img-thumbnail">
+                     </div>
 				</div>
 				<div id='product-custom-dots' class=' owl-dots mt-4'>
 					<div class='owl-dot box-image'>
@@ -39,8 +44,13 @@
 					</div>
 					<div class='owl-dot box-image'>
 						<img src="https://i.ytimg.com/vi/fzIRr95OdbI/hqdefault.jpg" class="img-fluid">
-          </div>
-         
+                    </div>
+                    <div class='owl-dot box-image'>
+						<img src="https://i.ytimg.com/vi/fzIRr95OdbI/hqdefault.jpg" class="img-fluid">
+                    </div>
+                    <div class='owl-dot box-image'>
+						<img src="https://i.ytimg.com/vi/fzIRr95OdbI/hqdefault.jpg" class="img-fluid">
+                    </div>
 				</div>
       </div>
       
