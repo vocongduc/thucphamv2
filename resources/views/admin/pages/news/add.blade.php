@@ -89,7 +89,11 @@
                 </form>
             </div>
 
-            <script>
+            
+        </div>
+    </div>
+@endsection
+<script>
                 CKEDITOR.replace('contentt', {
                     filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
                     filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
@@ -122,6 +126,3 @@
                 }
 
             </script>
-        </div>
-    </div>
-@endsection
