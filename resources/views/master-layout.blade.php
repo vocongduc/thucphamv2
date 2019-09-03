@@ -32,8 +32,12 @@
     <link rel="stylesheet" href="{{asset('css/khuyenmai.css')}}">
     <link rel="stylesheet" href="{{asset('css/lichhang.css')}}">
     <link rel="stylesheet" href="{{asset('css/thucdon1.css')}}">
-    {{--<link rel="stylesheet" href="{{asset('css/detail.css')}}">--}}
+
     <link rel="stylesheet" href="{{asset('css/khuyenmaichitiet.css')}}">
+    <link rel="stylesheet" href="{{asset('css/sanphamchitiet.css')}}">
+    <link rel="stylesheet" href="{{asset('css/dathang.css')}}">
+
+   
     <link rel="stylesheet" href="{{ asset('toastr/css/toastr.css') }}">
 
    
@@ -80,9 +84,6 @@
     <!-- custom js -->
     <script>
     $(document).ready(function() {
-
-
-
         // slider product
         $('.slider-list').owlCarousel({
             margin: 10,
@@ -93,13 +94,14 @@
                     items: 1
                 },
                 600: {
-                    items: 3
+                    items: 2
                 },
                 1000: {
-                    items: 5
+                    items: 4
                 }
             }
-        })
+        });
+     
         // news slider
         $('#list-news').owlCarousel({
             loop: true,
@@ -119,8 +121,41 @@
                     items: 5
                 }
             }
-        })
+        });
+         $('#listsp').owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 5000,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+  
 
+        $(".product-image").owlCarousel({
+		items:1,
+		loop:true,
+		autoplay:true,
+		nav:false,
+		dots:true,
+		dotsContainer:'#product-custom-dots'
+	});
+	$('.owl-dot').click(function () {
+		$(".product-image").trigger('to.owl.carousel', [$(this).index(), 300]);
+	});
+    
+    
         // footer
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -138,13 +173,16 @@
                     items: 1
                 },
                 600: {
-                    items: 3
+                    items: 2
                 },
                 1000: {
-                    items: 5
+                    items: 4
                 }
             }
         })
+
+
+        
 
         // menu mobile
         $("#menu-button").click(function() {
@@ -200,6 +238,24 @@
 
 
     });
+    function addcart(obj,id) {
+        alert(obj.id);
+        /*var agrs = {
+            url: "{{ url('addcart') }}", // gửi ajax đến file result.php
+            type: "post", // chọn phương thức gửi là post
+            dataType: "text", // dữ liệu trả về dạng text
+            data: { // Danh sách các thuộc tính sẽ gửi đi
+                _token: '{{ csrf_token() }}',
+                id: id,
+                quantity: 1,
+            },
+            success: function (result) {
+                $('#result'+obj.id).html(result);
+            }
+        };
+        $.ajax(agrs);*/
+        return false;
+    }
     </script>
 
     <div id="fb-root"></div>

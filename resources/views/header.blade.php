@@ -45,7 +45,7 @@
                 <!-- logo -->
                 <div class="col-lg-3 logo-col">
                     <div class="logo">
-                        <a href="#"><img src="{{ asset('images/logo1.jpg')}}" alt=""></a>
+                        <a href="#"><img src="{{ asset('images/logo1-v3.png')}}" alt=""></a>
                     </div>
                 </div>
 
@@ -175,7 +175,7 @@
                 <!-- cart-shop -->
                 <div class="cart-shop">
                     <div class="icon-cart">
-                        <a href="{{ route('gio-hang') }}"><i class="fas fa-cart-plus" style="font-size: 25px"></i></a>
+                        <a href="{{ route('gio-hang-chi-tiet') }}"><i class="fas fa-cart-plus" style="font-size: 25px"></i></a>
                     </div>
                 </div>
 

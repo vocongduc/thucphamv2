@@ -132,11 +132,14 @@
             <div class="row">
 
                 <!-- colum-left -->
-                <div class=" colum-left col-lg-2">
+                <div class=" colum-left col-lg-2 nonepadding">
                     <div class="listProd">
 
-                        <div class="panel-title panel-rau-1" style="border-radius:10px 0 0">
-                            <h5>{{ $cate_parent->name }}</h5>
+                        <div class="panel-title panel-rau-1" style="border-radius:10px 0 0; background-color: {{ $cate_parent->color }} !important;">
+                            <div style="color: white; font-size: 16px">
+                                <img src="{{ asset('images/cate-icon/'.$cate_parent->image) }}" alt="">
+                                {{ $cate_parent->name }}
+                            </div>
                         </div>
 
                         <div class="navProd">
@@ -152,9 +155,11 @@
                 </div>
 
                 <!-- colum-right -->
-                <div class=" colum-right right-1 col-lg-10 ">
+                <div class=" colum-right right-1 col-lg-10 nonepadding">
                     <div class="panel-default">
-                        <div class="panel-heading heading-1"  style="border-radius: 0 10px 0 0"></div>
+                        <div class="panel-heading heading-1"  style="border-radius: 0 10px 0 0; border-bottom: 2px solid {{ $cate_parent->color }} !important;">
+                            <div style="float: right;"><a href="#">Xem thêm</a></div>
+                        </div>
                         <div class="panelBody">
 
                             <div class="product-slider">
@@ -2297,7 +2302,9 @@
             </div>
         </div>
     </section>--}}
-
+<div class="container text-center" style="margin-top:10px;padding-top:10px;border-top: black dotted 1px">
+    {{ $cate_parents->links() }}
+</div>
     
 
 </main>

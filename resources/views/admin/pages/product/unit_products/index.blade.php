@@ -1,6 +1,6 @@
 @extends('admin.layouts.master-layouts')
 @section('title')
-    Thêm Sản Phẩm
+    Đơn vị
 @endsection
 
 @section('content')
@@ -18,30 +18,28 @@
         <div class="container-fluid">
             <section class="content-header">
                 <h1>
-                    Sản Phẩm con Của "{{ $cate_parents->name }}"
+                    Thêm Đơn vị.
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active"><a href="{{ route('catelv1.list') }}">Loại sản phẩm</a></li>
-                    <li class="active">{{ $cate_parents->name }}</li>
+                    <li class="active">Đơn Vị</li>
                 </ol>
             </section>
             <br>
-            <button type="button" class="btn btn-primary" onclick="addcate()">Thêm thể loại sản phẩm</button>
+            <button type="button" class="btn btn-primary" onclick="addcate()">Thêm đơn vị</button>
             <div class="box box-primary"  id="add-cate" hidden>
                     <div class="box-body">
-                        <form action="{{ route('catelv2.create') }}" method="post">
+                        <form action="{{ route('unit.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
-                                    <label for="">Thêm loại sản phẩm(*)</label>
+                                    <label for="">Thêm đơn vị(*)</label>
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name" value="{{ old('name') }}" required>
-                                    <input type="hidden" name="cate_id" value="{{ $cate_parents->id }}">
                                 </div>
-                                <div class="form-group" style="text-align: center">
-                                    <hr>
-                                    <input type="submit" class="btn btn-success" name="submit" value="Thêm">
-                                    <input type="reset" class="btn btn-danger" onclick="return huycate('add')">
-                                </div>
+                            <div class="form-group" style="text-align: center">
+                                <hr>
+                                <input type="submit" class="btn btn-success" name="submit" value="Thêm">
+                                <input type="reset" class="btn btn-danger" onclick="return huycate('add')">
+                            </div>
                         </form>
                     </div>
                {{-- <form method="POST">
@@ -60,19 +58,32 @@
             </div>
             <div class="box box-primary"  id="edit-cate" hidden>
                     <div class="box-body">
-                        <form action="" id="form-edit" method="post">
+                        <form action="" id="form-edit" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
-                                    <label for="">Sửa loại sản phẩm(*)</label>
+                                    <label for="">Sửa Đơn Vị(*)</label>
                                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" id="cate-parentedit" name="name" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="form-group" style="text-align: center">
                                     <hr>
-                                    <input type="submit" class="btn btn-success" name="submit" value="Thêm">
+                                    <input type="submit" class="btn btn-success" name="submit" value="Sửa">
                                     <input type="reset" class="btn btn-danger" onclick="return huycate('edit')">
                                 </div>
                         </form>
                     </div>
+               {{-- <form method="POST">
+                    @csrf
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Sửa thể loại  (*)</label>
+                            <input type="text" class="form-control" placeholder="" name="name"
+                                   value="{{ $cate_id->name }}" required>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </form>--}}
             </div>
             <section class="content">
                 <div class="row">
@@ -86,18 +97,19 @@
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th># </th>
                                         <th>Tên </th>
                                         <th>Hành động</th>
-
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($cate_childs as $row)
+                                    @foreach($units as $key => $row)
                                         <tr class="odd gradeX" align="center">
+                                            <td>{{ $key+1 }}</td>
                                             <td><input type="text" style="border: none; background: none;" id="value-{{ $row->id }}" value="{{ $row->name }}" readonly></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" id="{{ $row->id }}" onclick="editcate({{ $row->id}})">Sửa</button>
-                                                <a class="btn btn-danger" href="{{  route('catelv2.delete', $row->id) }}" onclick="return confirm('Hành động sẽ xóa mục này! bạn có muốn tiếp tục?')">Xóa</a>
+                                                <a class="btn btn-danger" href="{{ url('admincp/product/unit/delete/'.$row->id) }}" onclick="return confirm('Hành động sẽ xóa tin tức này! bạn có muốn tiếp tục?')">Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -111,7 +123,6 @@
                         <!-- /.box -->
                         <!-- /.box -->
                     </div>
-                    <a href="{{ route('catelv1.list') }}" class="btn btn-primary">Quay lại trang Loại hàng</a>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -125,23 +136,8 @@
                     $('#cate-parentedit').val($('#value-'+id).val());
                     var editid= "'edit'";
                     var num_child= $('#num-child-'+id).val();
-                    $('#form-edit').prop('action', '{{ url('/admincp/product/category/level2/update') }}'+'/'+id);
+                    $('#form-edit').prop('action', '{{ url('admincp/product/unit/update/') }}'+'/'+id);
                     document.getElementById('edit-cate').removeAttribute('hidden');
-                }
-
-                function addchild(obj) {
-                    var number= parseInt($('#num-child'+obj.id).val())+1;
-                    var id= "'"+obj.id+"'";
-                    var html= '<div id="child-add-'+number+'" class="form-group addchild row">';
-                    html += '<div class="col-12" style="text-align: right"><button type="button" onclick="huychild('+number+','+id+')"><i class="fa fa-minus"></i></button> </div>';
-                    html += '<label for="exampleInputEmail1">Thể Loại con '+ number +'(*)</label>';
-                    html += '<input type="text" class="form-control" placeholder="Nhập tiêu đề" name="cate-child-'+number+'" required>';
-                    html += '</div>';
-                    if(number==5){
-                        $('#'+obj.id).hide();
-                    }
-                    $('#child'+obj.id).append(html);
-                    $('#num-child'+obj.id).val(number);
                 }
                 function huychild(number, id) {
                     var x= confirm('dữ liệu vừa nhập có thể không được giữ lại! bạn có muốn tiếp tục?');

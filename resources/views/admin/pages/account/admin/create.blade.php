@@ -43,7 +43,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        <input name="level" class="form-control" type="hidden" value="1"/>
                         <div class="form-group">
                             <p>Mật khẩu</p>
                             <input name="password" class="form-control" id="pass" type="password" placeholder="Password" onchange="return lengthPasswword()">

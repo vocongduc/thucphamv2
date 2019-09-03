@@ -397,5 +397,55 @@ class DatabaseSeeder extends Seeder
             'status'=>1,
             'created_at'=>now(),
         ]);
+        DB::table('cate_products_lv1')->insert([
+            [
+                'name' => 'Rau - Củ',
+                'color' => '#02894c',
+                'image' => 'default.png',
+                'slug' => str_slug('Rau - Củ').'-'.time().'.html'
+            ],[
+                'name' => 'thực phẩm tươi sống',
+                'color' => '#f86211',
+                'image' => '1566461646_cate_icon_thuc-pham-tuoi-song.png',
+                'slug' => str_slug('thực phẩm tươi sống').'-'.time().'.html'
+            ],[
+                'name' => 'hoa quả',
+                'color' => '#569e16',
+                'image' => 'qua.png',
+                'slug' => str_slug('hoa quả').'-'.time().'.html'
+            ],
+        ]);
+        DB::table('cate_products_lv2')->insert([
+            [
+                'name' => 'rau an toàn',
+                'slug' => str_slug('rau an toàn').'-'.time().'.html',
+                'cate_lv1_id' => 1,
+            ],[
+                'name' => 'rau hữu cơ',
+                'slug' => str_slug('rau hữu cơ').'-'.time().'.html',
+                'cate_lv1_id' => 1,
+            ],[
+                'name' => 'hải sản tươi sống',
+                'slug' => str_slug('hải sản tươi sống').'-'.time().'.html',
+                'cate_lv1_id' => 2,
+            ],[
+                'name' => 'thịt tươi sống',
+                'slug' => str_slug('thịt tươi sống').'-'.time().'.html',
+                'cate_lv1_id' => 2,
+            ],[
+                'name' => 'trái cây nhập khẩu',
+                'slug' => str_slug('trái cây nhập khẩu').'-'.time().'.html',
+                'cate_lv1_id' => 3,
+            ],[
+                'name' => 'trái cây trong nước',
+                'slug' => str_slug('trái cây trong nước').'-'.time().'.html',
+                'cate_lv1_id' => 3,
+            ],
+        ]);
+
+        DB::table('units')->insert([
+            'name' => 'KG',
+        ]);
     }
+
 }

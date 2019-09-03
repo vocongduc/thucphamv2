@@ -22,6 +22,7 @@ class ProductController extends Controller
     }
    function getAddProduct() {
        $data['cate'] =  DB::table('cate_products_lv2')->get();
+       $data['units'] =  DB::table('units')->get();
        return view('admin.pages.product.addproduct',$data);
    }
 
@@ -31,12 +32,13 @@ class ProductController extends Controller
         $prd = new Product;
         $prd->name = $r->name;
         $prd->code = $r->code;
-        $prd->description = $r->description;
-        $prd->slug = str_slug($r->name).'-'.now().'.html';
+        $prd->description = $r->contentt;
+        $prd->slug = str_slug($r->name).'-'.time().'.html';
         $prd->quantity = $r->quantity;
         $prd->pay = 0;
         $prd->sale = $r->sale;
         $prd->price = $r->price;
+        $prd->unit_id = $r->unit;
         $prd->price_sale = ($r->price*(100-$r->sale))/100;
         $prd->cate_product = $r->cate_product;
         if ($r->has('image')) {
@@ -63,6 +65,7 @@ class ProductController extends Controller
 
     function getEditProduct($product_id){
         $data['cate'] = CateProduct::all();
+        $data['units'] =  DB::table('units')->get();
         $data['prd'] = Product::find($product_id);
         return view('admin.pages.product.editproduct',$data);
     }
@@ -71,12 +74,13 @@ class ProductController extends Controller
         $product = Product::find($product_id);
         $product->name = $r->name;
         $product->code = $r->code;
-        $product->description = $r->description;
-        $product->slug = str_slug($r->name);
+        $product->description = $r->contentt;
+        $product->slug = str_slug($r->name).'-'.time().'.html';
         $product->quantity = $r->quantity;
         $product->pay = 0;
         $product->sale = $r->sale;
         $product->price = $r->price;
+        $product->unit_id = $r->unit;
         $product->price_sale = ($r->price*(100-$r->sale))/100;
         $product->cate_product = $r->cate_product;
         if ($r->has('image')) {
