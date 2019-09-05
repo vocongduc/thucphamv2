@@ -5,143 +5,197 @@
 
 @section('content')
 
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <section class="content-header">
-            <h1>
-                Sửa sản phẩm.
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Sửa sản phẩm</li>
-            </ol>
-        </section>
-        <br>
-        <div class="box box-primary">
-            {{-- @if(session('thongbao'))
-                <div class="alert alert-success">
-                    {{session('thongbao')}}
-                </div>
-            @endif --}}
-            <form role="form" method="POST" action="" enctype="multipart/form-data">
-                @csrf
-                <div class="box-body">
-                    <div class="form-group">
-                        <label>Thể loại</label>
-                        <select class="form-control" name="cate_product">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <section class="content-header">
+                <h1>
+                    Sửa sản phẩm.
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Sửa sản phẩm</li>
+                </ol>
+            </section>
+            <br>
+            <div class="box box-primary">
+                {{-- @if(session('thongbao'))
+                    <div class="alert alert-success">
+                        {{session('thongbao')}}
+                    </div>
+                @endif --}}
+                <form role="form" method="POST" action="" enctype="multipart/form-data">
+                    @csrf
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>Thể loại</label>
+                            <select class="form-control" name="cate_product">
                                 @foreach ($cate as $row)
-                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                    <option value="{{ $row->id }}"
+                                            @if($product->cate_product == $row->id)
+                                            selected
+                                            @endif
+                                    >{{ $row->name }}</option>
                                 @endforeach
-                        </select>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tên sản phẩm (*)</label>
-                        <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
-                               value="{{ $prd->name }}">
-                    </div>
-                    
-                    <div class="form-group">
-                            <label for="exampleInputEmail1">Mã sản phẩm(*)</label>
-                            <input class="form-control" name="code" cols="50" rows="10"
-                                      placeholder="Nhập mã sản phẩm" value="{{ $prd->code }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
-                        <textarea name="contentt" placeholder="Mô tả sản phẩm"
-                                  class="form-control">{{ $prd->description }}</textarea>
-                    </div>
-                    <div class="form-group">
-                            <label for="exampleInputEmail1">Giá sản phẩm (*)</label>
-                            <input class="form-control" name="price" cols="50" rows="10"
-                                      placeholder="Nhập giá sản phẩm"  value="{{ $prd->price }}">
-                    </div>
-                    
-                    <div class="form-group">
-                            <label for="exampleInputEmail1">Số lượng (*)</label>
-                            <input class="form-control" name="quantity" cols="50" rows="10"
-                                      placeholder="Nhập số lượng"  value="{{ $prd->quantity }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Đơn vị (*)</label>
-                        <select name="unit">
-                            @foreach($units as $unit)
-                                <option value="{{ $unit->id }}"
-                                @if($unit->id == $prd->unit_id)
-                                    selected
-                                @endif
-                                >{{ $unit->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Ảnh nền</label>
-                        <input type="file" id="image" name="image" onchange="showIMG()" class="form-control" >
-                        <input id="" name="old_image" onchange="showIMG()" class="form-control"  value="{{ $prd->image }}" type="hidden">
+                            </select>
+                        </div>
 
-                    </div>
-                    <div class="form-group">
-                            <label for="" style="margin-left: 10px"> Ảnh hiển thị : </label>
-                            <div id="viewImg">
-                                <img style="width: 300px;height: 300px" src="{{ asset('images/img').'/'.$prd->image }}">
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên sản phẩm (*)</label>
+                            <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
+                                   value="{{ $product->name }}">
+                        </div>
+
+                        {{--<div class="form-group">
+                                <label for="exampleInputEmail1">Mã sản phẩm(*)</label>
+                                <input class="form-control" name="code" cols="50" rows="10"
+                                          placeholder="Nhập mã sản phẩm" value="{{ $product->code }}">
+                        </div>--}}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả ngắn sản phẩm(*)</label>
+                            <textarea name="summary" placeholder="Mô tả sản phẩm" required class="form-control" rows="5">{{ $product->summary }}</textarea>
                         </div>
                         <div class="form-group">
-                                <label>Sales</label>
-                                <select class="form-control" name="sale">
-                                    <option @if ($prd->sale == 0) selected @endif value="0">0%</option>
-                                    <option @if ($prd->sale == 10) selected @endif value="10">10%</option>
-                                    <option @if ($prd->sale == 20) selected @endif value="20">20%</option>
-                                    <option @if ($prd->sale == 30) selected @endif value="30">30%</option>
-                                    <option @if ($prd->sale == 40) selected @endif value="40">40%</option>
-                                    <option @if ($prd->sale == 50) selected @endif value="50">50%</option>
-                                    <option @if ($prd->sale == 60) selected @endif value="60">60%</option>
-                                    <option @if ($prd->sale == 70) selected @endif value="70">70%</option>
-                                    <option @if ($prd->sale == 80) selected @endif value="70">80%</option>
-                                </select>
-                            </div>
-                </div>
-               
-    
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Thêm</button>
-                </div>
-            </form>
-        </div>
-    
-        <script>
-            CKEDITOR.replace('contentt', {
-                filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
-                filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
-                filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
-                filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-            });
-    
-    
-            function showIMG() {
-                var fileInput = document.getElementById('image');
-                var filePath = fileInput.value; //lấy giá trị input theo id
-                var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; //các tập tin cho phép
-                //Kiểm tra định dạng
-                if (!allowedExtensions.exec(filePath)) {
-                    alert('Bạn chỉ có thể dùng ảnh dưới định dạng .jpeg/.jpg/.png/.gif extension.');
-                    fileInput.value = '';
-                    return false;
-                } else {
-                    //Image preview
-                    if (fileInput.files && fileInput.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            document.getElementById('viewImg').innerHTML = '<img style="width:100px; height: 100px;" src="' + e.target.result + '"/>';
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
+                            <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
+                            <textarea name="content" placeholder="Mô tả sản phẩm"
+                                      class="form-control">{{ $product->description }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Giá sản phẩm (*)</label>
+                            <input class="form-control" name="price" id="price"
+                                   placeholder="Nhập giá sản phẩm"  value="{{ $product->price }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Sales</label>
+                            <input name="sale" id="sale" class="form-control" min="0" max="100" value="{{ $product->sale }}" type="number" onchange="checkpercent(this)"/>
+                            <div id="error-sale" style="color: red"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Giá Sale: </label> <span id="price_sale">{{ number_format($product->price_sale, 0, ',', '.') }} VNĐ</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số lượng (*)</label>
+                            <input class="form-control" name="quantity" cols="50" rows="10"
+                                   placeholder="Nhập số lượng"  value="{{ $product->quantity }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Đơn vị (*)</label>
+                            <select name="unit">
+                                @foreach($units as $unit)
+                                    <option value="{{ $unit->id }}"
+                                            @if($unit->id == $product->unit_id)
+                                            selected
+                                            @endif
+                                    >{{ $unit->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="image">
+                        <label for="exampleInputFile">Ảnh nền</label>
+                        <input type="file" id="image-0" name="image" onchange="fileValidation(this)" class="form-control">
+                        <input type="hidden" name="old-main-image" value="{{ $product->main_image }}">
+                        <div id="imagePreviewimage-0">
+                            <img style="width: 300px;height: 300px" src="{{ asset('images/img').'/'.$product->main_image }}">
+                        </div>
+                        @foreach($images as $key => $image)
+                            @if( $image!='')
+                                <div class="image-item" id="image-item{{ $key+1 }}">
+                                    <input type="hidden" name="old-image-{{ $key+1 }}" id="old-image-{{ $key+1 }}" value="{{ $image }}">
+                                    <div style='text-align: right'><a onclick='return huychon({{ $key+1 }})'><i class='fa fa-times' ></i></a> </div>
+                                    <label class="text-body custom-control-label">Ảnh {{ $key+1 }}(*):</label>
+                                    <input name="file-{{ $key+1 }}" id="file-{{ $key+1 }}" class="form-control" type="file" onchange="fileValidation(this)">
+                                    <div id="imagePreviewfile-{{ $key+1 }}">
+                                        <img style="width: 300px;height: 300px" src="{{ asset('images/img').'/'.$image }}">
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <input id="image-number" name="image-number" value="{{ $key }}" type="hidden">
+                    <a id="addimage" class="btn btn-primary" onclick="addimage()">Thêm Ảnh</a>
+                    <div id="result"></div>
+                    <script>
+                        function addimage(){
+                            var number = parseInt($('#image-number').val()) + 1;
+                            var html = '<div class="image-item" id="image-item' + number + '">';
+                            html+="<div style='text-align: right'><a onclick='huychon("+number+")'><i class='fa fa-times' ></i></a> </div>";
+                            html += '<label class="text-body custom-control-label">Ảnh ' + number + '(*):</label>';
+                            html += '<input name="file-' + number + '" id="file-' + number + '" class="form-control" type="file" required onchange="fileValidation(this)">';
+                            html += '<div id="imagePreviewfile-' + number + '">';
+                            html += '</div>';
+                            html += '</div>';
+                            $('#image').append(html);
+                            $('#image-number').val(number);
+                            if(number==4) {
+                                $('#addimage').addClass('hide');
+                            }
+                        }
+                        function huychon(id) {
+                            var x=$('#old-image-'+id).val();
+                            if(x!=undefined){
+                                var y = confirm('hành động sẽ xóa mất ảnh này! bạn có muốn tiếp tục không?');
+                                if(y==true) {
+                                    var agrs = {
+                                        url: "{{ route('xoaanh') }}",
+                                        type: "post",
+                                        dataType: "text",
+                                        data: {
+                                            _token: '{{ csrf_token() }}',
+                                            image: x,
+                                        },
+                                        success: function (result) {
+                                            $('#result').html(result);
+                                        }
+                                    };
+                                    $.ajax(agrs);
+                                }
+                            }
+                            var parent = document.getElementById("image");
+                            var child = document.getElementById('image-item'+id);
+                            parent.removeChild(child);
+                        }
+                    </script>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Sửa</button>
+                    </div>
+                </form>
+            </div>
+
+            <script>
+                CKEDITOR.replace('content', {
+                    filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
+                    filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
+                    filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',
+                    filebrowserUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                    filebrowserImageUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                    filebrowserFlashUploadUrl: '{{asset("")}}ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+                });
+
+
+                function fileValidation(obj) {
+                    //var fileInput = document.getElementById('file'+id);
+                    var filePath = obj.value; //lấy giá trị input theo id
+                    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; //các tập tin cho phép
+                    //Kiểm tra định dạng
+                    if (!allowedExtensions.exec(filePath)) {
+                        alert('You can only select files with .jpeg/.jpg/.png/.gif extension.');
+                        obj.value = '';
+                        return false;
+                    } else {
+                        //Image preview
+                        if (obj.files && obj.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                document.getElementById('imagePreview'+obj.id).innerHTML = '<img style="width: 300px;height: 300px" src="' + e.target.result + '"/>';
+                            };
+                            reader.readAsDataURL(obj.files[0]);
+                        }
                     }
                 }
-            }
-    
-        </script>
+
+            </script>
+        </div>
     </div>
-</div>
 @endsection

@@ -38,7 +38,6 @@ Route::prefix('gioithieu')->group(function () {
         return view('page.giayChungNhan');
     })->name('giay-Chung-Nhan');
 });
-
 Route::prefix('tintuc')->group(function () {
 
     Route::get('/', 'ClientController@tintuc')->name('tin-tuc');
@@ -60,7 +59,6 @@ Route::prefix('tintuc')->group(function () {
 
 
 });
-
 Route::prefix('sanpham')->group(function () {
 
     Route::get('/', function () {
@@ -92,7 +90,6 @@ Route::prefix('sanpham')->group(function () {
 
 
 });
-
 Route::prefix('lienhe')->group(function () {
 
     Route::get('/', 'ContactController@create')->name('lien-he');
@@ -107,7 +104,6 @@ Route::prefix('tuyendung')->group(function () {
         })->name('tuyen-dung-chi-tiet');
 
 });
-
 Route::prefix('khuyenmai')->group(function () {
 
     Route::get('/', function () {
@@ -130,8 +126,6 @@ Route::prefix('thucdon')->group(function () {
     Route::get('/', 'ClientController@thucdon')->name('thuc-don');
 
 });
-
-
 Route::prefix('gio-hang')->group(function () {
 
     // Route::get('/', function () {
@@ -151,11 +145,27 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 /*
+ * client
+ * */
+Route::get('product/{slug}', 'HomeController@sanpham')->name('sanpham.chitiet');
+Route::get('loaisanpham/{slug}', 'HomeController@catelv1')->name('sanpham.loai');
+Route::get('mua/{slug}', 'HomeController@mua')->name('sanpham.mua');
+
+/*
 * Đăng nhập user
 */
     Route::post('loginuser', 'Auth\UserLoginController@loginuser')->name('loginuser');
     Route::post('createuser', 'Auth\UserLoginController@createuser')->name('createuser');
     Route::get('logoutuser', 'Auth\UserLoginController@logout')->name('logoutuser');
+
+/*
+ * ajax
+ * */
+Route::post('gia', 'AjaxController@gia')->name('gia');
+Route::post('hienthi', 'AjaxController@hienthi')->name('hienthi');
+Route::post('xoaanh', 'AjaxController@xoaanh')->name('xoaanh');
+Route::post('sapxep', 'AjaxController@sapxep')->name('sapxep');
+Route::post('muaxi', 'AjaxController@muaxi')->name('muaxi');
     
 /*
  * Route cho admin
@@ -390,5 +400,12 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('account-user-delete', 'Admin\AdminProfileController@listUserDelete')->name('account-user-delete');//delete
         //user
 
+    });
+    Route::group(['prefix' => 'wholesale'], function (){
+        Route::get('/', 'WholesaleController@index')->name('wholesale.list');
+
+        Route::post('/store','WholesaleController@store')->name('wholesale.store');
+        Route::post('/update/{id}','WholesaleController@edit')->name('wholesale.update');
+        Route::get('/delete/{id}','WholesaleController@delete')->name('wholesale.delete');
     });
 });

@@ -4,24 +4,25 @@
 @endsection
 
 @section('content')
-    <style>
-        .addchild{
-            /*border: black dotted 1px;*/
-            border-radius: 10px;
-            padding: 10px 10px 10px 10px;
-        }
-        .addchild:hover{
-            box-shadow: 5px 5px 5px -1px grey;
-        }
-    </style>
     <div class="content-wrapper">
         <div class="container-fluid">
+            <section class="content-header">
+                <h1>
+                    Danh sách Sản Phẩm
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Danh sách Sản Phẩm</li>
+                </ol>
+            </section>
+            <br>
+            <a href="{{ route('add.product') }}" class="btn btn-primary" onclick="addcate()">Thêm sản phẩm</a>
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
-                                <h1>Danh Sách Loại sản Phẩm</h1>
+
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -43,7 +44,7 @@
                                         <tr class="odd gradeX" align="center">
                                             <td>{{$row->name}}</td>
                                             <td>{{$row->code}}</td>
-                                            <td><img width="100px" src="{{ asset('images/img/'.$row->image) }}"> </td>
+                                            <td><img width="100px" src="{{ asset('images/img/'.$row->main_image) }}"> </td>
                                             <td>{{$row->cate}}</td>
                                             <td>{{$row->created_at}}</td>
                                             <td>
