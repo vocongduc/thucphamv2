@@ -46,14 +46,27 @@
                                    placeholder="Nhập mã sản phẩm">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả ngắn sản phẩm(*)</label>
+                            <textarea name="summary" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
-                            <textarea name="contentt" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
+                            <textarea name="content" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm (*)</label>
-                            <input class="form-control" name="price"  required
-                                   placeholder="Nhập giá sản phẩm">
+                            <input class="form-control" name="price" id="price" type="number" value="0" required placeholder="Nhập giá sản phẩm">
                         </div>
+                        <div class="form-group">
+                            <label>Sales</label>
+                            <input name="sale" id="sale" class="form-control" min="0" max="100" value="10" type="number" onchange="checkpercent(this)"/>
+                            <div id="error-sale" style="color: red"></div>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Giá Sale: </label><span id="price_sale"></span>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số lượng (*)</label>
@@ -68,32 +81,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Sales</label>
-                            <input name="sale" id="sale" class="form-control" min="0" max="100" value="10" type="number" onchange="ktrasale(this)"/>
-                            <div id="errorsale" style="color: red"></div>
-                            <script>
-                                function ktrasale(obj) {
-                                    var x= document.getElementById('errorsale');
-                                    if(obj.value<0){
-                                        x.innerHTML= 'phần trăm sale phải lớn hơn 0%';
-                                        obj.value=0;
-                                    }
-                                    else if(obj.value>100){
-                                        x.innerHTML= 'phần trăm sale phải nhỏ hơn 100%';
-                                        obj.value=0;
-                                    }
-                                    else{
-                                        x.innerHTML= '';
-                                    }
-                                }
-                            </script>
+                        <div class="form-group" id="image">
+                            <label for="exampleInputFile">Ảnh nền</label>
+                            <input type="file" id="image-0" name="image" onchange="fileValidation(this)" class="form-control">
+                            <div id="imagePreviewimage-0"></div>
                         </div>
-                            <div class="form-group" id="image">
-                                <label for="exampleInputFile">Ảnh nền</label>
-                                <input type="file" id="image-0" name="image" onchange="fileValidation(this)" class="form-control">
-                                <div id="imagePreviewimage-0"></div>
-                            </div>
 
                     </div>
                     <input id="image-number" name="image-number" value="0" type="hidden">
@@ -128,7 +120,7 @@
             </div>
 
             <script>
-                CKEDITOR.replace('contentt', {
+                CKEDITOR.replace('content', {
                     filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
                     filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
                     filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',

@@ -42,12 +42,13 @@ class DbUp extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('code');
+            $table->text('summary');
             $table->text('description');
             $table->string('slug');
             $table->string('main_image');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->integer('quantity');
-            $table->integer('pay');
+            $table->integer('pay')->default('0');
             $table->bigInteger('sale');
             $table->bigInteger('price');
             $table->bigInteger('price_sale');
@@ -223,6 +224,18 @@ class DbUp extends Migration
             $table->string('logo');
             $table->string('link');
             $table->integer('status');
+            $table->timestamps();
+        });
+        Schema::create('wholesale',function (Blueprint $table)
+        {
+            $table->bigIncrements('id');
+            $table->bigInteger('unit_id')->unsigned()->unique();
+            $table->foreign('unit_id')
+                ->references('id')
+                ->on('units')
+                ->onDelete('cascade');
+            $table->integer('quantity');
+            $table->string('percent');
             $table->timestamps();
         });
 
