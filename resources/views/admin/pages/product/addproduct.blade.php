@@ -46,8 +46,12 @@
                                    placeholder="Nhập mã sản phẩm">
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả ngắn sản phẩm(*)</label>
+                            <textarea name="summary" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả sản phẩm(*)</label>
-                            <textarea name="contentt" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
+                            <textarea name="content" placeholder="Mô tả sản phẩm" required class="form-control" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm (*)</label>
@@ -128,7 +132,7 @@
             </div>
 
             <script>
-                CKEDITOR.replace('contentt', {
+                CKEDITOR.replace('content', {
                     filebrowserBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html',
                     filebrowserImageBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Images',
                     filebrowserFlashBrowseUrl: '{{asset("")}}ckfinder/ckfinder.html?type=Flash',

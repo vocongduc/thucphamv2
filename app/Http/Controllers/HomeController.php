@@ -65,11 +65,13 @@ class HomeController extends Controller
         return view('page.sanPham', $data);
     }
     public function sanpham($slug){
-        $data['products'] = DB::table('products')
-            ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit')
+        $data['product'] = DB::table('products')
+            ->select('products.*', 'cate_products_lv2.cate_lv1_id', 'units.name as unit', DB::raw('(select count(*) from wholesale where wholesale.unit_id = units.id) as si'))
             ->join('cate_products_lv2', 'cate_products_lv2.id', '=', 'products.cate_product')
             ->join('units', 'units.id', '=', 'products.unit_id')
             ->where('products.slug', $slug)->first();
+        $data['images']= explode(',', $data['product']->image);
         return view('page.sanphamchitiet', $data);
     }
+
 }

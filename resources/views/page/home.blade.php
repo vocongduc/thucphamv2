@@ -176,7 +176,7 @@
 
                                                 <div class="product-list-img">
                                                     <div class="thumbnail">
-                                                        <a href="#"><img src="{{ asset('images/img/'.$product->image) }}" alt=""></a>
+                                                        <a href="#"><img src="{{ asset('images/img/'.$product->main_image) }}" alt=""></a>
                                                     </div>
                                                     <div class="action animated zoomIn">
                                                         <ul>
@@ -194,8 +194,8 @@
                                                         <span>hết hàng</span>
                                                     @endif
 
-                                                    <h5><a href="{{ route('san-pham-chi-tiet') }}">{{ $product->name }}</a></h5>
-                                                    <p><strong>{{ number_format($product->price_sale).' VNĐ' }}</strong></p>
+                                                    <h5><a href="{{ route('sanpham.chitiet', $product->slug) }}">{{ $product->name }}</a></h5>
+                                                    <p><strong>{{ number_format($product->price_sale).' VNĐ/'.$product->unit }}</strong></p>
                                                 </div>
                                             </div>
                                         </div>

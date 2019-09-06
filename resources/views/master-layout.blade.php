@@ -39,7 +39,11 @@
 
    
     <link rel="stylesheet" href="{{ asset('toastr/css/toastr.css') }}">
-
+<style>
+    .an{
+        display: none;
+    }
+</style>
    
 
 

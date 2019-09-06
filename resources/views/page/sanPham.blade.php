@@ -93,8 +93,8 @@
                 <script>
                     function gia(obj) {
                         //alert(obj.value);
-                                    @isset($cate)
-                            var cate= {{ $cate->id }};
+                                    @isset($cate_parents)
+                            var cate= {{ $cate_parents->id }};
                                     @else
                             var cate='';
                             @endisset
@@ -140,20 +140,19 @@
                             <script>
                                 function sapxep(obj) {
                                     var x= obj.value.split(',');
-                                            @isset($cate->id)
-                                    var cate_id= {{ $cate->id }};
+                                            @isset($cate_parents->id)
+                                    var cate_id= {{ $cate_parents->id }};
                                             @else
                                     var cate_id= "";
                                     @endisset
                                     //alert(cate_id);
 
                                     var agrs = {
-                                        url: "{{ url('sapxep/') }}", // gửi ajax đến file result.php
+                                        url: "{{ url('sapxep') }}", // gửi ajax đến file result.php
                                         type: "post", // chọn phương thức gửi là post
                                         dataType: "text", // dữ liệu trả về dạng text
                                         data: { // Danh sách các thuộc tính sẽ gửi đi
                                             _token: '{{ csrf_token() }}',
-                                            collections: null,
                                             cate_id: cate_id,
                                             value: x[0],
                                             method: x[1],
@@ -219,7 +218,7 @@
                     <div class="col-item col-xs-12 col-sm-4 col-md-12 col-mb-12  item-block show-product" id="product">
                         @foreach($products as $value)
                         <div>
-                            <img src="{{ asset('images/img/'.$value->image) }}">
+                            <img src="{{ asset('images/img/'.$value->main_image) }}">
                             <p style="text-align: center;" class="mt-2">
                                 @if ($value->quantity > 0)
                                     <span>còn hàng</span>
@@ -229,7 +228,7 @@
                                 <br>
                                 <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
                                 <br>
-                                <a href="{{ url('sanpham/'.$value->slug) }}">{{ $value->name }}</a>
+                                <a href="{{ url('product/'.$value->slug) }}">{{ $value->name }}</a>
                                 <br>
                                 <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/{{ $value->unit }}</span>
                             </p>
