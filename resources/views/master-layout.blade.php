@@ -39,7 +39,11 @@
 
    
     <link rel="stylesheet" href="{{ asset('toastr/css/toastr.css') }}">
-
+<style>
+    .an{
+        display: none;
+    }
+</style>
    
 
 
@@ -238,23 +242,31 @@
 
 
     });
-    function addcart(obj,id) {
-        alert(obj.id);
-        /*var agrs = {
-            url: "{{ url('addcart') }}", // gửi ajax đến file result.php
-            type: "post", // chọn phương thức gửi là post
-            dataType: "text", // dữ liệu trả về dạng text
-            data: { // Danh sách các thuộc tính sẽ gửi đi
-                _token: '{{ csrf_token() }}',
-                id: id,
-                quantity: 1,
-            },
-            success: function (result) {
-                $('#result'+obj.id).html(result);
-            }
-        };
-        $.ajax(agrs);*/
-        return false;
+    function addcart(obj,id,mua) {
+        //alert($('#quantity-'+obj.id).val());
+        //alert(mua);
+        if($('#quantity-'+obj.id).val()==0){
+            toastr.error('Bạn chưa nhập số lượng!', 'Thông báo', {timeOut: 3000});
+            toastr.options.progressBar = true;
+        }
+        else {
+            var agrs = {
+                url: "{{ url('addcart') }}", // gửi ajax đến file result.php
+                type: "post", // chọn phương thức gửi là post
+                dataType: "text", // dữ liệu trả về dạng text
+                data: { // Danh sách các thuộc tính sẽ gửi đi
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    quantity: $('#quantity-' + obj.id).val(),
+                    mua: mua
+                },
+                success: function (result) {
+                    $('#result-' + obj.id).html(result);
+                }
+            };
+            $.ajax(agrs);
+        }
+
     }
     </script>
 

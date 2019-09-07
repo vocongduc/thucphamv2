@@ -4,27 +4,27 @@
 @endsection
 
 @section('content')
-
     <div class="content-wrapper">
-        <div class="container-fluid"> <section class="content-header">
+        <div class="container-fluid">
+            <section class="content-header">
                 <h1>
-                    Danh Sách Sản phẩm
+                    Danh sách Sản Phẩm
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Sản phẩm</li>
+                    <li class="active">Danh sách Sản Phẩm</li>
                 </ol>
-            </section><br>
-            <a href="{{ route('add.product') }}" class="btn btn-success"> Thêm sản phẩm</a><br>
-
+            </section>
+            <br>
+            <a href="{{ route('add.product') }}" class="btn btn-primary" onclick="addcate()">Thêm sản phẩm</a>
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
-                        {{--<div class="box-header">--}}
-                        {{--<h1>Danh Sách Loại sản Phẩm</h1>--}}
-                        {{--</div>--}}
-                        <!-- /.box-header -->
+                            <div class="box-header">
+
+                            </div>
+                            <!-- /.box-header -->
                             <div class="box-body">
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>

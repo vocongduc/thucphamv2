@@ -446,6 +446,15 @@ class DatabaseSeeder extends Seeder
         DB::table('units')->insert([
             'name' => 'KG',
         ]);
+
+        DB::table('slider')->insert([
+            [
+                'image' => '1567821508_slider_pannel1.jpg'
+            ],
+            [
+                'image' => '1567821518_slider_pannel2.jpg'
+            ]
+        ])
     }
 
 }

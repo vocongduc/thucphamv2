@@ -43,6 +43,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('')}}tag/dist/jquery-tagsinput.min.css"/>
     <script src="{{asset('')}}tag/dist/jquery-tagsinput.min.js" defer></script>
     {{-- endtag --}}
+    <style>
+        .an{
+            display: none;
+        }
+    </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

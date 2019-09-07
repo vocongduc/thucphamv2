@@ -1,7 +1,9 @@
 @extends('master-layout')
 @section('title')
-    @isset($cate_parents)
+    @if(isset($cate_parents))
         {{ $cate_parents->name }}
+    @elseif(isset($keyword))
+        Tìm Kiếm
     @else
         Tất Cả Sản Phẩm
     @endif
@@ -93,8 +95,8 @@
                 <script>
                     function gia(obj) {
                         //alert(obj.value);
-                                    @isset($cate)
-                            var cate= {{ $cate->id }};
+                                    @isset($cate_parents)
+                            var cate= {{ $cate_parents->id }};
                                     @else
                             var cate='';
                             @endisset
@@ -123,7 +125,13 @@
             </div>
             <!-- cột bên phải -->
             <div class="col-right col-xs-12 col-md-9 col-sm-8 mt-3">
-                <h3 style="font-weight: bold;">SẢN PHẨM</h3>
+                @if(isset($cate_parents))
+                    <h3 style="font-weight: bold;">{{ $cate_parents->name }}</h3>
+                @elseif(isset($keyword))
+                    <h3 style="font-weight: bold;">Có {{ $count }} Sản phẩm phù hợp với từ khóa: {{ $keyword }}</h3>
+                @else
+                    <h3 style="font-weight: bold;">SẢN PHẨM</h3>
+                @endif
                 <div class="row select mt-3">
                     <div class="col-md-4">
                         <div class="mt-2">Sắp xếp theo: </div>
@@ -140,20 +148,19 @@
                             <script>
                                 function sapxep(obj) {
                                     var x= obj.value.split(',');
-                                            @isset($cate->id)
-                                    var cate_id= {{ $cate->id }};
+                                            @isset($cate_parents->id)
+                                    var cate_id= {{ $cate_parents->id }};
                                             @else
                                     var cate_id= "";
                                     @endisset
                                     //alert(cate_id);
 
                                     var agrs = {
-                                        url: "{{ url('sapxep/') }}", // gửi ajax đến file result.php
+                                        url: "{{ url('sapxep') }}", // gửi ajax đến file result.php
                                         type: "post", // chọn phương thức gửi là post
                                         dataType: "text", // dữ liệu trả về dạng text
                                         data: { // Danh sách các thuộc tính sẽ gửi đi
                                             _token: '{{ csrf_token() }}',
-                                            collections: null,
                                             cate_id: cate_id,
                                             value: x[0],
                                             method: x[1],
@@ -219,7 +226,7 @@
                     <div class="col-item col-xs-12 col-sm-4 col-md-12 col-mb-12  item-block show-product" id="product">
                         @foreach($products as $value)
                         <div>
-                            <img src="{{ asset('images/img/'.$value->image) }}">
+                            <img src="{{ asset('images/img/'.$value->main_image) }}">
                             <p style="text-align: center;" class="mt-2">
                                 @if ($value->quantity > 0)
                                     <span>còn hàng</span>
@@ -229,7 +236,7 @@
                                 <br>
                                 <span style="color: #a1a1a1 ; font-size: 12px">(0 đánh giá)</span>
                                 <br>
-                                <a href="{{ url('sanpham/'.$value->slug) }}">{{ $value->name }}</a>
+                                <a href="{{ url('product/'.$value->slug) }}">{{ $value->name }}</a>
                                 <br>
                                 <span style="color: red ; font-weight: bold;">{{ number_format($value->price_sale) }} VNĐ/{{ $value->unit }}</span>
                             </p>

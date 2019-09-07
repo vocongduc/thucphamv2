@@ -8,7 +8,6 @@
                 <div class="col-5">
                     <!-- navbar-header -->
                     <div class="menu-mobile-button" id="menu-button"><i class="fas fa-bars"></i></div>
-
                 </div>
                 <div class="col-7">
                     <div class="login-out text-right">
@@ -52,30 +51,35 @@
                 <!-- search-col -->
                 <div class="col-lg-4 search-col " style="bottom: 25px;">
                     <div class="header-search">
-                        <form action="" class="search-form">
+                        <form action="{{ route('search') }}" method="post" class="search-form">
+                            @csrf
                             <div class="search-form-inner">
                                 <!-- search -->
                                 <div class="dropdown ">
                                   
-                                    <select class="form-control" id="sel1" style="border:none">
-                                        <option>Danh mục</option>
+                                    <select class="form-control" id="sel1" name="cate" style="border:none">
+                                        @foreach($search_cates as $value)
+                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                        @endforeach
+                                        {{--<option>Danh mục</option>
                                         <option>Đặc sản </option>
                                         <option>Rau-củ</option>
                                         <option>Trái cây</option>
-                                        <option>Thực phẩm tươi</option>
+                                        <option>Thực phẩm tươi</option>--}}
                                     </select>
                                 </div>
 
                                 <!-- form -->
                                 <div class="form-row">
 
-                                    <div>
-                                        <input type="text" placeholder="Nhập sản phẩm cần tìm..." class="form-control">
+                                    <div style="width: 75%">
+                                        <input type="text" placeholder="Nhập sản phẩm cần tìm..." name="product" class="form-control">
                                     </div>
-
+                                    <div style="width: 25%">
                                     <button class="btn btn-primary ">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
+                                    </div>
 
                                 </div>
 
@@ -175,7 +179,7 @@
                 <!-- cart-shop -->
                 <div class="cart-shop">
                     <div class="icon-cart">
-                        <a href="{{ route('gio-hang-chi-tiet') }}"><i class="fas fa-cart-plus" style="font-size: 25px"></i></a>
+                        <a href="{{ route('giohang') }}"><i class="fas fa-cart-plus" style="font-size: 25px"></i></a>
                     </div>
                 </div>
 
