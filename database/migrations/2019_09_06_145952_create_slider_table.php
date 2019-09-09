@@ -19,6 +19,11 @@ class CreateSliderTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
+        Schema::create('services', function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('content')->nullable();
+        });
     }
 
     /**

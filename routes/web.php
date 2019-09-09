@@ -424,4 +424,11 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::post('/update/{id}','Admin\SliderController@update')->name('slider.update');
         Route::get('/delete/{id}','Admin\SliderController@delete')->name('slider.delete');
     });
+    Route::group(['prefix' => 'services'], function (){
+        Route::get('/services.aspx', 'Admin\ServicesController@index')->name('services.list');
+
+        Route::post('/store','Admin\ServicesController@store')->name('services.store');
+        Route::post('/update/{id}','Admin\ServicesController@update')->name('services.update');
+        Route::get('/delete/{id}','Admin\ServicesController@delete')->name('services.delete');
+    });
 });

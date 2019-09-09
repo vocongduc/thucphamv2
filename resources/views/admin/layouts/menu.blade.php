@@ -91,6 +91,11 @@
                     <i class="glyphicon glyphicon-picture"></i>
                     <span>Slider</span></a>
             </li>
+            <li class="">
+                <a href="{{ route('services.list') }}">
+                    <i class="glyphicon glyphicon-tree-conifer"></i>
+                    <span>Dịch Vụ</span></a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="glyphicon glyphicon-road"></i>
