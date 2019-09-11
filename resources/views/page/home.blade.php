@@ -54,71 +54,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- giao hang -->
+                    @foreach($services as $service)
                     <div class="service-1 " style="width:16%">
                         <div class="service-div">
-                            <img src="https://biggreen.vn/upload/20366/20170830/giao-hang.png" alt="">
+                            <img src="{{ asset('images/services/'.$service->icon) }}" alt="">
                             <div class="text">
-                                <h5>giao hàng</h5>
-                                <p>miễn phí</p>
+                                <h5>{{ $service->name }}</h5>
+                                <p>{{ $service->content }}</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- thanh toan -->
-                    <div class="service-1" style="width:16%">
-                        <div class="service-div">
-                            <img src="https://biggreen.vn/upload/20366/20170830/thanh-toan.png ">
-                            <div class="text">
-                                <h5>thanh toán</h5>
-                                <p>khi nhận hàng</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- hoan tra tien -->
-                    <div class="service-1" style="width:16%">
-                        <div class="service-div">
-                            <img src="https://biggreen.vn/upload/20366/20170830/hoan-tra-tien.png" alt="">
-                            <div class="text">
-                                <h5>hoàn trả tiền</h5>
-                                <p>trong 3 ngày</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- qua tnag -->
-                    <div class="service-1" style="width:16%">
-                        <div class="service-div">
-                            <img src="https://biggreen.vn/upload/20366/20170830/qua-tang.png" alt="">
-                            <div class="text">
-                                <h5>quà tặng</h5>
-                                <p>miễn phí</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- thanh toan -->
-                    <div class="service-1" style="width:16%">
-                        <div class="service-div">
-                            <img src="https://biggreen.vn/upload/20366/20170830/bao-mat.png" alt="">
-                            <div class="text">
-                                <h5>thanh toán</h5>
-                                <p>bảo mật</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ho tro-->
-                    <div class="service-1" style="width:16%">
-                        <div class="service-div">
-                            <img src="https://biggreen.vn/upload/20366/20170830/ho-tro.png" alt="">
-                            <div class="text">
-                                <h5>hỗ trợ</h5>
-                                <p>24/7</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>

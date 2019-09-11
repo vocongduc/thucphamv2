@@ -33,12 +33,18 @@
                     <i class="fa fa-dashboard"></i> <span>Admin Accounts</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
+            
             </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ Route('admin.account.index') }}"><i class="fa fa-circle-o"></i> Quản lý Admin</a></li>
                     <li><a href="{{ Route('user.account.index') }}"><i class="fa fa-circle-o"></i> Quản lý User</a></li>
                 </ul>
+            </li>
+            <li class="">
+                <a href="{{ route('introduce.list') }}">
+                    <i class="fa fa-info"></i>
+                    <span>Giới thiệu</span></a>
             </li>
             <li class="treeview">
                 <a href="#">
@@ -90,6 +96,11 @@
                 <a href="{{ route('slider.list') }}">
                     <i class="glyphicon glyphicon-picture"></i>
                     <span>Slider</span></a>
+            </li>
+            <li class="">
+                <a href="{{ route('services.list') }}">
+                    <i class="glyphicon glyphicon-tree-deciduous"></i>
+                    <span>Dịch Vụ</span></a>
             </li>
             <li class="treeview">
                 <a href="#">
