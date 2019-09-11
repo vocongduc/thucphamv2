@@ -72,7 +72,6 @@
                                 </div>
                         </form>
                     </div>
-
             </div>
             <section class="content">
                 <div class="row">
@@ -181,7 +180,6 @@
                     }
                 }
                 function fileValidation(obj) {
-
                         //var fileInput = document.getElementById('file'+id);
                         var filePath = obj.value; //lấy giá trị input theo id
                         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i; //các tập tin cho phép
@@ -200,7 +198,6 @@
                                 reader.readAsDataURL(obj.files[0]);
                             }
                         }
-
                 }
             </script>
         </div>
