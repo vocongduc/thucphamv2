@@ -34,7 +34,7 @@
         </div>
         <h2>Oops! Page Not Be Found</h2>
         <p>Xin lỗi! Vui lòng kiểm tra xem URL bạn đã nhập có chính xác không. Vui lòng nhấp vào nút bên dưới để trở về trang chủ.</p>
-        <a href="{{ Route('admin.dashboard') }}">Back to homepage</a>
+        <a href="{{ url('') }}">Back to homepage</a>
     </div>
 </div>
 

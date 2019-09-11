@@ -18,9 +18,7 @@
 
 Route::prefix('gioithieu')->group(function () {
 
-    Route::get('/', function () {
-        return view('page.gioithieu');
-    })->name('gioi-thieu');
+    Route::get('/index.html', 'HomeController@gioithieu')->name('gioi-thieu');
 
     Route::get('album-Anh', function () {
         return view('page.albumAnh');
@@ -425,10 +423,17 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
         Route::get('/delete/{id}','Admin\SliderController@delete')->name('slider.delete');
     });
     Route::group(['prefix' => 'services'], function (){
-        Route::get('/services.aspx', 'Admin\ServicesController@index')->name('services.list');
+        Route::get('/list.html', 'Admin\servicesController@index')->name('services.list');
 
-        Route::post('/store','Admin\ServicesController@store')->name('services.store');
-        Route::post('/update/{id}','Admin\ServicesController@update')->name('services.update');
-        Route::get('/delete/{id}','Admin\ServicesController@delete')->name('services.delete');
+        Route::post('/store','Admin\servicesController@store')->name('services.store');
+        Route::post('/update/{id}','Admin\servicesController@update')->name('services.update');
+        Route::get('/delete/{id}','Admin\servicesController@delete')->name('services.delete');
+    });
+    Route::group(['prefix' => 'introduce'], function (){
+        Route::get('/list.html', 'Admin\IntroduceController@index')->name('introduce.list');
+
+        Route::post('/store','Admin\IntroduceController@store')->name('introduce.store');
+        Route::post('/update/{id}','Admin\IntroduceController@update')->name('introduce.update');
+        Route::get('/delete/{id}','Admin\IntroduceController@delete')->name('introduce.delete');
     });
 });

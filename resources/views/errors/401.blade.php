@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="{{asset('')}}">
     <title>My Tam Mart - Errors</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo-kien.png') }}" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <style>

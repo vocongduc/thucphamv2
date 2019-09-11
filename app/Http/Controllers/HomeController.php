@@ -41,6 +41,7 @@ class HomeController extends Controller
             ->join('cate_products_lv2', 'cate_products_lv2.id','=', 'products.cate_product')
             ->where('status',1)->orderBy('id', 'desc')->get();
         $data['sliders'] = DB::table('sliders')->orderBy('id', 'desc')->get();
+        $data['services'] = DB::table('services')->limit(6)->get();
         //dd($data);
 
 
@@ -165,5 +166,8 @@ class HomeController extends Controller
             ->where('status', 1)->orderBy('id', 'desc')->count();
 
         return view('page.sanPham', $data);
+    }
+    public function gioithieu(){
+        return view('page.gioithieu');
     }
 }

@@ -455,6 +455,33 @@ class DatabaseSeeder extends Seeder
                 'image' => '1567821518_slider_pannel2.jpg'
             ]
         ]);
+        DB::table('services')->insert([
+            [
+                'name' => 'GIAO HÀNG',
+                'content' => 'Miễn Phí',
+                'icon' => 'giao-hang.png'
+            ],[
+                'name' => 'THÁNH TOÁN',
+                'content' => 'Khi Nhận Hàng',
+                'icon' => 'thanh-toan.png'
+            ],[
+                'name' => 'HOÀN TRẢ TIỀN',
+                'content' => 'Trong 3 ngày',
+                'icon' => 'hoan-tra-tien.png'
+            ],[
+                'name' => 'QUÀ TẶNG',
+                'content' => 'Miễn Phí',
+                'icon' => 'qua-tang.png'
+            ],[
+                'name' => 'THÔNG TIN',
+                'content' => 'Bảo Mật',
+                'icon' => 'bao-mat.png'
+            ],[
+                'name' => 'HỖ TRỢ',
+                'content' => '24/7',
+                'icon' => 'ho-tro.png',
+            ]
+        ]);
     }
 
 }
