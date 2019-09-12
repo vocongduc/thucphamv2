@@ -23,6 +23,7 @@ class HomeController extends Controller
         $contacts = DB::table('change_contacts')->orderBy('id', 'DESC')->limit(1)->get();
         view()->share('contacts', $contacts);
         view()->share('search_cates', DB::table('cate_products_lv1')->orderBy('id', 'desc')->get());
+        view()->share('introduces', DB::table('introduces')->orderBy('id', 'desc')->first());
 
     }
 

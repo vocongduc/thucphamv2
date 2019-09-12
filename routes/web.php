@@ -432,8 +432,6 @@ Route::group(['prefix' => 'admincp','middleware' => 'auth:admin'],function(){
     Route::group(['prefix' => 'introduce'], function (){
         Route::get('/list.html', 'Admin\IntroduceController@index')->name('introduce.list');
 
-        Route::post('/store','Admin\IntroduceController@store')->name('introduce.store');
-        Route::post('/update/{id}','Admin\IntroduceController@update')->name('introduce.update');
-        Route::get('/delete/{id}','Admin\IntroduceController@delete')->name('introduce.delete');
+        Route::post('/update.html','Admin\IntroduceController@update')->name('introduce.update');
     });
 });

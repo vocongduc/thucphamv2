@@ -44,10 +44,9 @@
                 <!-- logo -->
                 <div class="col-lg-3 logo-col">
                     <div class="logo">
-                        <a href="#"><img src="{{ asset('images/logo1-v3.png')}}" alt=""></a>
+                        <a href="#"><img src="{{ asset('images/logo/'.$introduces->logo)}}" alt=""></a>
                     </div>
                 </div>
-
                 <!-- search-col -->
                 <div class="col-lg-4 search-col " style="bottom: 25px;">
                     <div class="header-search">
@@ -91,7 +90,7 @@
 
                 <!-- support-col -->
                 <div class="col-lg-5 support-col" style="bottom: 25px;">
-                    @foreach ($contacts as $value)
+
                     <div class="header-support">
                         <!-- support-box -->
                         <div class="support-box">
@@ -100,7 +99,7 @@
                             </div>
                             <div class="text-box text-support">
                                 <p class="phone-box m-0"><strong>Hỗ trợ:</strong></p>
-                                <p class="tel"><a href="#"><span>{{$value->phone}}</span></a></p>
+                                <p class="tel"><a href="tel:{{ $introduces->phone }}"><span>{{$introduces->phone}}</span></a></p>
                             </div>
                         </div>
 
@@ -111,12 +110,11 @@
                             </div>
                             <div class="text-box text-email">
                                 <p class="phone-box m-0"><strong>Email:</strong></p>
-                                <p class="email"><a href="mailto:{{$value->email}}"><span>{{$value->email}}</span></a></p>
+                                <p class="email"><a href="mailto:{{$introduces->email}}"><span>{{$introduces->email}}</span></a></p>
                             </div>
                         </div>
 
                     </div>
-                    @endforeach
 
                 </div>
 

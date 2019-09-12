@@ -482,6 +482,25 @@ class DatabaseSeeder extends Seeder
                 'icon' => 'ho-tro.png',
             ]
         ]);
+
+        DB::table('introduces')->insert([
+           'phone' => '0967268826,',
+           'email' => 'cskh@mytammart.com',
+           'logo' => '1568308085_logo_logo-cut.png',
+           'content' => '<p><strong>C&ocirc;ng ty Thực Phẩm Sạch BigGreen Việt Nam</strong>&nbsp;ch&iacute;nh thức được th&agrave;nh lập ng&agrave;y 14/4/2010 do kỹ sư - Th.s N&ocirc;ng Nghiệp Nguyễn Tiến Hưng l&atilde;nh đạo.</p>'
+               .'<p>Cuối 2009 anh kỹ sư - Th.s N&ocirc;ng Nghiệp bắt đầu đưa sản phẩm &ldquo;rau sạch&rsquo;&rsquo; từ c&aacute;c dự &aacute;n đến cho người ti&ecirc;u d&ugrave;ng H&agrave; Nội.Trải qua một thời gian gặp kh&oacute; khăn khi đưa sản phẩm đến tay người ti&ecirc;u d&ugrave;ng bởi kiến thức &ldquo;rau sạch&rdquo;c&ograve;n rất mới so với người ti&ecirc;u d&ugrave;ng n&oacute;i chung.</p>'
+            .'<p><strong>Với tầm nh&igrave;n&nbsp;</strong>&ldquo;Trở th&agrave;nh nh&agrave; cung ứng uy t&iacute;n v&agrave; dẫn đầu thị trường về rau an to&agrave;n,tr&aacute;i c&acirc;y tươi v&agrave; đem đến cho người ti&ecirc;u d&ugrave;ng những sản phẩm&nbsp;<strong>an to&agrave;n, gi&agrave;u chất dinh dưỡng</strong>&rdquo;. Sang năm 2010 BigGreen đ&atilde; từng bước kết hợp với nhiều dự &aacute;n kh&aacute;c của c&aacute;c tổ chức phi ch&iacute;nh phủ để đưa th&ecirc;m thực phẩm sạch,đặc sản tr&aacute;i c&acirc;y ba miền, c&aacute;c đặc sản miền n&uacute;i ph&iacute;a bắc&hellip; Tất cả sản phẩm khi đến tay người ti&ecirc;u d&ugrave;ng đều phải đảm bảo yếu tố&nbsp;<strong>&ldquo; xuất xứ r&otilde; r&agrave;ng&rdquo;</strong>.</p>'
+            .'<p><strong>&ldquo;Sứ Mệnh&rdquo;</strong>&nbsp;Ch&uacute;ng t&ocirc;i mang trong m&igrave;nh:</p>'
+            .'<ul>'
+           .'<li>Với mong muốn đem đến cho người ti&ecirc;u d&ugrave;ng những rau quả,&nbsp;<strong>thực phẩm tươi sống an to&agrave;n, gi&agrave;u chất dinh dưỡng</strong>. Cuối năm 2012 BigGreen đ&atilde; quyết t&acirc;m mở rộng hoạt động kinh doanh với chuỗi cửa h&agrave;ng Thực Phẩm Sạch BigGreenKh&ocirc;ng ngừng nỗ lực để cung cấp đầy đủ, kịp thời c&aacute;c sản phẩm an to&agrave;n, đảm bảo chất lượng.</li>'
+               .'<li>Mang lại cho đối t&aacute;c, kh&aacute;ch h&agrave;ng v&agrave; x&atilde; hội những gi&aacute; trị hấp dẫn, l&acirc;u d&agrave;i th&ocirc;ng qua việc triển khai chiến lược kinh doanh ph&ugrave; hợp song song với việc &aacute;p dụng c&aacute;c phương thức quản trị doanh nghiệp hiệu quả.</li>'
+               .'<li>Kh&ocirc;ng ngừng học hỏi v&agrave; ho&agrave;n thiện.</li>'
+                .'<li>Ph&aacute;t triển nh&acirc;n lực: tạo điều kiện để c&aacute;n bộ nh&acirc;n vi&ecirc;n c&oacute; thể ph&aacute;t huy tối đa năng lực,một m&ocirc;i trường l&agrave;m việc chuy&ecirc;n nghiệp v&agrave; khen thưởng xứng đ&aacute;ng cho những c&aacute; nh&acirc;n v&agrave; tập thể đạt th&agrave;nh t&iacute;ch cao.</li>'
+                           .'</ul>'
+            .'<p>Với t&ocirc;n chỉ tạo dựng niềm tin đối với người ti&ecirc;u d&ugrave;ng, BigGreen lu&ocirc;n cố gắng nỗ lực kh&ocirc;ng ngừng để n&acirc;ng cao chất lượng sản phẩm v&agrave; dịch vụ nhằm đưa đến người ti&ecirc;u d&ugrave;ng những sản phẩm sạch, đảm bảo sức khoẻ con người. V&agrave; với mục ti&ecirc;u hợp t&aacute;c để ph&aacute;t triển bền vững, BigGreen cam kết l&agrave; đối t&aacute;c tin cậy với qu&yacute; kh&aacute;ch h&agrave;ng</p>'
+            .'<p><strong>Phương ch&acirc;m của ch&uacute;ng t&ocirc;i:</strong>&nbsp;&ldquo; Sự h&agrave;i l&ograve;ng của kh&aacute;ch h&agrave;ng l&agrave; th&agrave;nh c&ocirc;ng của BigGreen&rdquo;</p>'
+            .'<p>Ch&uacute;ng t&ocirc;i đ&atilde;, đang v&agrave; sẽ tiếp tục khẳng định thương hiệu v&agrave; vị thế của m&igrave;nh tr&ecirc;n thị trường Việt Nam. C&ocirc;ng ty TNHH thực phẩm sạch BigGreen Việt Nam với thương hiệu BigGreen gửi lời cảm ơn v&agrave; tri &acirc;n th&acirc;n thiết đến c&aacute;c kh&aacute;ch h&agrave;ng v&agrave; c&aacute;c đối t&aacute;c đ&atilde; ủng hộ qu&yacute; c&ocirc;ng ty suốt thời gian qua. BigGreen sẽ lu&ocirc;n cố gắng nỗ lực để xứng đ&aacute;ng với l&ograve;ng tin ấy.</p>'
+        ]);
     }
 
 }
